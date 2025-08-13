@@ -1,0 +1,37 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(223, 251, 250);
+}
+
+.modal-glossary {
+  max-height: 100%;
+  overflow-y: auto;
+  position: fixed;
+  display: grid;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  scroll-behavior: smooth;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  height: min-content;
+  margin: 2%;
+  max-width: 525px;
+  text-align: center;
+}

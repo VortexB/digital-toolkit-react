@@ -1,0 +1,39 @@
+html {
+  scroll-behavior: smooth;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(fonts/Montserrat/static/Montserrat-Regular.ttf);
+}
+@font-face {
+  font-family: Lato;
+  src: url(fonts/Lato/Lato-Light.ttf);
+}
+
+body {
+  font-family: Lato;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  margin-top: 100px;
+}
+
+button {
+  cursor: pointer;
+  width: 120px;
+  height: 50px;
+  color: white;
+  background-color: rgb(4, 152, 142);
+  font-size: 14px;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  border-radius: 20px;
+  border-color: white;
+  align-content: center;
+  transition: background-color 0.3s ease, width 0.3s ease;
+  transition: transform 0.3s ease, width 0.3s ease;
+}

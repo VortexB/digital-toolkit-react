@@ -1,0 +1,1 @@
+# Domain 3: Some staff members/clinicians/researchers may believe that adopting innovation is more time-consuming than existing practice.

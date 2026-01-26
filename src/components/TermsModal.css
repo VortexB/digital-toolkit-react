@@ -1,18 +1,5 @@
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 10px;
-  background-color: rgb(223, 251, 250);
-}
-
-.modal-glossary {
-  max-height: max-content;
+.modal-terms {
+  max-height: 100%;
   overflow-y: auto;
   position: fixed;
   display: grid;
@@ -32,6 +19,13 @@ td {
   padding: 20px;
   height: min-content;
   margin: 2%;
-  max-width: 525px;
+  max-width: 800px;
   text-align: center;
+}
+
+.terms-content {
+  text-align: left;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: auto;
 }

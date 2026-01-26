@@ -1,0 +1,1 @@
+# Domain 3: Some individuals or teams do not have the resources, time, space or support to learn to use the innovation.

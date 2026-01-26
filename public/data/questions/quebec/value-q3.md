@@ -1,0 +1,1 @@
+# Domain 2: The technology has already been shown to be cost-effective in terms of how much benefit it will bring for a given financial outlay.

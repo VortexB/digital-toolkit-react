@@ -1,0 +1,4 @@
+# Domain 5: Introduction of the technology/innovation could be threatened by external changes that impact on the organisation (e.g., policies, regulatory framework, tech industry)
+
+## Recommended Actions
+3. Inter-organizational networks for digital mental health in Quebec- Alliance en santé mentale du Québec- Centre Axel- Réseau santé numériqueUseful resources (General): Guide de soutien à l&#39;appréciation de la valeur (in French) (2024) INSSS 6-Step Guide to mHealth Implementation (Unite de soutien SSA Quebec) (2024) Toolkit for e-Mental Health Implementation (Mental Health Commission ofCanada 2018) Implementation science research development (ImpRes) tool: A practical guide tousing the ImpRes tool (2018) King’s College London

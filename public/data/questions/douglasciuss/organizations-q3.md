@@ -1,0 +1,1 @@
+# Domain 4: The implications (e.g., work required) of introducing, implementing and evaluating the technology have been adequately assessed by the implementing organization.

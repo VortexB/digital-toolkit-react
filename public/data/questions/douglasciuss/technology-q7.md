@@ -1,0 +1,1 @@
+# Domain 1: There is a need for individual users (patients, clinicians, or researchers) to upgrade their personal devices.

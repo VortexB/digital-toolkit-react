@@ -1,0 +1,1 @@
+# Domain 5: Introduction of the technology/innovation could be threatened by external changes that impact on the organisation (e.g., policies, regulatory framework, tech industry)

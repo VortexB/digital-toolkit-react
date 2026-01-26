@@ -1,0 +1,7 @@
+# Domain 2: The technology has already been shown to be cost-effective in terms of how much benefit it will bring for a given financial outlay.
+
+## Recommended Actions
+1. Assess market viability of the innovation to project demand and marketfor innovations, estimate benefit, know who would pay, and forecastchallenges for scaling and sustainment.13https://implementationscience.biomedcentral.com/articles/10.1186/s13012-021-01168-2/tables/1
+2. Conduct cost-benefit analysis. Cost calculation in implementation (Gold, H.T., McDermott, C.,Hoomans, T. et al. Cost data in implementation science: categoriesand approaches to costing. Implementation Sci 17, 11 (2022).https://doi.org/10.1186/s13012-021-01172-6). Cost-benefit analysis primer for community health workershttps://azprc.arizona.edu/sites/default/files/CHWtoolkit/PDFs/FRAMEWOR/COSTBENE.PDF
+3. Develop a strategic plan (business model) which delivers value (overtime) in economic, social, and economic contexts. Business Model Canvas template
+4. Seek funding opportunities for innovation advancement,implementation, and sustainment. Funding opportunities | Canada Foundation for Innovation Find a Program - Mitacs McGill Clinical Innovation Competition

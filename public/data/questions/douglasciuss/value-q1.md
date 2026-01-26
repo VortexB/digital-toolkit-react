@@ -1,0 +1,1 @@
+# Domain 2: There is evidence that demonstrates the efficacy of the innovation for the patient group.

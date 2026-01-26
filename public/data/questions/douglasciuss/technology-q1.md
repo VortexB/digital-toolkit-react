@@ -1,0 +1,1 @@
+# Domain 1: The current version of the innovation is already in a robust and definitive form.

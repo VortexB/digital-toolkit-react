@@ -1,0 +1,864 @@
+ Title of the toolkit: D3SM digital assessment toolkit
+ What is this about?
+This D3SM toolkit aims to provide ideas, steps, and resources to support
+researchers, clinicians, health care managers, and project leads when planning,
+implementing, and evaluating digital mental health interventions. It also considers
+how to plan for sustainability through implementation.
+We created this toolkit by adapting the non-adoption, abandonment, scale-up,
+spread, sustainability (NASSS) framework, in combination with a Complexity
+Assessment Tool (CAT), developed by Greenhalgh and colleagues.
+The assessment toolkit will help users:
+- Assess the readiness level of technology(ies) for integration into health care
+settings according to the following key domains: (type of technology, value
+proposition, intended adopters, healthcare organizations, and external
+context);
+- Identify barriers and facilitators related to the integration of technology in
+health care settings;
+- Access resources and tools that may help overcome existing barriers and
+support the integration of technology.
+We recommend that users apply this tool at different phases of the
+implementation process (e.g., conceptualization, planning, implementation,
+evaluation, sustainability, commercialization), since barriers and facilitators can
+change over time, as can the policy context.
+ Who is this toolkit for?
+-The toolkit targets researchers and clinicians who develop digital mental health
+interventions and plan to implement them;
+-As well, the toolkit benefits health care managers, program leads, and clinicians
+who wish to adopt mental health innovations for implementation in their clinical
+settings.
+Given the critical importance of engagement with Indigenous partners and
+communities, we stress that development and implementation of digital mental
+health interventions geared toward Indigenous populations should be aligned with
+Indigenous ways of knowing, values, and practices. Toolkit users from Quebec
+should consult the course: ‘Sensibilisation aux réalités autochtones’, available at
+this link: Environnement Numérique d’Apprentissage or Formation Continue
+Partagée (FCP).
+
+2
+
+ How do I use the D3SM toolkit?
+You first need to answer 23 questions under each of the following five domains,
+1) type of technology, 2) value proposition, 3) intended adopters, 4) health care
+organizations, and 5) external context. Then, you will be able to assess the
+challenges and resources associated with each domain as you work toward
+implementation and sustainment of your digital intervention. Depending on your
+responses, you will receive a list of recommended actions and resources at the
+end of your assessment that address the challenges you have identified. By
+completing the questions related to all domains, you will also be able to identify
+which domains need more input and gauge which measures best respond to the
+complexity of your specific intervention. In addition, conducting an assessment
+regularly (every three to six months) can also help the project team to monitor and
+evaluate the integration process of your digital technology over time.
+ How was this D3SM Toolkit developed?
+The Douglas Data and Digital Science for Mental Health (D3SM) Implementation
+team identified and adapted the NASSS (non-adoption, abandonment and
+challenges to scale-up, spread, sustainability) framework, combined with a
+Complexity Assessment Toolkit (CAT). The NASSS-CAT was originally
+developed by the Interdisciplinary Research in Health Sciences group led by Dr.
+Trisha Greenhalgh at the University of Oxford in 2021. Considering its specific
+focus on complexities and interdependent characteristics of health technology
+projects, we adapted the tool for the Canadian/Quebec health care context after
+selecting relevant questions and administering the modified questionnaire with
+selected D3SM research teams. We identified resource information through
+literature reviews, as well as meetings and consultations with people working on
+development and implementation of digital mental health interventions in clinical
+settings.
+
+Reference: Greenhalgh T, Maylor H, Shaw S, Wherton J, Papoutsi C, Betton V, Nelissen N,
+Gremyr A, Rushforth A, Koshkouei M, Taylor J (The NASSS-CAT tools for understanding,
+guiding, monitoring, and researching technology implementation projects in health and social
+care: Protocol for an evaluation study in real-world Settings, JMIR Res Protoc 2020;9(5):
+e16861
+
+ Glossary
+Acceptability Perception of satisfaction and agreement among interested
+parties involved in various aspects related to implementing
+innovations (e.g., content, complexity, delivery, credibility,
+
+3
+
+safety)
+
+Adoption Intention, decision or action to test or employ an innovation
+Appropriateness Perceived fit, relevance, suitability of the innovation for a given
+provider, target users, settings, and/or perceived fit of the
+innovation to address an identified issue
+
+Co-design Human-centered approach to design involving collaboration and
+engagement with users alongside researchers, designers, and
+stakeholders in the identification of problems and development
+of solutions (Vial et al., 2023)
+
+Digital mental
+health
+interventions
+
+Mental health services and information delivery using the
+Internet and related to technologies, including mobile apps,
+virtual reality, artificial intelligence, wearables, telehealth, instant
+messaging
+
+Digital navigator A dedicated health care professional whose task in hospitals and
+clinics is to select evidence-based apps, troubleshoot, and
+interpret digital data outputs in a clinically meaningful way
+Effectiveness The degree to which an innovation achieves its intended
+outcomes in addressing a specific health problem or need
+Engagement The state in which users actively invest their physical, affective,
+and cognitive energies into a stimulus or task related to the
+digital innovation (Nahum-Shani et al., 2022)
+
+Feasibility The degree to which an innovation can be successfully used
+
+within a given setting
+
+Innovation A novel set of behaviors, routines and ways of working that are
+discontinuous with previous practices, directed at improving
+health outcomes, administrative efficiency, cost effectiveness, or
+user experience, and that are implemented by planned and
+coordinated actions (Greenhalgh et al., 2004)
+
+Innovation
+readiness
+
+Level of maturity in an organization to successfully adopt new
+innovations based on four major themes: strategic course of
+innovation, climate for innovation, leadership for innovation,
+commitment to innovation (van den Hoed et al., 2022)
+
+Interoperability Ability of computer systems to communicate with each other in
+order to share and use information. For example, sustainability
+of the project can be established in the health system by
+connecting data from an app to online patient health care
+records.
+
+Patient-partner An individual with lived experience of a health issue, or a
+caregiver, family member, or friend who actively contributes to
+health research or quality improvement initiatives (CIHR)
+Sustainment The extent to which a newly introduced innovation is integrated,
+maintained or institutionalized within the ongoing operations of a
+service setting
+
+Usability The ease of use or extent to which the innovation may
+
+accomplish its goals
+
+Value proposition A statement that explains both features of the innovation and
+
+4
+benefits that the innovation will deliver to a health care
+organization
+
+Sustainment The extent to which a newly introduced innovation is integrated,
+maintained or institutionalized within the ongoing operations of a
+service setting(s)
+
+(Source: ImpRes-Guide)
+ Terms of Use
+The D3SM Digital Assessment Toolkit (‘D3SM Toolkit’) was developed as part of
+the Douglas Digital Data Science for Mental Health initiative (D3SM), which aims
+to support the implementation of digital technologies into mental health care
+settings in the domains of 1) technology, 2) value proposition, 3) intended
+adopters, 4) health care organizations, and 5) external context. Further
+information about how to use the D3SM Toolkit can be found in “How do I use the
+D3SM toolkit?” (Hyperlinked with the section). This Toolkit was created based on
+the NASSS-CAT originally developed by the Interdisciplinary Research in Health
+Sciences group at the University of Oxford. The D3SM Toolkit is undergoing
+continual updates, and members of D3SM assume no liability arising from the use
+of this Toolkit. Neither D3SM members nor employees, directors, or agents of the
+Douglas Research Centre assume any legal liability or responsibility for the
+accuracy, reliability, completeness, or usefulness of any information presented in
+this Toolkit. The Toolkit may not be modified or adapted without the written
+consent of the D3SM. The Toolkit may be reproduced and disseminated for non-
+commercial purposes, but only in the original format and must include this notice:
+Please contact us by email at XXXXX for any questions.
+-&gt; I agree to the Terms of Use (Checkbox to go Next).
+(Instruction to Keya and Trent): “Save and Continue later” option (If so, the link
+will be sent to an E-mail address. The link will expire in 90 days)
+ Information about your project
+In order to provide a relevant information resource and improve the toolkit
+content, we would encourage you to share your project information regarding
+improvement of the toolkit. The assessment results will be sent to the provided e-
+mail address.
+Project Title:
+Type of project (Select all that apply): app, artificial intelligence, big data, cloud
+service, instant messaging, operating system, portal (electronic) medical records,
+smartphone, social media, software, telehealth, virtual reality, wearable, website,
+other (please describe).
+
+5
+If multiple settings, please select the setting where you are planning to integrate
+the technology:
+Project location: Country, State/Province/Region.
+If ‘Quebec,’ then please select the CISSS/CIUSSS where the project will be
+implemented from the list of CISSS/CIUSSS here.
+Are you a researcher at the Douglas Research Institute or St. Mary’s Research
+Centre?
+ Yes
+ No
+E-mail address (where to send assessment results):
+
+Domain 1: Technology
+This domain looks at the multiple complexities around technology, such as
+functionality of the technology itself, and the required knowledge and
+infrastructure to use it.
+1.1: The current version of the innovation is already in a robust and definitive
+form.
+ Yes
+ Not applicable
+ Do not know
+ No
+Recommended actions (for those who check “Do not know” “No”):
+1. Assess the technology readiness levels.
+2. Consult the Digital Intervention Development Guide (Figure 2) that supports
+efforts to develop digital mental health interventions from theoretical inception to
+actual intervention.
+(Mertens, E. C. A., &amp; Van Gelder, J. L. (2025). The DID-guide: A guide to
+developing digital mental health interventions. Internet Interventions, 39, 100794.)
+For Quebec respondents,
+3. Consult Digi-Guide Axel and receive support from Centre Axel for digital
+technology development.
+1.2: There are significant privacy concerns over your digital health innovations.
+
+6
+
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions (For those who select “Do not know” “Yes”) :
+1. Consult the Digital Privacy Playbook (Government of Canada) and Privacy and
+Security Guideline (Canada Health Infoway) to start planning for privacy
+considerations
+
+2. Check the relevant privacy regulations (Federal/Provincial):
+The Personal Information Protection and Electronic Documents Act (PIPEDA) -
+Office of the Privacy Commissioner of Canada
+Datum project-List of regulations
+
+3. Check the privacy policy of the technology developed by the third party to
+comply with the institutional privacy and data security guideline.
+
+4. Consult the IT department for data security protocol and requirement.
+
+For Quebec respondents:
+1. Please be aware that, in Quebec, the Privacy Impact Assessment/Évaluation
+des facteurs relatifs à la vie privée (EFVP) is required if your research needs to access
+patient information/charts without consent .
+
+Also see:
+Law 5: Act respecting health and social services information
+Law 25: Act respecting the protection of personal information in the private
+sector
+2. Check the privacy policy of the technology developed by the third party to
+comply with the institutional privacy and data security guidelines.
+For CIUSSS de L’Ouest -de-l’île-de-Montréal/Douglas respondents:
+
+7
+3. Contact the website of the CIUSSS de L’Ouest -de-l’île-de-Montréal research
+support team (L’Unité de Soutien et d’Encadrement de la Recherche (USER) for
+the updated information and procedures.
+4. Consult the IT department for the data security protocol and requirements (e.g.,
+a security questionnaire, compliance with ISO 27001/02, ISO 27017, la loi
+québécoise sur la protection de la vie privée 25, and Personal Information
+Protection and Electronic Documents Act).
+5. If the third-party technology does not have a recent penetration test report,
+ISO, and other compliance, contact the CIUSSS IT for penetration test done by
+the Quebec Health Ministry.
+
+1.3: There are significant data security concerns (interrupt, manipulate, or gain
+unauthorized access to data) over the use of your digital innovation.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+1. Consult the Privacy and Security Guideline (Canada Health Infoway) to
+start planning for security considerations:
+Canada Health Infoway Digital Health Solutions Privacy and Security
+Guideline
+2. Be transparent about data security, privacy, and use to clinicians, service
+users throughout the project, and about use of the technology.
+
+For Quebec respondents:
+
+3. Webinar (French only): Anonymisation des données de santé en droit
+québécois
+
+1.4: There are significant uncertainties about the technology’s usability and
+acceptability by target users.
+ No
+ Not applicable
+ Do not know
+
+8
+
+ Yes
+Recommended actions:
+1. Conduct needs assessment with target users (e.g., clinicians,
+service users).
+2. Co-design the innovation with patient-partners.
+ Microsite on patient partnership in research (interactive tour,
+resources and testimonials) (Unite de Soutien SSA Quebec).
+https://ssaquebec.ca/en/news/microsite-on-patient-partnership-in-
+research-interactive-tour-resources-and-testimonials/
+ Patients as Partners in Research: Planning Guidelines (SPOR
+Patients Canada):
+https://ossu.ca/wp-content/uploads/Planningguidelines_-
+_pub_2016.pdf
+ Best Practice Guidelines for the engagement of people with lived
+experience (CAMH):
+https://www.camh.ca/-/media/professionals-files/engagement-
+people-lived-experience-mhresearch2024-pdf.pdf
+3. Explore different patterns of engagement with digital mental
+health interventions.
+Table 1 (Engagement facilitators):
+https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-
+00105-9/tables/1
+Reference: Boucher, E.M., Raiker, J.S. Engagement and retention in digital
+mental health interventions: a narrative review. BMC Digit Health 2, 52
+(2024)
+
+4. Assess target user perspectives on acceptability, feasibility, and
+engagement.
+ For acceptability and feasibility assessment: Acceptability of
+Intervention Measures
+
+9
+ Assessment Framework for Mental Health Apps (Mental Health
+Commission of Canada): Consult the structure “Usability and
+Accessibility”
+ For engagement assessment: User Engagement Scale
+
+5. Hold a meeting to visualize key issues with clinicians who potentially
+use the innovation.
+ E-mental health planning canvas (Appendix 4, MHCC E-mental
+health implementation toolkit).
+6. During pre-implementation, offer training and supervision on using
+the innovation.
+7. During implementation, offer ongoing supervision and engage
+“champions” to inform other users about the innovation.
+
+1.5: The technology needs to be installed across multiple technical
+systems
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+1. Assess whether integration between multiple systems is really
+necessary or if there are ways to avoid or delay this during initial
+testing.
+2. Consult with the IT departments of each institution to identify, negotiate
+and resolve infrastructural conflicts (e.g., lack of accessibility or
+hindering requirements).
+3. Understand the concept of interoperability and how it can improve
+patient experience.
+ The Path to Connected Care | Canada Health Infoway
+ Procuring Interoperability: Achieving High-Quality, Connected, and
+Person-Centered Care
+
+10
+1.6: There is a need to upgrade/change the organization’s IT system for
+implementing (e.g., new hardware, better bandwidth).
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+1. Reassess whether it is really necessary to have the IT system
+upgraded or changed, or if there are ways to avoid or delay this during
+initial testing.
+2. If upgrading is necessary, estimate operational costs (ongoing recurrent
+costs for upgrading and maintaining the system) to assess feasibility
+and sustainability.
+
+For Douglas/CIUSSS de L’Ouest -de-l’île-de-Montréal :
+
+3. Contact the Douglas Neuro informatics Platform team for consulting
+services in software development and system administration.
+
+1.7: There is a need for individual users (patients, clinicians, or
+researchers) to upgrade their personal devices.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Reassess whether it is really necessary to have individual users
+upgrade their personal devices to use the innovation, or if there
+are ways to avoid or delay this during initial testing.
+2. Assess target users’ perceptions of acceptability,
+appropriateness, and feasibility: Acceptability of Intervention
+Measure
+
+1.8 The technology is likely to require major changes to organisational
+tasks and routines (e.g., new administrative processes, staff needing to
+do their jobs in a different way).
+ No
+ Not applicable
+
+11
+
+ Do not know
+ Yes
+Recommended actions:
+1. Hold a meeting with colleagues and other clinic staff of organizations
+implementing innovations to identify changes that may likely be brought
+by the innovation, and to gauge their concerns.
+Workflow checkup (Appendix 3, MHCC E-mental health
+implementation toolkit).
+
+Domain 2: Value proposition
+This domain concerns for whom a new technology generates values, including value to
+the patient, the developer, and the health system.
+
+2.1 There is evidence that demonstrates the efficacy of the innovation for
+the patient group.
+ Yes
+ Not applicable
+ Do not know
+ No
+
+Recommended actions:
+1. Evaluate comparative clinical effectiveness and comparative value by
+using the Evidence Rating Matrix developed by Institute for Clinical and
+Economic Review (US).
+https://icer.org/evidence-rating-matrix/
+https://icer.org/wp-content/uploads/2020/10/Rating-Matrix-User-Guide-
+UPDATED-06.30.17.pdf
+
+2. Collect patient-reported outcome and experience measures.
+PROMs and PREMs Toolkit (Quebec Soutien SSA)
+
+12
+2.2 The adoption and implementation of the innovation may create
+additional work for clinicians.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+1. Involve managers from the early stage of adoption so they can inform
+the need for changes and how clinicians and/or patients may benefit from
+them.
+2. Clearly communicate the changes to allow for preparation.
+(Nilsen, P., Seing, I., Ericsson, C. et al. Characteristics of successful
+changes in health care organizations: an interview study with physicians,
+registered nurses and assistant nurses. BMC Health Serv Res 20, 147
+(2020). https://doi.org/10.1186/s12913-020-4999-8).
+3. Listen to concerns.
+4. Assist with onboarding (e.g., educational materials, point-person).
+5. Design and offer training.
+6. Engage local champions to address (potential) resistance to change.
+7. Identify effective strategies through StrategEase Tool.
+(The Center for Implementation. (2022). StrategEase Tool).
+2.3 The technology has already been shown to be cost-effective in terms
+of how much benefit it will bring for a given financial outlay.
+ Yes
+ Not applicable
+ Do not know
+ No
+
+Recommended actions:
+1. Assess market viability of the innovation to project demand and market
+for innovations, estimate benefit, know who would pay, and forecast
+challenges for scaling and sustainment.
+
+13
+https://implementationscience.biomedcentral.com/articles/10.1186/s13012-
+021-01168-2/tables/1
+
+2. Conduct cost-benefit analysis.
+ Cost calculation in implementation (Gold, H.T., McDermott, C.,
+Hoomans, T. et al. Cost data in implementation science: categories
+and approaches to costing. Implementation Sci 17, 11 (2022).
+https://doi.org/10.1186/s13012-021-01172-6).
+ Cost-benefit analysis primer for community health workers
+https://azprc.arizona.edu/sites/default/files/CHWtoolkit/PDFs/FRAMEW
+OR/COSTBENE.PDF
+
+3. Develop a strategic plan (business model) which delivers value (over
+time) in economic, social, and economic contexts.
+ Business Model Canvas template
+4. Seek funding opportunities for innovation advancement,
+implementation, and sustainment.
+ Funding opportunities | Canada Foundation for Innovation
+ Find a Program - Mitacs
+ McGill Clinical Innovation Competition
+2.4 There are user safety concerns about the technology or the
+care model with the technology.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Consult IT department and other departments related to patient
+safety to make sure the technology complies with the safety
+protocol.
+2. Consult the Assessment Framework for Mental Health Apps:
+Data, Clinical safety, Enhanced Data Sovereignty.
+3. Provide appropriate education and training to users (service
+users, clinicians) for safe use of health technology.
+
+14
+4. If service users use the innovation, tailor instructional materials
+to be accessible to their literacy level (e.g., simple language,
+pictorial instructions).
+5. Make plans for monitoring patient safety, well-being and
+emotional effects of technology used in addition to physiological
+outcomes.
+(Grosman-Rimon, Liza; Wegier, Pete. With advancement in
+health technology comes great responsibility – Ethical and safety
+considerations for using digital health technology: A narrative
+review. Medicine 103(33):p e39136, August 16, 2024. | DOI:
+10.1097/MD.0000000000039136).
+6. Make technical assistance available.
+
+2.5 There are concerns that the technology could widen
+inequalities while improving care/access for some patients.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Aim to ensure equity regarding who can access the innovation.
+2. Identify unintended potential health impacts on vulnerable or
+marginalized populations.
+ Health Equity Impact Assessment (HEIA) | CAMH
+ Assessment Framework for Mental Health Apps (Mental
+Health Commission of Canada): Consult “Cultural Safety,
+Social Responsibility &amp; Equity”.
+3. Try inclusive practices when co-designing with socially excluded
+persons (Guide).
+4. Consult the Accessibility Standards and Technical Guide to
+remove potential accessibility barriers and improve accessibility
+(Government of Canada).
+ Technical guide: Accessible and Equitable Artificial
+Intelligence Systems
+
+15
+ Standards: Accessibility requirements for ICT products and
+services
+5. Tailor and offer Digital Outreach for Obtaining Resources and
+Skills (DOORS) program to support development of digital
+literacy skills of service users (particularly those with severe
+mental illness).
+
+Domain 3: Intended adopters of innovation/technology
+This domain looks at the complexity of the adopter system, i.e., clinicians, staff, patients
+and carers who are expected to use the technology but who may refuse to use it or find
+that they are unable to use it.
+
+3.1 Some patients will view the innovation/technology in a negative
+way (e.g., not appropriate for their home, or triggering something
+that they would prefer to forget about).
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+1. Assess the level of enthusiasm/concern about the technology from
+different service user/staff groups, and how motivated they are to
+take on the new technology.
+2. Create and distribute educational materials about the innovation
+including blogs, podcasts, webinars, and in-person or digital
+sessions
+(Balcombe, L., &amp; De Leo, D. (2021). Digital mental health
+challenges and the horizon ahead for solutions. JMIR Mental
+Health, 8(3), e26811.).
+3. Provide clear communication to clients about how information is
+going to be used.
+(Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J., Mallard-
+Swanson, K., Palomares, K. J., ... &amp; Sorkin, D. H. (2023).
+
+16
+Facilitators of and barriers to integrating digital mental health into
+county mental health services: qualitative interview analyses. JMIR
+Formative Research, 7(1), e45718.).
+4. Once implementation has started, create “communities of practice”
+(groups or networks of people who share an interest in something
+and are trying to get better at it) where service users/clinicians/staff
+learn about the use and benefit of the new technology.
+
+3.2 Some staff members/clinicians/researchers may believe that
+adopting innovation is more time-consuming than existing practice.
+ No
+ Not applicable
+ Do not know
+ Yes
+
+Recommended actions:
+
+1. Assess the confidence of staff within an organization regarding their
+ability to carry out the necessary process changes mandated by a
+proposed intervention.
+
+eMental Health Adoption Readiness (eMHAR) Scale
+Organizational Readiness for Implementing Change
+
+2. Listen to concerns.
+3. Assist with onboarding (e.g., educational materials, point-person)
+4. Design and offer training.
+ Digital health professional development courses (Digital Health
+Canada)
+ Digital research infrastructure training (Digital Research Alliance of
+Canada)
+
+5. Collaborate with local champions.
+6. Identify effective strategies through the StrategEase Tool.
+(The Center for Implementation. (2022). StrategEase Tool).
+
+17
+3.3 Some individuals or teams do not have the resources, time, space
+or support to learn to use the innovation.
+ No
+ Not applicable
+ Do not know
+ Yes
+
+Recommended actions:
+1. For patients, identifying times within patient treatment schedules when
+they are available to engage with the technology and provide technical
+support.
+(Park, S. Y., Sigmon, C. N., &amp; Boeldt, D. (2022). A framework for the
+implementation of digital mental health interventions).
+2. For clinicians, embed learning in the workflow (suitable tools and
+guides to encourage innovation) for easy access and demonstrations of
+content (e.g., video creation, use of a dashboard).
+(Balcombe, L., &amp; De Leo, D. (2021). Digital mental health challenges
+and the horizon ahead for solutions. JMIR Mental Health, 8(3),
+e26811).
+3. Have technology specialists or digital navigators tasked with introducing
+innovations to service users.
+(Connolly, S.L., Hogan, T.P., Shimada, S.L. et al. Leveraging
+Implementation Science to Understand Factors Influencing Sustained
+Use of Mental Health Apps: a Narrative Review. J. technol. behav. sci.
+6, 184–196 (2021)).
+
+4. Identify and implement effective strategies through StrategEase Tool
+(The Center for Implementation. (2022). StrategEase Tool).
+
+Domain 4: Organizations implementing the technology
+
+18
+This domain focuses on the organization’s capacity to innovate, readiness for a new
+innovation, funding decisions, potential disruption to existing routines, and the extent of
+additional work to implement changes.
+
+4.1: All aspects of the procurement process (e.g. Who will fund this? Who
+will be liable for costs? Is there an identified budget? Is the funding
+recurrent? Are there issues with timing/accruals of funding?) are already
+clear.
+ Yes
+ Not applicable
+ Do not know
+ No
+Recommended actions:
+1. Consult
+ Digital Health Solutions Procurement Toolkit (Canada Infoway)
+ Artificial Intelligence Procurement Toolkit (Canada Infoway)
+
+For Douglas/CIUSSS de L’Ouest -de-l’île-de-Montréal :
+
+4.2: The implementing organization has limited resources (people or
+money) to channel into innovative projects.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Budget adequate for staff to learn and adjust as the transition
+occurs.
+2. Test commercial feasibility and technological development by
+financing and supporting projects in the start-up phase (INSSS
+Bulletin v.10).
+3. Consider a recurrent budget line (e.g., licenses, IT support).
+
+4. Have a digital navigator (a dedicated health care profession whose
+task in hospitals and clinics would be to select evidence-based apps,
+troubleshoot, and interpret digital data outputs in a clinically meaningful
+way) to introduce and support the use of a novel technology.
+
+19
+(Spadaro, B., Martin-Key, N. A., &amp; Bahn, S. (2021). Building the
+digital mental health ecosystem: opportunities and challenges for
+mobile health innovators. Journal of Medical Internet Research,
+23(10), e27507.
+
+4.3: The implications (e.g., work required) of introducing,
+implementing and evaluating the technology have been adequately
+assessed by the implementing organization.
+ Yes
+ Not applicable
+ Do not know
+ No
+Recommended actions:
+
+1. Encourage the innovation development team to clearly
+communicate the conditions of use to the implementing
+organization managers as well as field teams (INSSS Bulletin
+v.10).
+2. Conduct organizational readiness assessment.
+https://staging.dissemination-implementation.org/wp-
+content/uploads/2024/05/531c7f_dbd8360b53b146b6a4fbffcb32
+1cacfd.pdf
+3. Assess the level of support from both top management as well
+as non-managerial staff by conducting stakeholder analysis.
+4. Map out tasks and processes in the organization for how the
+innovation is likely to change them through a meeting with
+colleagues and other clinic staff to identify changes that may
+likely to be brought about by the innovation and gauge their
+concerns.
+Workflow checkup (Appendix 3, MHCC E-mental health
+implementation toolkit)
+5. At the early phase of implementation (trial period), offer
+temporary or restricted access to the innovation with
+development of evidence in order to continue data collection and
+inform downstream decision-making (INSSS Bulletine v.10).
+
+20
+6. Document routinely collected outcome data and publish them to
+present the value of the services.
+(Titov, N., Hadjistavropoulos, H. D., Nielssen, O., Mohr, D. C.,
+Andersson, G., &amp; Dear, B. F. (2019). From research to practice:
+ten lessons in delivering digital mental health services.
+
+4.4: Organisational routines and processes will need to change
+considerably to accommodate the technology.
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Understand the principles and pathway for making a change:
+ Parcours de gestion du changement (Gestion du changement
+en santé et services sociaux: les principes de bases).
+https://ssa.illuxi.com/activites/parcours-gestion-changement-
+8516
+ Lean Six Sigma certification :
+https://www.theleansixsigmacompany.ca/
+ The Art of Change Making
+https://www.leadershipcentre.org.uk/wp-
+content/uploads/2016/02/The-Art-of-Change-Making.pdf
+2. Provide ongoing organizational support (e.g., IT support, feature
+specific training, step-by-step instructions).
+(Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J.,
+Mallard-Swanson, K., Palomares, K. J., ... &amp; Sorkin, D. H.
+(2023). Facilitators of and barriers to integrating digital mental
+health into county mental health services: qualitative interview
+analyses. JMIR Formative Research, 7(1), e45718.)
+
+21
+3. Encourage innovation development teams to clearly
+communicate the conditions of use to clinical teams (INESSS
+Bulletin v.10).
+4. Professionals independently formulate rules and procedures to
+organize their digital practice.
+(Mendes-Santos, C., Nunes, F., Weiderpass, E., Santana, R., &amp;
+Andersson, G. (2022). Understanding mental health
+professionals’ perspectives and practices regarding the
+implementation of digital mental health: qualitative study. JMIR
+formative research, 6(4), e32558).
+5. Consider how implementation success can be evaluated for
+sustainment.
+6. Increase organizational adaptability to local priorities,
+resources, needs, and regulations as they evolve (ISSS
+Bulletin v.10).
+7. Plan for sustainability
+ Long term success tool to identify risks and prompt
+actions to enhance sustainability over time.
+Lennox L, Doyle C, Reed J, Bell D. What makes a
+sustainability tool valuable, practical, and useful in real world
+healthcare practice? A qualitative study on the development
+of the Long-term Success Tool in Northwest London. BMJ
+Open. 2017;7(e014417):1–13).
+
+Domain 5: External context for innovation
+This domain concerns the wider system, how external social, political, technological, and
+economic context may affect the uptake of innovations.
+
+5.1: External political or economic changes impacting on the
+implementing organisation could threaten the introduction of the
+innovation.
+ No
+ Not applicable
+
+22
+
+ Do not know
+ Yes
+Recommended actions:
+
+1. Assess if the new technology and the proposed changes to
+services align with the strategic priorities for the wider health
+system (e.g., health policy, national priorities for actions and
+improvement).
+ E-mental health strategy for Canada (Mental Health
+Commission of Canada).
+
+For respondents in Quebec:
+
+ Santé Québec strategic plan (2025-2028)
+
+For Douglas/CIUSSS de L’Ouest -de-l’île-de-Montréal :
+
+ Douglas Research Centre strategic plan (2021-2025)
+ Santé Québec strategic plan (2025-2028)
+2. Try to align the project with current policy priorities by trying
+to ‘rebrand’ your work to fit these.
+3. Keep a close eye on the outer context.
+
+5.2: Regulatory requirements for using the technology in a health
+care setting have been fully defined.
+ Yes
+ Not applicable
+ Do not know
+ No
+Recommended actions:
+
+1. Consider which regulations (from which regulatory bodies)
+are relevant to the introduction of your innovations.
+List of regulations: Datum project
+2. Identify who you need to work with to address regulatory
+issues and challenges.
+
+23
+
+For Douglas/ CIUSSS de L’Ouest -de-l’île-de-Montréal :
+
+3.Contact or check the website of l&#39;Unité de Soutien et
+d’Encadrement de la Recherche (USER)
+
+5.3: Introduction of the technology/innovation could be
+threatened by external changes that impact on the organisation (e.g.,
+policies, regulatory framework, tech industry)
+
+ No
+ Not applicable
+ Do not know
+ Yes
+Recommended actions:
+
+1. Assess if there are existing inter-organizational networks that may
+be helpful in supporting the proposed changes.
+2. Try to establish inter-organizational networks or collaboratives so
+that complex, organization-wide change becomes easier.
+Improvement collaboratives in health care
+For those in Quebec
+3. Inter-organizational networks for digital mental health in Quebec
+- Alliance en santé mentale du Québec
+- Centre Axel
+- Réseau santé numérique
+
+Useful resources (General):
+ Guide de soutien à l&#39;appréciation de la valeur (in French) (2024) INSSS
+ 6-Step Guide to mHealth Implementation (Unite de soutien SSA Quebec) (2024)
+ Toolkit for e-Mental Health Implementation (Mental Health Commission of
+Canada 2018)
+ Implementation science research development (ImpRes) tool: A practical guide to
+using the ImpRes tool (2018) King’s College London

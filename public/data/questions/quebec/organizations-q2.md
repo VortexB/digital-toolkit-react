@@ -1,0 +1,1 @@
+# Domain 4: The implementing organization has limited resources (people or money) to channel into innovative projects.

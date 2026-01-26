@@ -1,0 +1,1 @@
+# Domain 2: There are concerns that the technology could widen inequalities while improving care/access for some patients.

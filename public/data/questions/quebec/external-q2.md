@@ -1,0 +1,1 @@
+# Domain 5: Regulatory requirements for using the technology in a health care setting have been fully defined.

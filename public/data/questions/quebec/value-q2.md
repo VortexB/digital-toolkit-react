@@ -1,0 +1,1 @@
+# Domain 2: The adoption and implementation of the innovation may create additional work for clinicians.

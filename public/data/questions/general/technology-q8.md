@@ -1,0 +1,4 @@
+# Domain 1: The technology is likely to require major changes to organisational tasks and routines (e.g., new administrative processes, staff needing to do their jobs in a different way). 11
+
+## Recommended Actions
+1. Hold a meeting with colleagues and other clinic staff of organizationsimplementing innovations to identify changes that may likely be broughtby the innovation, and to gauge their concerns.Workflow checkup (Appendix 3, MHCC E-mental healthimplementation toolkit).Domain 2: Value propositionThis domain concerns for whom a new technology generates values, including value tothe patient, the developer, and the health system.

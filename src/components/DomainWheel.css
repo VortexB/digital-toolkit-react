@@ -1,0 +1,246 @@
+/* ============================================
+   DomainWheel — Selection Wheel UI
+   ============================================ */
+
+/* Wrapper: centers the wheel and positions center circle */
+.wheel-wrapper {
+  position: relative;
+  width: min(900px, 90vw);
+  height: min(900px, 90vw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.wheel-wrapper:hover {
+  transform: scale(1.04);
+}
+
+/* Spinner: the rotating container */
+.wheel-spinner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: wheel-spin 400s linear infinite;
+}
+
+.wheel-spinner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes wheel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* SVG fills the spinner */
+.wheel-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ─── Slices ──────────────────────────────── */
+.wheel-slice {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.wheel-slice .slice-path {
+  transition: filter 0.3s ease;
+}
+
+.wheel-slice:hover .slice-path,
+.wheel-slice.hovered .slice-path {
+  filter: brightness(1.15);
+}
+
+/* ─── Question Segments ───────────────────── */
+.question-segment {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.2s ease, stroke-width 0.2s ease;
+}
+
+.question-segment:hover,
+.question-segment.seg-hovered {
+  filter: brightness(1.3);
+  stroke-width: 2;
+}
+
+/* ─── Star Badge ──────────────────────────── */
+.star-badge path {
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
+  animation: star-pulse 2s ease-in-out infinite;
+}
+
+@keyframes star-pulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6)); }
+  50%      { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9)); }
+}
+
+/* ─── Domain Labels ───────────────────────── */
+.domain-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 2;
+  /* Counter-rotate to stay upright */
+  animation: wheel-counter-spin 400s linear infinite;
+}
+
+.wheel-spinner:hover .domain-label {
+  animation-play-state: paused;
+}
+
+@keyframes wheel-counter-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+.domain-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.85);
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.domain-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ─── Center Circle ───────────────────────── */
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 15px;
+}
+
+.project-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* ─── Segment Tooltip — HTML overlay with counter-spin ──── */
+.segment-tooltip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  /* Counter-rotate to stay upright like domain labels */
+  animation: wheel-counter-spin 400s linear infinite;
+}
+
+.wheel-spinner:hover .segment-tooltip {
+  animation-play-state: paused;
+}
+
+
+/* ─── Mobile Fallback (<768px) ────────────── */
+@media (max-width: 768px) {
+  .wheel-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  /* Hide the SVG wheel on mobile */
+  .wheel-spinner {
+    animation: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: auto;
+  }
+
+  .wheel-svg {
+    display: none;
+  }
+
+  /* Show labels as mobile domain cards */
+  .domain-label {
+    position: static;
+    transform: none;
+    animation: none;
+    flex-direction: row;
+    gap: 12px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 100%;
+  }
+
+  .domain-label .domain-name {
+    color: #333;
+    text-shadow: none;
+    font-size: 16px;
+  }
+
+  .domain-label .domain-icon {
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* Hide center circle on mobile */
+  .wheel-center {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .project-title {
+    font-size: 18px;
+    padding: 10px;
+  }
+}

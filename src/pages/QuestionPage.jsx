@@ -1,8 +1,16 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { useEffect, useState } from "react";
-import ReactMarkdown from 'react-markdown';
+import { useEffect, useState, useCallback, useRef } from "react";
+import GlossaryModal from "../components/GlossaryModal";
 import RecommendedActionsModal from "../components/RecommendedActionsModal";
+import {
+  loadMarkdownFile,
+  parseMarkdownContent,
+  combineMarkdownContent,
+  questionFileExists,
+  formatAnswerDisplay,
+} from "../utils/questionLoader";
+import { getDomainConfig } from "../utils/domainConfig";
 import './QuestionPage.css';
 
 export default function QuestionPage() {
@@ -10,246 +18,126 @@ export default function QuestionPage() {
   const { subject, id } = useParams();
   const navigate = useNavigate();
 
-  // UI States: 'loading' | 'question' | 'question-answered' | 'modal' | 'navigation'
   const [uiState, setUiState] = useState('loading');
-  const [markdownContent, setMarkdownContent] = useState("");
   const [parsedQuestion, setParsedQuestion] = useState(null);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showGlossary, setShowGlossary] = useState(false);
   const [nextQuestionExists, setNextQuestionExists] = useState(false);
   const [existingAnswer, setExistingAnswer] = useState(null);
 
-  const questionId = `${subject.toLowerCase()}-q${id}`;
+  // Track which question was just answered to prevent re-load race condition
+  const justAnsweredId = useRef(null);
 
+  const questionId = `${subject.toLowerCase()}-q${id}`;
+  const domainCfg = getDomainConfig(subject.toLowerCase());
+  const domainName = domainCfg?.name || subject;
+  const domainNumber = domainCfg?.number || '';
+  const domainColor = domainCfg?.colorLight || '#e8f0fe';
+
+  const checkNextQuestionExists = useCallback(async () => {
+    const nextNum = parseInt(id) + 1;
+    const nextQuestionId = `${subject.toLowerCase()}-q${nextNum}`;
+    const exists = await questionFileExists(user.group, nextQuestionId);
+    console.log(exists)
+    setNextQuestionExists(exists);
+  }, [id, subject, user.group]);
+
+  // Load question content — runs on route change
   useEffect(() => {
     if (!user.group) {
       navigate("/");
       return;
     }
 
-    // Check if question was already answered
-    const existingAnswer = getAnswer(questionId);
-    setExistingAnswer(existingAnswer);
-
-    if (existingAnswer) {
-      setSelectedAnswer(existingAnswer.answer);
-      loadQuestionContent(); // Load content even for answered questions
-      checkNextQuestionExists();
-      setUiState('question-answered');
-    } else {
-      setSelectedAnswer(null);
-      // Load question content
-      loadQuestionContent();
+    // Only skip reload if THIS specific question was just answered
+    if (justAnsweredId.current === questionId) {
+      justAnsweredId.current = null;
+      return;
     }
-  }, [user.group, subject, id]);
+    justAnsweredId.current = null;
 
-  const loadQuestionContent = async () => {
-    try {
+    let cancelled = false;
+
+    const loadContent = async () => {
       setUiState('loading');
+      setParsedQuestion(null);
+      setNextQuestionExists(false);
 
-      let combinedContent = '';
+      try {
+        let combinedContent = '';
 
-      // Helper function to check if content is actually markdown (not HTML)
-      const isMarkdownContent = (content) => {
-        return content.trim() && !content.trim().startsWith('<!DOCTYPE html>');
-      };
+        const generalPath = `/data/questions/general/${subject.toLowerCase()}-q${id}.md`;
+        const generalContent = await loadMarkdownFile(generalPath);
 
-      // Helper function to load and validate a file
-      const loadFile = async (path) => {
-        const response = await fetch(path);
-        const content = await response.text();
-        return isMarkdownContent(content) ? content : null;
-      };
+        if (generalContent) {
+          combinedContent = generalContent;
+        }
 
-      // Always try to load general content first
-      const generalPath = `/data/questions/general/${subject.toLowerCase()}-q${id}.md`;
-      const generalContent = await loadFile(generalPath);
+        if (user.group !== 'general') {
+          const groupPath = `/data/questions/${user.group}/${subject.toLowerCase()}-q${id}.md`;
+          const groupContent = await loadMarkdownFile(groupPath);
 
-      if (generalContent) {
-        combinedContent = generalContent;
-      }
-
-      // Try to load group-specific content and combine it
-      if (user.group !== 'general') {
-        const groupPath = `/data/questions/${user.group}/${subject.toLowerCase()}-q${id}.md`;
-        const groupContent = await loadFile(groupPath);
-
-        if (groupContent) {
-          // If we have both general and group content, combine them
-          if (combinedContent) {
-            combinedContent = combineMarkdownContent(combinedContent, groupContent);
-          } else {
-            // If no general content but group content exists, use group content
-            combinedContent = groupContent;
+          if (groupContent) {
+            combinedContent = combinedContent
+              ? combineMarkdownContent(combinedContent, groupContent)
+              : groupContent;
           }
         }
-      }
 
-      if (!combinedContent) {
-        throw new Error('Question not found');
-      }
+        if (!combinedContent) throw new Error('Question not found');
+        if (cancelled) return;
 
-      setMarkdownContent(combinedContent);
+        const parsed = parseMarkdownContent(combinedContent);
+        setParsedQuestion(parsed);
 
-      // Parse the combined markdown content
-      const parsed = parseMarkdownContent(combinedContent);
-      setParsedQuestion(parsed);
+        // Check for existing answer
+        const existing = getAnswer(questionId);
+        setExistingAnswer(existing);
 
-      setUiState('question');
-    } catch (error) {
-      console.error('Error loading question:', error);
-      setUiState('error');
-    }
-  };
+        // Pre-check next question
+        const nextNum = parseInt(id) + 1;
+        const nextQId = `${subject.toLowerCase()}-q${nextNum}`;
+        const nextExists = await questionFileExists(user.group, nextQId);
+        if (!cancelled) setNextQuestionExists(nextExists);
 
-  // Helper function to combine general and group-specific markdown
-  const combineMarkdownContent = (generalContent, groupContent) => {
-    const generalLines = generalContent.split('\n');
-    const groupLines = groupContent.split('\n');
-
-    let combinedLines = [];
-    let inRecommendedActions = false;
-    let generalActionsEndIndex = -1;
-
-    // Find where general recommended actions end
-    for (let i = 0; i < generalLines.length; i++) {
-      combinedLines.push(generalLines[i]);
-
-      if (generalLines[i].startsWith('## Recommended Actions')) {
-        inRecommendedActions = true;
-      } else if (inRecommendedActions && generalLines[i].startsWith('## ')) {
-        // We've hit the next section, so general actions ended at previous line
-        generalActionsEndIndex = i - 1;
-        break;
-      }
-    }
-
-    // If we found recommended actions in general content, append group-specific actions
-    if (generalActionsEndIndex >= 0) {
-      // Find group-specific recommended actions and append them
-      let groupActionsStart = -1;
-      for (let i = 0; i < groupLines.length; i++) {
-        if (groupLines[i].startsWith('## Recommended Actions')) {
-          groupActionsStart = i + 1; // Skip the header
-          break;
+        if (existing) {
+          setUiState('question-answered');
+        } else {
+          setUiState('question');
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error('Error loading question:', error);
+          setUiState('error');
         }
       }
-
-      if (groupActionsStart >= 0) {
-        // Insert group actions before the next section in general content
-        const beforeNextSection = combinedLines.slice(0, generalActionsEndIndex + 1);
-        const afterNextSection = combinedLines.slice(generalActionsEndIndex + 1);
-
-        // Find the group actions content (until next header)
-        let groupActionsEnd = groupActionsStart;
-        for (let i = groupActionsStart; i < groupLines.length; i++) {
-          if (groupLines[i].startsWith('## ') && groupLines[i] !== '## Recommended Actions') {
-            break;
-          }
-          groupActionsEnd = i;
-        }
-
-        const groupActions = groupLines.slice(groupActionsStart, groupActionsEnd + 1);
-
-        // Combine: general actions + group actions + rest
-        combinedLines = [
-          ...beforeNextSection,
-          ...groupActions.filter(line => line.trim()), // Filter out empty lines
-          ...afterNextSection
-        ];
-      }
-    }
-
-    return combinedLines.join('\n');
-  };
-
-  const parseMarkdownContent = (content) => {
-    const lines = content.split('\n');
-    let questionText = '';
-    let recommendedActions = '';
-
-    let inRecommendedActions = false;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-
-      if (line.startsWith('# ')) {
-        // Extract question from H1
-        questionText = line.substring(2).trim();
-      } else if (line.startsWith('## Recommended Actions')) {
-        inRecommendedActions = true;
-        // Skip the header line itself
-        continue;
-      } else if (inRecommendedActions) {
-        // Stop if we hit another H2 header
-        if (line.startsWith('## ') && line !== '## Recommended Actions') {
-          break;
-        }
-        // Collect all content under Recommended Actions, including empty lines for formatting
-        recommendedActions += line + '\n';
-      }
-    }
-
-    return {
-      questionText,
-      recommendedActions: recommendedActions.trim()
     };
-  };
 
-  const checkNextQuestionExists = async () => {
-    const currentNum = parseInt(id);
-    const nextNum = currentNum + 1;
-    const nextQuestionId = `${subject.toLowerCase()}-q${nextNum}`;
+    loadContent();
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subject, id, user.group]);
 
-    // Check if next question exists (similar logic to NavigationPage)
-    let fileExists = false;
-
-    try {
-      // Try group-specific first
-      let response = await fetch(`/data/questions/${user.group}/${nextQuestionId}.md`);
-      if (response.ok) {
-        const content = await response.text();
-        if (content.startsWith('# ')) {
-          fileExists = true;
-        }
-      }
-
-      // If not found in group, try general
-      if (!fileExists && user.group !== 'general') {
-        response = await fetch(`/data/questions/general/${nextQuestionId}.md`);
-        if (response.ok) {
-          const content = await response.text();
-          if (content.startsWith('# ')) {
-            fileExists = true;
-          }
-        }
-      }
-    } catch (error) {
-      // File doesn't exist
-    }
-
-    setNextQuestionExists(fileExists);
-  };
-
-  const handleAnswerSelect = (answer) => {
-    setSelectedAnswer(answer);
-
-    // Save the answer
+  // Yes / Do not know → show recommended actions
+  // No / Not applicable → go to navigation screen
+  const handleAnswerSelect = async (answer) => {
+    justAnsweredId.current = questionId;
     saveAnswer(questionId, answer);
+    setExistingAnswer({ answer });
 
-    // Show modal for No or Do not know answers
-    if (answer === 'no' || answer === 'do_not_know') {
+    // Pre-check next question
+    await checkNextQuestionExists();
+
+    if (answer === 'yes' || answer === 'do_not_know') {
       setShowModal(true);
       setUiState('modal');
     } else {
-      checkNextQuestionExists();
       setUiState('navigation');
     }
   };
 
   const handleModalClose = () => {
     setShowModal(false);
-    checkNextQuestionExists();
     setUiState('navigation');
   };
 
@@ -257,12 +145,14 @@ export default function QuestionPage() {
     navigate('/navigation');
   };
 
-  const handleNextQuestion = () => {
-    // Calculate next question
-    const currentNum = parseInt(id);
-    const nextNum = currentNum + 1;
-
-    navigate(`/question/${subject}/${nextNum}`);
+  const handleNextQuestion = async () => {
+    await checkNextQuestionExists();
+    if(nextQuestionExists){
+      const nextNum = parseInt(id) + 1;
+      navigate(`/question/${subject}/${nextNum}`);
+      return;
+    }
+    handleBackToNavigation();
   };
 
   const handleAnswerAgain = () => {
@@ -283,49 +173,36 @@ export default function QuestionPage() {
         <div className="error">
           <h2>Question Not Found</h2>
           <p>The requested question could not be loaded.</p>
-          <button onClick={handleBackToNavigation}>Back to Navigation</button>
+          <button className="btn-primary" onClick={handleBackToNavigation}>Back to Navigation page</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="question-page">
+    <div className="question-page" style={{ backgroundColor: domainColor }}>
+      <div className="question-top-bar">
+        <button className="glossary-btn" onClick={() => setShowGlossary(true)}>
+          Glossary
+        </button>
+      </div>
+
       <div className="question-header">
-        <h1>{subject} - Question {id}</h1>
+        <div className="domain-accent" style={{ backgroundColor: domainCfg?.color || '#007bff' }} />
+        <h1>Domain {domainNumber}: {domainName}</h1>
       </div>
 
       {uiState === 'question' && parsedQuestion && (
         <div className="question-content">
           <div className="question-text">
-            <h2>{parsedQuestion.questionText}</h2>
+            <h2><span className="question-num">Q{id}.</span> {parsedQuestion.questionText}</h2>
           </div>
 
           <div className="answer-buttons">
-            <button
-              className="answer-btn yes"
-              onClick={() => handleAnswerSelect('yes')}
-            >
-              Yes
-            </button>
-            <button
-              className="answer-btn not-applicable"
-              onClick={() => handleAnswerSelect('not_applicable')}
-            >
-              Not applicable
-            </button>
-            <button
-              className="answer-btn do-not-know"
-              onClick={() => handleAnswerSelect('do_not_know')}
-            >
-              Do not know
-            </button>
-            <button
-              className="answer-btn no"
-              onClick={() => handleAnswerSelect('no')}
-            >
-              No
-            </button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('yes')}>Yes</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('not_applicable')}>Not applicable</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('do_not_know')}>Do not know</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('no')}>No</button>
           </div>
         </div>
       )}
@@ -333,17 +210,17 @@ export default function QuestionPage() {
       {uiState === 'question-answered' && parsedQuestion && (
         <div className="question-content">
           <div className="question-text">
-            <h2>{parsedQuestion.questionText}</h2>
-            <p>You answered: <strong>{existingAnswer?.answer.replace('_', ' ')}</strong></p>
+            <h2><span className="question-num">Q{id}.</span> {parsedQuestion.questionText}</h2>
+            <p>You answered: <strong>{formatAnswerDisplay(existingAnswer?.answer || '')}</strong></p>
           </div>
 
-          <div className="answer-buttons">
-            <button
-              className="answer-btn answer-again"
-              onClick={handleAnswerAgain}
-            >
-              Answer Again
-            </button>
+          <div className="nav-buttons">
+            <button className="nav-btn secondary" onClick={handleAnswerAgain}>Answer Again</button>
+            {nextQuestionExists && (
+              <button className="nav-btn primary" onClick={handleNextQuestion}>
+                Next Question
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -353,17 +230,11 @@ export default function QuestionPage() {
           <h3>Question Answered</h3>
           <p>Your answer has been saved.</p>
           <div className="nav-buttons">
-            <button
-              className="nav-btn secondary"
-              onClick={handleBackToNavigation}
-            >
-              Back 
+            <button className="nav-btn secondary" onClick={handleBackToNavigation}>
+              Back to Navigation page
             </button>
             {nextQuestionExists && (
-              <button
-                className="nav-btn primary"
-                onClick={handleNextQuestion}
-              >
+              <button className="nav-btn primary" onClick={handleNextQuestion}>
                 Next Question
               </button>
             )}
@@ -377,6 +248,7 @@ export default function QuestionPage() {
         title="Recommended Actions"
         content={parsedQuestion?.recommendedActions || ''}
       />
+      {showGlossary && <GlossaryModal onClose={() => setShowGlossary(false)} />}
     </div>
   );
 }

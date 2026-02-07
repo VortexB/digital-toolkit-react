@@ -1,0 +1,35 @@
+{
+  "domains": [
+    {
+      "key": "technology",
+      "name": "Domain 1: Technology",
+      "description": "This domain looks at the multiple complexities around technology, such as functionality of the technology itself, and the required knowledge and infrastructure to use it.",
+      "questionCount": 8
+    },
+    {
+      "key": "value",
+      "name": "Domain 2: Value proposition",
+      "description": "This domain concerns for whom a new technology generates values, including value to the patient, the developer, and the health system.",
+      "questionCount": 5
+    },
+    {
+      "key": "adopters",
+      "name": "Domain 3: Intended adopters",
+      "description": "This domain looks at the complexity of the adopter system, i.e., clinicians, staff, patients and carers who are expected to use the technology but who may refuse to use it or find that they are unable to use it.",
+      "questionCount": 3
+    },
+    {
+      "key": "organizations",
+      "name": "Domain 4: Organizations",
+      "description": "This domain focuses on the organization's capacity to innovate, readiness for a new innovation, funding decisions, potential disruption to existing routines, and the extent of additional work to implement changes.",
+      "questionCount": 4
+    },
+    {
+      "key": "external",
+      "name": "Domain 5: External context",
+      "description": "This domain concerns the wider system, how external social, political, technological, and economic context may affect the uptake of innovations.",
+      "questionCount": 3
+    }
+  ],
+  "groups": ["general", "quebec", "douglasciuss"]
+}

@@ -1,12 +1,12 @@
 import ReactMarkdown from 'react-markdown';
-import '../components/RecommendedActionsModal.css';
+import './RecommendedActionsModal.css';
 
 export default function RecommendedActionsModal({ isOpen, onClose, content, title }) {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-panel actions-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>{title}</h2>
           <button className="modal-close" onClick={onClose}>&times;</button>
@@ -15,7 +15,7 @@ export default function RecommendedActionsModal({ isOpen, onClose, content, titl
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>
         <div className="modal-footer">
-          <button className="modal-continue" onClick={onClose}>
+          <button className="btn-primary" onClick={onClose}>
             Continue
           </button>
         </div>

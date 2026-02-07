@@ -1,6 +1,12 @@
+/* ============================================
+   App.css — Global Foundation Styles
+   ============================================ */
+
 html {
   scroll-behavior: smooth;
 }
+
+/* Font Faces */
 @font-face {
   font-family: Montserrat;
   src: url(fonts/Montserrat/static/Montserrat-Regular.ttf);
@@ -10,26 +16,182 @@ html {
   src: url(fonts/Lato/Lato-Light.ttf);
 }
 
+/* Reset & Base */
 body {
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-  background-color:aliceblue;
+  background-color: #e8f0fe;
+  color: #222;
 }
 
-footer {
-  margin-top: 100px;
-}
-
-#root{
+#root {
   width: 100%;
   height: 100%;
 }
 
+/* ============================================
+   Shared Button System
+   ============================================ */
 
 button {
   cursor: pointer;
-  font-family: Lato;
+  font-family: Lato, sans-serif;
+}
+
+/* Primary action button */
+.btn-primary {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Secondary action button */
+.btn-secondary {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* ============================================
+   Shared Modal System
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-panel h2,
+.modal-panel h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.modal-panel .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.modal-panel .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-panel .modal-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.modal-panel .modal-footer {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-top: 16px;
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+/* ============================================
+   Shared Loading/Error States
+   ============================================ */
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  color: #666;
+  font-size: 18px;
+}
+
+.error {
+  text-align: center;
+  padding: 50px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error h2 {
+  color: #dc3545;
+  margin-bottom: 15px;
+}
+
+.error p {
+  color: #666;
+  margin-bottom: 20px;
 }

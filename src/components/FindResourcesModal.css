@@ -1,0 +1,35 @@
+/* ============================================
+   FindResourcesModal — Component-specific overrides
+   (Base modal styles are in App.css)
+   ============================================ */
+
+.resources-modal {
+  max-width: 650px;
+}
+
+.resources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resources-list li {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.resources-list a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resources-list a:hover {
+  text-decoration: underline;
+}
+
+.resource-note {
+  display: block;
+  font-size: 0.85em;
+  color: #666;
+}

@@ -7,7 +7,12 @@ export const UserProvider = ({ children }) => {
     group: null,
     agreedToTerms: false,
     projectTitle: '',
-    projectLocation: ''
+    projectCountry: '',
+    projectProvince: '',
+    projectCity: '',
+    projectTypes: [],
+    projectTypeOther: '',
+    cisssciusss: '',
   });
   const [answers, setAnswers] = useState({});
 
@@ -50,16 +55,10 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem('toolkit-answers');
   };
 
-  // Legacy getters/setters
-  const group = user.group;
-  const setGroup = (newGroup) => setUser(prev => ({ ...prev, group: newGroup }));
-
   return (
     <UserContext.Provider value={{
       user,
       setUser,
-      group,
-      setGroup,
       answers,
       saveAnswer,
       getAnswer,

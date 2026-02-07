@@ -4,6 +4,37 @@ import { useState } from "react";
 import TermsModal from "../components/TermsModal";
 import "./HomePage.css";
 
+const PROJECT_TYPE_OPTIONS = [
+  "App", "Artificial intelligence", "Big data", "Cloud service",
+  "Instant messaging", "Operating system", "Portal (electronic) medical records",
+  "Smartphone", "Social media", "Software", "Telehealth",
+  "Virtual reality", "Wearable", "Website",
+];
+
+const CISSS_CIUSSS_LIST = [
+  "CISSS de l'Abitibi-Témiscamingue",
+  "CISSS de la Côte-Nord",
+  "CISSS de la Gaspésie",
+  "CISSS de la Montérégie-Centre",
+  "CISSS de la Montérégie-Est",
+  "CISSS de la Montérégie-Ouest",
+  "CISSS de Lanaudière",
+  "CISSS de Laval",
+  "CISSS de l'Outaouais",
+  "CISSS des Îles",
+  "CISSS des Laurentides",
+  "CISSS du Bas-Saint-Laurent",
+  "CIUSSS de l'Est-de-l'Île-de-Montréal",
+  "CIUSSS de l'Estrie – CHUS",
+  "CIUSSS de la Capitale-Nationale",
+  "CIUSSS de la Mauricie-et-du-Centre-du-Québec",
+  "CIUSSS du Centre-Ouest-de-l'Île-de-Montréal",
+  "CIUSSS du Centre-Sud-de-l'Île-de-Montréal",
+  "CIUSSS du Nord-de-l'Île-de-Montréal",
+  "CIUSSS du Saguenay–Lac-Saint-Jean",
+  "CIUSSS de l'Ouest-de-l'Île-de-Montréal",
+];
+
 export default function HomePage() {
   const { user, setUser } = useUser();
   const [selectedGroup, setSelectedGroup] = useState("");
@@ -15,7 +46,8 @@ export default function HomePage() {
       selectedGroup &&
       user.agreedToTerms &&
       user.projectTitle.trim() &&
-      user.projectLocation.trim()
+      user.projectCountry.trim() &&
+      user.projectTypes.length > 0
     ) {
       setUser((prev) => ({ ...prev, group: selectedGroup }));
       navigate("/navigation");
@@ -24,86 +56,113 @@ export default function HomePage() {
 
   const handleGroupChange = (e) => {
     setSelectedGroup(e.target.value);
+    // Clear CISSS selection if not Quebec
+    if (e.target.value !== "quebec") {
+      setUser((prev) => ({ ...prev, cisssciusss: "" }));
+    }
+  };
+
+  const handleFieldChange = (field) => (e) => {
+    setUser((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
   const handleTermsChange = (e) => {
     setUser((prev) => ({ ...prev, agreedToTerms: e.target.checked }));
   };
 
-  const handleProjectTitleChange = (e) => {
-    setUser((prev) => ({ ...prev, projectTitle: e.target.value }));
+  const handleProjectTypeToggle = (type) => {
+    setUser((prev) => {
+      const types = prev.projectTypes.includes(type)
+        ? prev.projectTypes.filter((t) => t !== type)
+        : [...prev.projectTypes, type];
+      return { ...prev, projectTypes: types };
+    });
   };
 
-  const handleProjectLocationChange = (e) => {
-    setUser((prev) => ({ ...prev, projectLocation: e.target.value }));
+  const handleOtherToggle = () => {
+    setUser((prev) => {
+      const hasOther = prev.projectTypes.includes("Other");
+      const types = hasOther
+        ? prev.projectTypes.filter((t) => t !== "Other")
+        : [...prev.projectTypes, "Other"];
+      return { ...prev, projectTypes: types, projectTypeOther: hasOther ? "" : prev.projectTypeOther };
+    });
   };
 
-  const openTermsModal = () => {
-    setShowTermsModal(true);
-  };
-
-  const closeTermsModal = () => {
-    setShowTermsModal(false);
-  };
+  const isFormValid =
+    selectedGroup &&
+    user.agreedToTerms &&
+    user.projectTitle.trim() &&
+    user.projectCountry.trim() &&
+    user.projectTypes.length > 0 &&
+    (selectedGroup !== "quebec" || user.cisssciusss);
 
   return (
-    //TODO: Extract the data out externally? might not be needed
-    <div class="home-page">
-      <a href="https://douglas.research.mcgill.ca/">
-        <img src="imgs/douglas-logo.png" alt="Douglas logo" />
-      </a>
-      <h1 class="header" >D3SM Digital Assessment Toolkit</h1>
-      <h4 class="subtitle">
-        <strong>What is this about?</strong>
-      </h4>
-      <p>
-        This D3SM toolkit aims to provide ideas, steps, and resources to support
-        researchers, clinicians, health care managers, and project leads when
-        planning, implementing, and evaluating digital mental health
-        innovations. It also considers how to plan sustainability through
-        implementation. We created this toolkit by adapting the non-adoption,
-        abandonment and challenges to scale-up, spread, sustainability (NASSS)
-        framework, combined with a Complexity Assessment Tool (CAT), developed
-        by Greenhalgh and her colleagues.  The assessment will help users  
+    <div className="home-page">
+      <div className="logo-row">
+        <a href="https://douglas.research.mcgill.ca/">
+          <img src="imgs/douglas-logo.png" alt="Douglas logo" />
+        </a>
+        <img src="imgs/d3sm.png" alt="D3SM logo" />
+        <img src="imgs/hbhl.png" alt="HBHL logo" />
+        <img src="imgs/ludicmind.png" alt="LudicMind logo" />
+      </div>
+
+      <h1 className="header">D3SM Digital Assessment Toolkit</h1>
+
+      <div className="info-section">
+        <h4>What is this about?</h4>
+        <p>
+          This D3SM toolkit aims to provide ideas, steps, and resources to support
+          researchers, clinicians, health care managers, and project leads when
+          planning, implementing, and evaluating digital mental health
+          innovations. It also considers how to plan sustainability through
+          implementation. We created this toolkit by adapting the{" "}
+          <a href="https://www.phc.ox.ac.uk/research/groups-and-centres/interdisciplinary-research-in-health-sciences/enasss-cat" target="_blank" rel="noopener noreferrer">
+            non-adoption, abandonment and challenges to scale-up, spread, sustainability (NASSS) framework, combined with a Complexity Assessment Tool (CAT)
+          </a>
+          , developed by Greenhalgh and her colleagues. The assessment will help users:
+        </p>
         <ul>
           <li>
             Assess the readiness level of technology integration into health
             care settings according to the key domains (technology, value
             proposition, intended adopters, healthcare organizations, and
-            external context)  
+            external context)
           </li>
           <li>
             Identify barriers and facilitators related to technology integration
-            in health care settings 
+            in health care settings
           </li>
           <li>
             Access to resources and tools that can help overcome existing
-            barriers and support integration of technology 
+            barriers and support integration of technology
           </li>
         </ul>
-        We recommend that users apply this tool in different phases of the
-        implementation process (e.g., conceptualization, planning,
-        implementation, evaluation, sustainability, commercialization) as
-        barriers and facilitators can change over time as well as the policy
-        context.  
-      </p>
-      <p>
+        <p>
+          We recommend that users apply this tool in different phases of the
+          implementation process (e.g., conceptualization, planning,
+          implementation, evaluation, sustainability, commercialization) as
+          barriers and facilitators can change over time as well as the policy
+          context.
+        </p>
+
         <h4>Who is this toolkit for?</h4>
         <ul>
           <li>
-            -Researchers and clinicians who develop and plan to implement
-            digital mental health innovations 
+            Researchers and clinicians who develop and plan to implement
+            digital mental health innovations
           </li>
           <li>
-            -Health care managers, program leads, and clinicians, who plan to
+            Health care managers, program leads, and clinicians, who plan to
             adopt digital mental health innovations for implementation in their
-            clinical settings 
+            clinical settings
           </li>
         </ul>
 
-        <h4>How do I use the D3SM toolkit? </h4>
+        <h4>How do I use the D3SM toolkit?</h4>
         <p>
-          By answering No. questions in five domains, 1) technology, 2) value
+          By answering 23 questions in five domains, 1) technology, 2) value
           proposition, 3) intended adopters, 4) healthcare organizations, and 5)
           external context, you will be able to assess challenges and resources
           of each domain during your pathway for implementation and sustainment.
@@ -113,10 +172,10 @@ export default function HomePage() {
           also be able to identify which domains need more input and measures to
           respond to specific complexity. In addition, conducting assessment
           regularly (three to six months) can also help the project team monitor
-          and evaluate the process of digital technology integration over time. 
+          and evaluate the process of digital technology integration over time.
         </p>
 
-        <h4>How was this D3SM Toolkit developed? </h4>
+        <h4>How was this D3SM Toolkit developed?</h4>
         <p>
           The Douglas Data and Digital Science for Mental Health (D3SM)
           Implementation team identified and adapted the NASSS (non-adoption,
@@ -132,76 +191,145 @@ export default function HomePage() {
           identified resource information through literature review, meetings
           and consultations with people working on development and
           implementation of digital mental health interventions in clinical
-          settings. 
+          settings.
         </p>
-        <p>
-          Reference: Greenhalgh T, Maylor H, Shaw S, Wherton J, Papoutsi C,
-          Betton V, Nelissen N, Gremyr A, Rushforth A, Koshkouei M, Taylor J The
-          NASSS-CAT Tools for Understanding, Guiding, Monitoring, and
-          Researching Technology Implementation Projects in Health and Social
-          Care: Protocol for an Evaluation Study in Real-World Settings, JMIR
-          Res Protoc 2020;9(5):e16861 
+        <p className="reference">
+          Reference:{" "}
+          <a href="https://pubmed.ncbi.nlm.nih.gov/32401224/" target="_blank" rel="noopener noreferrer">
+            Greenhalgh T, Maylor H, Shaw S, Wherton J, Papoutsi C,
+            Betton V, Nelissen N, Gremyr A, Rushforth A, Koshkouei M, Taylor J.
+            The NASSS-CAT Tools for Understanding, Guiding, Monitoring, and
+            Researching Technology Implementation Projects in Health and Social
+            Care: Protocol for an Evaluation Study in Real-World Settings. JMIR
+            Res Protoc 2020;9(5):e16861
+          </a>
         </p>
-      </p>
-      <select value={selectedGroup} onChange={handleGroupChange}>
-        <option value="">Select your group</option>
-        <option value="general">General</option>
-        <option value="quebec">Quebec</option>
-        <option value="douglasciuss">Douglas/CIUSSS</option>
-      </select>
+      </div>
 
-      <div>
-        <label>
-          Project Title:{" "}
+      {/* --- Form Section --- */}
+      <div className="form-section">
+        <div className="form-group">
+          <label htmlFor="location-select">
+            Select your location
+            <span className="helper-text">
+              If multiple settings, please select one setting where you are planning to integrate the technology
+            </span>
+          </label>
+          <select id="location-select" value={selectedGroup} onChange={handleGroupChange}>
+            <option value="">Please select your location</option>
+            <option value="general">Canada except Quebec</option>
+            <option value="quebec">Quebec</option>
+            <option value="douglasciuss">Douglas Research Centre/CIUSSS-Ouest</option>
+          </select>
+        </div>
+
+        {selectedGroup === "quebec" && (
+          <div className="form-group">
+            <label htmlFor="cisss-select">CISSS/CIUSSS</label>
+            <select
+              id="cisss-select"
+              value={user.cisssciusss}
+              onChange={handleFieldChange("cisssciusss")}
+            >
+              <option value="">— Select CISSS/CIUSSS —</option>
+              {CISSS_CIUSSS_LIST.map((item) => (
+                <option key={item} value={item}>{item}</option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <div className="form-group">
+          <label htmlFor="project-title">Project Title</label>
           <input
+            id="project-title"
             type="text"
             value={user.projectTitle}
-            onChange={handleProjectTitleChange}
+            onChange={handleFieldChange("projectTitle")}
           />
-        </label>
+        </div>
+
+        <div className="form-group">
+          <label>Project Location</label>
+          <div className="location-fields">
+            <input
+              type="text"
+              placeholder="Country"
+              value={user.projectCountry}
+              onChange={handleFieldChange("projectCountry")}
+            />
+            <input
+              type="text"
+              placeholder="State / Province"
+              value={user.projectProvince}
+              onChange={handleFieldChange("projectProvince")}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              value={user.projectCity}
+              onChange={handleFieldChange("projectCity")}
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Type of project <span className="helper-text">(Select all that apply)</span></label>
+          <div className="project-type-grid">
+            {PROJECT_TYPE_OPTIONS.map((type) => (
+              <label key={type} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={user.projectTypes.includes(type)}
+                  onChange={() => handleProjectTypeToggle(type)}
+                />
+                {type}
+              </label>
+            ))}
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={user.projectTypes.includes("Other")}
+                onChange={handleOtherToggle}
+              />
+              Other
+            </label>
+          </div>
+          {user.projectTypes.includes("Other") && (
+            <input
+              type="text"
+              placeholder="Please describe"
+              value={user.projectTypeOther}
+              onChange={handleFieldChange("projectTypeOther")}
+              className="other-input"
+            />
+          )}
+        </div>
+
+        <div className="form-group terms-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={user.agreedToTerms}
+              onChange={handleTermsChange}
+            />
+            Agree to{" "}
+            <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsModal(true); }}>
+              terms and conditions
+            </a>
+          </label>
+        </div>
+
+        <button
+          className="begin-button"
+          onClick={handleBegin}
+          disabled={!isFormValid}
+        >
+          Begin
+        </button>
       </div>
 
-      <div>
-        <label>
-          Project Location:{" "}
-          <input
-            type="text"
-            value={user.projectLocation}
-            onChange={handleProjectLocationChange}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            checked={user.agreedToTerms}
-            onChange={handleTermsChange}
-          />
-          Agree to{" "}
-          <a href="#" onClick={openTermsModal}>
-            terms and conditions
-          </a>
-        </label>
-      </div>
-
-      <button
-        onClick={handleBegin}
-        disabled={
-          !selectedGroup ||
-          !user.agreedToTerms ||
-          !user.projectTitle.trim() ||
-          !user.projectLocation.trim()
-        }
-      >
-        Begin
-      </button>
-
-      {showTermsModal && <TermsModal onClose={closeTermsModal} />}
-      <footer>
-        <p></p>
-      </footer>
+      {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} />}
     </div>
   );
 }

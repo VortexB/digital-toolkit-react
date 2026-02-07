@@ -1,51 +1,6 @@
 // Utility functions for export functionality
 import { jsPDF } from 'jspdf';
-
-// Helper function to check if content is actually markdown (not HTML)
-const isMarkdownContent = (content) => {
-  return content.trim() && !content.trim().startsWith('<!DOCTYPE html>');
-};
-
-// Extract question text and recommended actions from markdown content
-export const parseMarkdownContent = (content) => {
-  const lines = content.split('\n');
-  let questionText = '';
-  let recommendedActions = '';
-
-  let inRecommendedActions = false;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    if (line.startsWith('# ')) {
-      // Extract question from H1
-      questionText = line.substring(2).trim();
-    } else if (line.startsWith('## Recommended Actions')) {
-      inRecommendedActions = true;
-      // Skip the header line itself
-      continue;
-    } else if (inRecommendedActions) {
-      // Stop if we hit another H2 header
-      if (line.startsWith('## ') && line !== '## Recommended Actions') {
-        break;
-      }
-      // Collect all content under Recommended Actions
-      recommendedActions += line + '\n';
-    }
-  }
-
-  return {
-    questionText,
-    recommendedActions: recommendedActions.trim()
-  };
-};
-
-// Load and validate a markdown file
-const loadFile = async (path) => {
-  const response = await fetch(path);
-  const content = await response.text();
-  return isMarkdownContent(content) ? content : null;
-};
+import { loadQuestionFile, parseMarkdownContent } from './questionLoader';
 
 // Collect all question data for answered questions
 export const collectRecommendedActions = async (answers, group) => {
@@ -62,22 +17,13 @@ export const collectRecommendedActions = async (answers, group) => {
     const id = match[2];
 
     try {
-      let content = null;
-
-      // Try group-specific first
-      const groupPath = `/data/questions/${group}/${subject}-q${id}.md`;
-      content = await loadFile(groupPath);
-
-      // If not found, try general
-      if (!content && group !== 'general') {
-        const generalPath = `/data/questions/general/${subject}-q${id}.md`;
-        content = await loadFile(generalPath);
-      }
+      const content = await loadQuestionFile(group, `${subject}-q${id}`);
 
       if (content) {
         const parsed = parseMarkdownContent(content);
-        const isPositiveAnswer = answerObj.answer === 'yes';
-        const isNegativeAnswer = answerObj.answer === 'no' || answerObj.answer === 'do_not_know';
+        // New logic: Yes/Do not know = needs actions, No/Not applicable = good job
+        const needsActions = answerObj.answer === 'yes' || answerObj.answer === 'do_not_know';
+        const isGoodJob = answerObj.answer === 'no' || answerObj.answer === 'not_applicable';
 
         collectedData.push({
           questionId,
@@ -85,9 +31,9 @@ export const collectRecommendedActions = async (answers, group) => {
           questionNum: id,
           questionText: parsed.questionText,
           answer: answerObj.answer,
-          isPositive: isPositiveAnswer,
-          isNegative: isNegativeAnswer,
-          actions: parsed.recommendedActions.replace(/^#+\s*/gm, '') // Remove any remaining headers
+          needsActions,
+          isGoodJob,
+          actions: parsed.recommendedActions.replace(/^#+\s*/gm, '')
         });
       }
     } catch (error) {
@@ -95,7 +41,7 @@ export const collectRecommendedActions = async (answers, group) => {
     }
   }
 
-  // Sort by subject and question number for better organization
+  // Sort by subject and question number
   return collectedData.sort((a, b) => {
     if (a.subject !== b.subject) {
       return a.subject.localeCompare(b.subject);
@@ -136,7 +82,7 @@ export const generatePDF = (collectedData, user) => {
   if (collectedData.length === 0) {
     doc.text('No questions have been answered yet.', 20, yPosition);
   } else {
-    collectedData.forEach((item, index) => {
+    collectedData.forEach((item) => {
       // Check if we need a new page
       if (yPosition > 250) {
         doc.addPage();
@@ -159,24 +105,22 @@ export const generatePDF = (collectedData, user) => {
 
       // Answer and feedback
       doc.setFontSize(11);
-      const answerText = `Your answer: ${item.answer.replace('_', ' ')}`;
+      const answerText = `Your answer: ${item.answer.replaceAll('_', ' ')}`;
       doc.text(answerText, 30, yPosition);
       yPosition += 8;
 
-      if (item.isPositive) {
-        // Positive feedback
+      if (item.isGoodJob) {
         doc.setFontSize(11);
-        doc.setTextColor(0, 128, 0); // Green color
+        doc.setTextColor(0, 128, 0);
         doc.text('Good Job!', 30, yPosition);
         yPosition += 10;
-        doc.setTextColor(0, 0, 0); // Reset to black
-      } else if (item.isNegative && item.actions.trim()) {
-        // Recommended actions
+        doc.setTextColor(0, 0, 0);
+      } else if (item.needsActions && item.actions.trim()) {
         doc.setFontSize(10);
-        doc.setTextColor(128, 0, 0); // Red color for emphasis
+        doc.setTextColor(128, 0, 0);
         doc.text('Recommended Actions:', 30, yPosition);
         yPosition += 8;
-        doc.setTextColor(0, 0, 0); // Reset to black
+        doc.setTextColor(0, 0, 0);
 
         const actionLines = doc.splitTextToSize(item.actions, 160);
         actionLines.forEach(line => {
@@ -186,7 +130,7 @@ export const generatePDF = (collectedData, user) => {
         yPosition += 8;
       }
 
-      yPosition += 5; // Extra space between questions
+      yPosition += 5;
     });
   }
 

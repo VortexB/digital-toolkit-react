@@ -1,4 +1,4 @@
-# Domain 1: There are significant privacy concerns over your digital health innovations.
+# There are significant privacy concerns over your digital health innovations.
 
 ## Recommended Actions
 1. Consult the Digital Privacy Playbook (Government of Canada) and Privacy and Security Guideline (Canada Health Infoway) to start planning for privacy considerations

@@ -1,4 +1,4 @@
-# Domain 3: Some patients will view the innovation/technology in a negative way (e.g., not appropriate for their home, or triggering something that they would prefer to forget about).
+# Some patients will view the innovation/technology in a negative way (e.g., not appropriate for their home, or triggering something that they would prefer to forget about).
 
 ## Recommended Actions
 1. Assess the level of enthusiasm/concern about the technology fromdifferent service user/staff groups, and how motivated they are totake on the new technology.

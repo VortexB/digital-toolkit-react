@@ -1,4 +1,4 @@
-# Domain 1: The current version of the innovation is already in a robust and definitive form.
+# The technology or the current version of innovation still needs some work to be in a robust and definitive form.
 
 ## Recommended Actions
 1. Assess the technology readiness levels.

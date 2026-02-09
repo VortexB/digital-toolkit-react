@@ -1,4 +1,4 @@
-# Domain 4: The implementing organization has limited resources (people or money) to channel into innovative projects.
+# The implementing organization has limited resources (people or money) to channel into innovative projects.
 
 ## Recommended Actions
 1. Budget adequate for staff to learn and adjust as the transition occurs.

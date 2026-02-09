@@ -1,4 +1,4 @@
-# Domain 2: There are user safety concerns about the technology or the care model with the technology.
+# There are user safety concerns about the technology or the care model with the technology.
 
 ## Recommended Actions
 1. Consult IT department and other departments related to patientsafety to make sure the technology complies with the safetyprotocol.

@@ -1,4 +1,4 @@
-# Domain 1: There are significant uncertainties about the technology's usability and acceptability by target users.
+# There are significant uncertainties about the technology's usability and acceptability by target users.
 
 ## Recommended Actions
 1. Conduct needs assessment with target users (e.g., clinicians, service users).

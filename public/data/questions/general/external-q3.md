@@ -1,4 +1,4 @@
-# Domain 5: Introduction of the technology/innovation could be threatened by external changes that impact on the organisation (e.g., policies, regulatory framework, tech industry)
+# Introduction of the technology/innovation could be threatened by external changes that impact on the organisation (e.g., policies, regulatory framework, tech industry)
 
 ## Recommended Actions
 1. Assess if there are existing inter-organizational networks that maybe helpful in supporting the proposed changes.

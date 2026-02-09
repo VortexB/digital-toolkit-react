@@ -1,4 +1,4 @@
-# Domain 3: Some individuals or teams do not have the resources, time, space or support to learn to use the innovation.
+# Some or all individuals or teams have limited resources, time, space or support to learn to use the innovation.
 
 ## Recommended Actions
 1. For patients, identifying times within patient treatment schedules whenthey are available to engage with the technology and provide technicalsupport.(Park, S. Y., Sigmon, C. N., &amp; Boeldt, D. (2022). A framework for theimplementation of digital mental health interventions).

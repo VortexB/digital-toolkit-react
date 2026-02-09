@@ -1,4 +1,4 @@
-# Domain 3: Some staff members/clinicians/researchers may believe that adopting innovation is more time-consuming than existing practice.
+# Some staff members/clinicians/researchers may believe that adopting innovation is more time-consuming than existing practice.
 
 ## Recommended Actions
 1. Assess the confidence of staff within an organization regarding theirability to carry out the necessary process changes mandated by aproposed intervention.eMental Health Adoption Readiness (eMHAR) ScaleOrganizational Readiness for Implementing Change

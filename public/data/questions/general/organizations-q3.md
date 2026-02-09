@@ -1,4 +1,4 @@
-# Domain 4: The implications (e.g., work required) of introducing, implementing and evaluating the technology have been adequately assessed by the implementing organization.
+# The implications (e.g., work required) of introducing, implementing and evaluating the technology still need to be adequately assessed by the implementing organization.
 
 ## Recommended Actions
 1. Encourage the innovation development team to clearly communicate the conditions of use to the implementing organization managers as well as field teams (INSSS Bulletin v.10).

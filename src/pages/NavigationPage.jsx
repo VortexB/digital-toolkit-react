@@ -5,6 +5,7 @@ import GlossaryModal from "../components/GlossaryModal";
 import FindResourcesModal from "../components/FindResourcesModal";
 import ExportModal from "../components/ExportModal";
 import DomainWheel from "../components/DomainWheel";
+import { DOMAIN_CONFIG } from "../utils/domainConfig";
 import {
   collectRecommendedActions,
   generatePDF,
@@ -20,6 +21,7 @@ export default function NavigationPage() {
   const [domainList, setDomainList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [hoveredDomain, setHoveredDomain] = useState(null);
   const navigate = useNavigate();
 
   const loadAvailableQuestions = useCallback(async () => {
@@ -131,7 +133,35 @@ export default function NavigationPage() {
         </button>
       </div>
 
-      <DomainWheel domains={domainList} />
+      <div className="wheel-and-info">
+        <DomainWheel domains={domainList} onHoveredDomainChange={setHoveredDomain} />
+
+        <div className="domain-info-panel">
+          <div className="domain-info-content" key={hoveredDomain || 'intro'}>
+            {hoveredDomain && DOMAIN_CONFIG[hoveredDomain] ? (
+              <>
+                <h3 style={{ color: DOMAIN_CONFIG[hoveredDomain].color }}>
+                  Domain {DOMAIN_CONFIG[hoveredDomain].number}: {DOMAIN_CONFIG[hoveredDomain].name}
+                </h3>
+                <p>{DOMAIN_CONFIG[hoveredDomain].description}</p>
+              </>
+            ) : (
+              <>
+                <p>
+                  Please select a domain and answer according to your project. Press <strong>&apos;Export results&apos;</strong> to download
+                  the result after you completed answering the questions.
+                </p>
+                <p>
+                  By responding to all questions, you will be able to identify the area(s) with
+                  specific complexities that your project may be facing. More red indicates
+                  that your team would like to consider ways to reduce barriers and manage
+                  identified challenges.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
 
       {showGlossary && <GlossaryModal onClose={() => setShowGlossary(false)} />}
       {showResources && <FindResourcesModal onClose={() => setShowResources(false)} />}

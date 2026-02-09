@@ -1,4 +1,4 @@
-# Domain 2: There are concerns that the technology could widen inequalities while improving care/access for some patients.
+# There are concerns that the technology could widen inequalities while improving care/access for some patients.
 
 ## Recommended Actions
 1. Aim to ensure equity regarding who can access the innovation.

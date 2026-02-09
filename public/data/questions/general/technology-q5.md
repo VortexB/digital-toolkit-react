@@ -1,4 +1,4 @@
-# Domain 1: The technology needs to be installed across multiple technical systems
+# The technology needs to be installed across multiple technical systems
 
 ## Recommended Actions
 1. Assess whether integration between multiple systems is reallynecessary or if there are ways to avoid or delay this during initialtesting.

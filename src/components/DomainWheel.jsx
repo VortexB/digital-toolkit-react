@@ -56,11 +56,17 @@ function starPath(outerR, innerR, points = 5) {
 }
 
 // ─── Component ─────────────────────────────────────────────
-export default function DomainWheel({ domains }) {
+export default function DomainWheel({ domains, onHoveredDomainChange }) {
   const navigate = useNavigate();
   const { user, getAnswer } = useUser();
   const [hoveredDomain, setHoveredDomain] = useState(null);
   const [hoveredSegment, setHoveredSegment] = useState(null);
+
+  // Pipe hover changes to parent
+  const handleDomainHover = (key) => {
+    setHoveredDomain(key);
+    onHoveredDomainChange?.(key);
+  };
 
   // Build domain data with answer states
   const domainData = useMemo(() => {
@@ -165,8 +171,8 @@ export default function DomainWheel({ domains }) {
                 key={domain.key}
                 className={`wheel-slice ${hoveredDomain === domain.key ? 'hovered' : ''}`}
                 style={{ transform: getSliceTransform(domain) }}
-                onMouseEnter={() => setHoveredDomain(domain.key)}
-                onMouseLeave={() => setHoveredDomain(null)}
+                onMouseEnter={() => handleDomainHover(domain.key)}
+                onMouseLeave={() => handleDomainHover(null)}
                 onClick={() => handleDomainClick(domain)}
               >
                 <path
@@ -192,8 +198,8 @@ export default function DomainWheel({ domains }) {
                   key={`star-${domain.key}`}
                   className="star-badge"
                   style={{ transform: getSliceTransform(domain) }}
-                  onMouseEnter={() => setHoveredDomain(domain.key)}
-                  onMouseLeave={() => setHoveredDomain(null)}
+                  onMouseEnter={() => handleDomainHover(domain.key)}
+                  onMouseLeave={() => handleDomainHover(null)}
                 >
                   <path
                     d={starPath(18, 8)}
@@ -229,7 +235,7 @@ export default function DomainWheel({ domains }) {
                   style={{ transform: getSliceTransform(domain) }}
                   onMouseEnter={() => {
                     setHoveredSegment({ domain: domain.key, q: q.num });
-                    setHoveredDomain(domain.key);
+                    handleDomainHover(domain.key);
                   }}
                   onMouseLeave={() => {
                     setHoveredSegment(null);
@@ -256,8 +262,8 @@ export default function DomainWheel({ domains }) {
                 left: `${((labelPos.x + offset) / viewSize) * 100}%`,
                 top: `${((labelPos.y + offset) / viewSize) * 100}%`,
               }}
-              onMouseEnter={() => setHoveredDomain(domain.key)}
-              onMouseLeave={() => setHoveredDomain(null)}
+              onMouseEnter={() => handleDomainHover(domain.key)}
+              onMouseLeave={() => handleDomainHover(null)}
               onClick={() => handleDomainClick(domain)}
             >
               <img

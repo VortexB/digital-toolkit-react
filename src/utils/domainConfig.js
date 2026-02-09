@@ -7,45 +7,50 @@ export const DOMAIN_CONFIG = {
     name: 'Technology',
     shortName: 'Technology',
     number: 1,
-    color: '#3B82F6',       // Blue
-    colorLight: '#DBEAFE',  // Light blue tint for backgrounds
+    color: '#3B82F6',          // Blue
+    colorLight: '#DBEAFE',     // Light blue tint for backgrounds
     icon: '/imgs/domain-icons/tech.png',
+    description: "This domain looks at the multiple complexities around technology, such as functionality of the technology itself, and the required knowledge and infrastructure to use it.",
   },
   value: {
     key: 'value',
     name: 'Value Proposition',
     shortName: 'Value',
     number: 2,
-    color: '#14B8A6',       // Teal
-    colorLight: '#CCFBF1',  // Light teal tint
+    color: '#14B8A6',          // Teal
+    colorLight: '#CCFBF1',     // Light teal tint
     icon: '/imgs/domain-icons/value.png',
+    description: "This domain concerns for whom a new technology generates values, including value to the patient, the developer, and the health system.",
   },
   adopters: {
     key: 'adopters',
     name: 'Intended Adopters',
     shortName: 'Adopters',
     number: 3,
-    color: '#F97316',       // Orange
-    colorLight: '#ffe7c9ff',  // Light orange tint
+    color: '#F97316',          // Orange
+    colorLight: '#ffe7c9ff',   // Light orange tint
     icon: '/imgs/domain-icons/adopters.png',
+    description: "This domain looks at the complexity of the adopter system, i.e., clinicians, staff, patients and carers who are expected to use the technology but who may refuse to use it or find that they are unable to use it.",
   },
   organizations: {
     key: 'organizations',
     name: 'Organizations',
     shortName: 'Organizations',
     number: 4,
-    color: '#8B5CF6',       // Purple
-    colorLight: '#EDE9FE',  // Light purple tint
+    color: '#8B5CF6',          // Purple
+    colorLight: '#EDE9FE',     // Light purple tint
     icon: '/imgs/domain-icons/organization.png',
+    description: "This domain focuses on the organization’s capacity to innovate, readiness for a new innovation, funding decisions, potential disruption to existing routines, and the extent of additional work to implement changes.",
   },
   external: {
     key: 'external',
     name: 'External Context',
     shortName: 'External',
     number: 5,
-    color: '#c7ef44ff',       // Yellow
-    colorLight: '#fefee2ff',  // Light yellow tint
+    color: '#c7ef44ff',        // Yellow
+    colorLight: '#fefee2ff',   // Light yellow tint
     icon: '/imgs/domain-icons/external.png',
+    description: "This domain concerns the wider system, how external social, political, technological, and economic context may affect the uptake of innovations.",
   },
 };
 

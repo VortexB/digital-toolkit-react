@@ -1,4 +1,4 @@
-# Domain 2: The adoption and implementation of the innovation may create additional work for clinicians.
+# The adoption and implementation of the innovation may create additional work for clinicians.
 
 ## Recommended Actions
 1. Involve managers from the early stage of adoption so they can informthe need for changes and how clinicians and/or patients may benefit fromthem.

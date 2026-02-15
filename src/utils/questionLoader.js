@@ -115,6 +115,12 @@ export const combineMarkdownContent = (generalContent, groupContent) => {
     }
   }
 
+  // If recommended actions was the last section (no subsequent ## section found),
+  // set the end index to the last line of the file
+  if (inRecommendedActions && generalActionsEndIndex === -1) {
+    generalActionsEndIndex = generalLines.length - 1;
+  }
+
   // If we found recommended actions in general content, append group-specific actions
   if (generalActionsEndIndex >= 0) {
     let groupActionsStart = -1;

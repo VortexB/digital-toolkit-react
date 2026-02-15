@@ -1,1 +1,1 @@
-# Domain 3: Some patients will view the innovation/technology in a negative way (e.g., not appropriate for their home, or triggering something that they would prefer to forget about).
+# Domain 3:  Some service users will view the innovation/technology in a negative way (e.g., triggering something that they would prefer to forget about).

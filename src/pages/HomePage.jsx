@@ -11,8 +11,15 @@ const PROJECT_TYPE_OPTIONS = [
   "Virtual reality", "Wearable", "Website",
 ];
 
-const CISSS_CIUSSS_LIST = [
-  "CISSS de l'Abitibi-Témiscamingue",
+  const LOCATION_OPTIONS = [
+    { value: "general", label: "Canada except Quebec" },
+    { value: "quebec", label: "Quebec" },
+    { value: "douglasciuss", label: "Douglas Research Centre/CIUSSS-Ouest" },
+    { value: "international", label: "Outside of Canada" },
+  ];
+
+  const CISSS_CIUSSS_LIST = [
+    "CISSS de l'Abitibi-Témiscamingue",
   "CISSS de la Côte-Nord",
   "CISSS de la Gaspésie",
   "CISSS de la Montérégie-Centre",
@@ -49,16 +56,23 @@ export default function HomePage() {
       user.projectCountry.trim() &&
       user.projectTypes.length > 0
     ) {
-      setUser((prev) => ({ ...prev, group: selectedGroup }));
+      // Map international to general for question loading logic
+      const groupToSet = selectedGroup === "international" ? "general" : selectedGroup;
+      setUser((prev) => ({ ...prev, group: groupToSet }));
       navigate("/navigation");
     }
   };
 
   const handleGroupChange = (e) => {
-    setSelectedGroup(e.target.value);
+    const value = e.target.value;
+    setSelectedGroup(value);
     // Clear CISSS selection if not Quebec
-    if (e.target.value !== "quebec") {
+    if (value !== "quebec") {
       setUser((prev) => ({ ...prev, cisssciusss: "" }));
+    }
+    // For international, treat same as general for question loading
+    if (value === "international") {
+      setUser((prev) => ({ ...prev, group: "general" }));
     }
   };
 
@@ -108,7 +122,7 @@ export default function HomePage() {
         <img src="imgs/ludicmind.png" alt="LudicMind logo" />
       </div>
 
-      <h1 className="header">D3SM Digital Assessment Toolkit</h1>
+      <h1 className="header">D3SM Digital Implementation Toolkit</h1>
 
       <div className="info-section">
         <h4>What is this about?</h4>
@@ -209,6 +223,16 @@ export default function HomePage() {
       {/* --- Form Section --- */}
       <div className="form-section">
         <div className="form-group">
+          <label htmlFor="project-title">Project Title</label>
+          <input
+            id="project-title"
+            type="text"
+            value={user.projectTitle}
+            onChange={handleFieldChange("projectTitle")}
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="location-select">
             Select your location
             <span className="helper-text">
@@ -217,13 +241,13 @@ export default function HomePage() {
           </label>
           <select id="location-select" value={selectedGroup} onChange={handleGroupChange}>
             <option value="">Please select your location</option>
-            <option value="general">Canada except Quebec</option>
-            <option value="quebec">Quebec</option>
-            <option value="douglasciuss">Douglas Research Centre/CIUSSS-Ouest</option>
+            {LOCATION_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
           </select>
         </div>
 
-        {selectedGroup === "quebec" && (
+        {(selectedGroup === "quebec" || selectedGroup === "douglasciuss") && (
           <div className="form-group">
             <label htmlFor="cisss-select">CISSS/CIUSSS</label>
             <select
@@ -238,16 +262,6 @@ export default function HomePage() {
             </select>
           </div>
         )}
-
-        <div className="form-group">
-          <label htmlFor="project-title">Project Title</label>
-          <input
-            id="project-title"
-            type="text"
-            value={user.projectTitle}
-            onChange={handleFieldChange("projectTitle")}
-          />
-        </div>
 
         <div className="form-group">
           <label>Project Location</label>

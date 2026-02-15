@@ -12,6 +12,10 @@
   padding: 20px 20%;
 }
 
+h1{
+  text-shadow: 2px 2px 4px rgba(171, 171, 171, 0.6);
+}
+
 /* Logo Row */
 .home-page .logo-row {
   display: flex;
@@ -42,6 +46,7 @@
   font-size: 1.1em;
   padding: 0;
   margin: 20px 0 8px 0;
+  text-shadow: 1px 1px 2px rgba(171, 171, 171, 0.6);
 }
 
 .home-page .info-section p {

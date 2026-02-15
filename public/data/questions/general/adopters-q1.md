@@ -1,7 +1,7 @@
-# Some patients will view the innovation/technology in a negative way (e.g., not appropriate for their home, or triggering something that they would prefer to forget about).
+# Some service users will view the innovation/technology in a negative way (e.g., triggering something that they would prefer to forget about).
 
 ## Recommended Actions
-1. Assess the level of enthusiasm/concern about the technology fromdifferent service user/staff groups, and how motivated they are totake on the new technology.
-2. Create and distribute educational materials about the innovationincluding blogs, podcasts, webinars, and in-person or digitalsessions(Balcombe, L., &amp; De Leo, D. (2021). Digital mental healthchallenges and the horizon ahead for solutions. JMIR MentalHealth, 8(3), e26811.).
-3. Provide clear communication to clients about how information isgoing to be used.(Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J., Mallard-Swanson, K., Palomares, K. J., ... &amp; Sorkin, D. H. (2023).16Facilitators of and barriers to integrating digital mental health intocounty mental health services: qualitative interview analyses. JMIRFormative Research, 7(1), e45718.).
-4. Once implementation has started, create “communities of practice”(groups or networks of people who share an interest in somethingand are trying to get better at it) where service users/clinicians/stafflearn about the use and benefit of the new technology.
+1. Assess the level of enthusiasm/concern about the technology from different service user/staff groups, and how motivated they are to take on the new technology.
+2. Create and distribute educational materials about the innovation including blogs, podcasts, webinars, and in-person or digital sessions (Balcombe, L., & De Leo, D. (2021). Digital mental health challenges and the horizon ahead for solutions. JMIR Mental Health, 8(3), e26811.).
+3. Provide clear communication to clients about how information is going to be used. (Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J., Mallard-Swanson, K., Palomares, K. J., ... & Sorkin, D. H. (2023). Facilitators of and barriers to integrating digital mental health into county mental health services: qualitative interview analyses. JMIR Formative Research, 7(1), e45718.).
+4. Once implementation has started, create "communities of practice" (groups or networks of people who share an interest in something and are trying to get better at it) where service users/clinicians/staff learn about the use and benefit of the new technology.

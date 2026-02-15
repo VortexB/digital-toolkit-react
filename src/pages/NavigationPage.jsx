@@ -80,10 +80,13 @@ export default function NavigationPage() {
     );
   }
 
+  const handleBackToHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className="nav-page">
-      <h1>Navigation</h1>
-
+      <h1>D3SM Digital Implementation Toolkit</h1>
       {showInstructions && (
         <div className="modal-overlay" onClick={() => setShowInstructions(false)}>
           <div className="modal-panel instructions-modal" onClick={(e) => e.stopPropagation()}>
@@ -93,14 +96,14 @@ export default function NavigationPage() {
             </div>
             <div className="modal-body">
               <p>
-                Please select a domain and answer according to your project. Press <strong>&apos;Export results&apos;</strong> to download
+                Please select a domain and answer according to your project. Press <strong>'Export results'</strong> to download
                 the result after you completed answering the questions.
               </p>
               <p>
                 By responding to all questions, you will be able to identify the area(s) with
-                specific complexities that your project may be facing. More red indicates
+                specific complexities that your project may be facing. More red and orange circles indicate
                 that your team would like to consider ways to reduce barriers and manage
-                identified challenges.
+                identified uncertainties and challenges.
               </p>
             </div>
             <div className="modal-footer">
@@ -112,53 +115,61 @@ export default function NavigationPage() {
         </div>
       )}
 
-      <div className="header-buttons">
-        <button
-          className="glossary-button"
-          onClick={() => setShowGlossary(true)}
-        >
-          Glossary
-        </button>
-        <button
-          className="resources-button"
-          onClick={() => setShowResources(true)}
-        >
-          Find resources
-        </button>
-        <button
-          className="export-button"
-          onClick={() => setShowExportModal(true)}
-        >
-          Export results
-        </button>
-      </div>
-
       <div className="wheel-and-info">
         <DomainWheel domains={domainList} onHoveredDomainChange={setHoveredDomain} />
 
-        <div className="domain-info-panel">
-          <div className="domain-info-content" key={hoveredDomain || 'intro'}>
-            {hoveredDomain && DOMAIN_CONFIG[hoveredDomain] ? (
-              <>
-                <h3 style={{ color: DOMAIN_CONFIG[hoveredDomain].color }}>
-                  Domain {DOMAIN_CONFIG[hoveredDomain].number}: {DOMAIN_CONFIG[hoveredDomain].name}
-                </h3>
-                <p>{DOMAIN_CONFIG[hoveredDomain].description}</p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Please select a domain and answer according to your project. Press <strong>&apos;Export results&apos;</strong> to download
-                  the result after you completed answering the questions.
-                </p>
-                <p>
-                  By responding to all questions, you will be able to identify the area(s) with
-                  specific complexities that your project may be facing. More red indicates
-                  that your team would like to consider ways to reduce barriers and manage
-                  identified challenges.
-                </p>
-              </>
-            )}
+        <div className="info-section">
+          <div className="info-buttons">
+            <button
+              className="info-btn glossary-btn"
+              onClick={() => setShowGlossary(true)}
+            >
+              Glossary
+            </button>
+            <button
+              className="info-btn resources-btn"
+              onClick={() => setShowResources(true)}
+            >
+              Find resources
+            </button>
+            <button
+              className="info-btn back-btn"
+              onClick={handleBackToHome}
+            >
+              Back to landing page
+            </button>
+            <button
+              className="info-btn export-btn"
+              onClick={() => setShowExportModal(true)}
+            >
+              Export results
+            </button>
+          </div>
+
+          <div className="domain-info-panel">
+            <div className="domain-info-content" key={hoveredDomain || 'intro'}>
+              {hoveredDomain && DOMAIN_CONFIG[hoveredDomain] ? (
+                <>
+                  <h3 style={{ color: DOMAIN_CONFIG[hoveredDomain].color }}>
+                    Domain {DOMAIN_CONFIG[hoveredDomain].number}: {DOMAIN_CONFIG[hoveredDomain].name}
+                  </h3>
+                  <p>{DOMAIN_CONFIG[hoveredDomain].description}</p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Please select a domain and answer according to your project. Press <strong>'Export results'</strong> to download
+                    the result after you completed answering the questions.
+                  </p>
+                  <p>
+                    By responding to all questions, you will be able to identify the area(s) with
+                    specific complexities that your project may be facing. More red and orange circles indicate
+                    that your team would like to consider ways to reduce barriers and manage
+                    identified uncertainties and challenges.
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

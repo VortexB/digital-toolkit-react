@@ -10,9 +10,8 @@
   min-height: 100vh;
 }
 
-.nav-page h1 {
-  text-align: center;
-  margin-bottom: 10px;
+h1{
+  text-shadow: 2px 2px 4px rgba(171, 171, 171, 0.6);
 }
 
 /* Instructions modal override */
@@ -26,59 +25,86 @@
   margin-bottom: 12px;
 }
 
-/* Header Buttons */
-.nav-page .header-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-page .glossary-button,
-.nav-page .resources-button,
-.nav-page .export-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.nav-page .glossary-button:hover,
-.nav-page .resources-button:hover,
-.nav-page .export-button:hover {
-  background-color: #0056b3;
-}
-
-.nav-page .export-button {
-  background-color: #28a745;
-  font-weight: 600;
-}
-
-.nav-page .export-button:hover {
-  background-color: #1e7e34;
-}
-
-.nav-page .export-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
 /* Wheel + Info Panel Layout */
 .wheel-and-info {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   width: 100%;
   max-width: 1200px;
 }
 
+/* Info Section (buttons + panel) */
+.info-section {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Info Buttons */
+.info-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.info-btn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-weight: 800;
+  text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.7);
+}
+
+.info-btn:hover {
+  transform: translateY(-1px);
+}
+
+.glossary-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.glossary-btn:hover {
+  background-color: #5a6268;
+}
+
+.resources-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.resources-btn:hover {
+  background-color: #5a6268;
+}
+
+.export-btn {
+  background-color: #3d28a7;
+  color: white;
+  font-weight: 900;
+}
+
+.export-btn:hover {
+  background-color: #2d1897;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Domain Info Panel */
 .domain-info-panel {
-  flex: 0 0 280px;
   min-height: 180px;
   display: flex;
   align-items: center;
@@ -120,24 +146,25 @@
     padding: 10px;
   }
 
-  .nav-page .header-buttons {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-page .glossary-button,
-  .nav-page .resources-button,
-  .nav-page .export-button {
-    font-size: 14px;
-    padding: 8px 14px;
-  }
-
   .wheel-and-info {
     flex-direction: column;
   }
 
-  .domain-info-panel {
+  .info-section {
     flex: none;
+    width: 100%;
+  }
+
+  .info-buttons {
+    justify-content: center;
+  }
+
+  .info-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .domain-info-panel {
     width: 100%;
   }
 }

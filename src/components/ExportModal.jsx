@@ -167,7 +167,7 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
           <div className="modal-body">
             <p>Your assessment results will be downloaded as a PDF file.</p>
 
-            <label className="consent-checkbox">
+            {/* <label className="consent-checkbox">
               <input
                 type="checkbox"
                 checked={consentShare}
@@ -176,7 +176,7 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
               <span>
                 I consent to share my anonymized assessment data with the D3SM research team to help improve this toolkit.
               </span>
-            </label>
+            </label> */}
 
             <div className="modal-footer">
               <button className="btn-secondary" onClick={handleReset}>Back</button>

@@ -146,18 +146,18 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
         {/* ── Step 1: Choose mode ── */}
         {!status && !mode && (
           <div className="modal-body">
-            <p>How would you like to receive your assessment results?</p>
+            {/* <p>How would you like to receive your assessment results?</p> */}
             <div className="export-choices">
               <button className="export-choice-btn" onClick={() => setMode('pdf')}>
                 <span className="choice-icon">📄</span>
                 <span className="choice-label">Download PDF</span>
                 <span className="choice-desc">Save to your device</span>
               </button>
-              <button className="export-choice-btn" onClick={() => setMode('email')}>
+              {/* <button className="export-choice-btn" onClick={() => setMode('email')}>
                 <span className="choice-icon">📧</span>
                 <span className="choice-label">Send via Email</span>
                 <span className="choice-desc">Receive results by email</span>
-              </button>
+              </button> */}
             </div>
           </div>
         )}

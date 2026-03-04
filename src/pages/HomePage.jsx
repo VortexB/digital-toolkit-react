@@ -274,7 +274,7 @@ export default function HomePage() {
             />
             <input
               type="text"
-              placeholder="State / Province"
+              placeholder="Province/State"
               value={user.projectProvince}
               onChange={handleFieldChange("projectProvince")}
             />

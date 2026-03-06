@@ -42,6 +42,7 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
       setStatus('success');
     } catch (err) {
       console.error('PDF export error:', err);
+      alert(err);
       setStatus('error');
     } finally {
       setSending(false);

@@ -3,8 +3,8 @@
 ## Recommended Actions
 1. Conduct needs assessment with target users (e.g., clinicians, service users).
 2. Co-design the innovation with patient-partners.
-   * [Microsite on patient partnership in research](https://ssaquebec.ca/en/news/microsite-on-patient-partnership-in-research-interactive-tour-resources-and-testimonials/) (interactive tour, resources and testimonials) (Unite de Soutien SSA Quebec)
-   * [Patients as Partners in Research: Planning Guidelines](https://ossu.ca/wp-content/uploads/Planningguidelines_-_pub_2016.pdf) (SPOR Patients Canada)
+   * [Microsite on patient partnership in research](https://ssaquebec.ca/en/news/microsite-on-patient-partnership-in-research-interactive-tour-resources-and-testimonials/) (interactive tour, resources and testimonials) (Unité de Soutien SSA Québec)
+   * [Strategy for Patient-Oriented Research](https://cihr-irsc.gc.ca/e/48413.html) (CIHR)
    * [Best Practice Guidelines for the engagement of people with lived experience](https://www.camh.ca/-/media/professionals-files/engagement-people-lived-experience-mhresearch2024-pdf.pdf) (CAMH)
 3. Explore different patterns of engagement with digital mental health interventions. [Table 1 (Engagement facilitators)](https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-00105-9/tables/1). Reference: Boucher, E.M., Raiker, J.S. Engagement and retention in digital mental health interventions: a narrative review. BMC Digit Health 2, 52 (2024)
 4. Assess target user perspectives on acceptability, feasibility, and engagement.

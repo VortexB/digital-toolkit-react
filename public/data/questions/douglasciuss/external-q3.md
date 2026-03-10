@@ -2,6 +2,6 @@
 
 ## Recommended Actions
 3. Inter-organizational networks for digital mental health in Quebec
-   * [Alliance en santé mentale du Québec](https://asmq.ca/)
+   * [Alliance en santé mentale du Québec (ASMQ)](https://asmq.ca/)(Website only in French)
    * [Centre Axel](https://centreaxel.com/en/)
    * [Réseau santé numérique](https://rsn.quebec/)

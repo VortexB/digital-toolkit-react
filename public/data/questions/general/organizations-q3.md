@@ -9,8 +9,8 @@
 
 4. Map out tasks and processes in the organization for how the innovation is likely to change them through a meeting with colleagues and other clinic staff to identify changes that may likely to be brought about by the innovation and gauge their concerns.
 
-*Workflow checkup (Appendix 3, [MHCC E-mental health implementation toolkit](https://www.mentalhealthcommission.ca/wp-content/uploads/drupal/2018-09/E_Mental_Health_Implementation_Toolkit_2018_eng.pdf))
+    *Workflow checkup (Appendix 3, [MHCC E-mental health implementation toolkit](https://www.mentalhealthcommission.ca/wp-content/uploads/drupal/2018-09/E_Mental_Health_Implementation_Toolkit_2018_eng.pdf))
 
 5. At the early phase of implementation (trial period), offer temporary or restricted access to the innovation with development of evidence in order to continue data collection and inform downstream decision-making [(INSSS Bulletine v.10)](https://www.inesss.qc.ca/fileadmin/doc/INESSS/DocuMetho/Bulletins_veille/Bulletin_10_VF.pdf)
 
-6. Document routinely collected outcome data and publish them to present the value of the services. [(Titov, N., Hadjistavropoulos, H. D., Nielssen, O., Mohr, D. C., Andersson, G., & Dear, B. F. (2019). From research to practice: ten lessons in delivering digital mental health services. Journal of Clinical Medicine. 2019; 8(8):1239.](https://www.mdpi.com/2077-0383/8/8/1239)
+6. Document routinely collected outcome data and publish them to present the value of the services. [(Titov, N., Hadjistavropoulos, H. D., Nielssen, O., Mohr, D. C., Andersson, G., & Dear, B. F. (2019). From research to practice: ten lessons in delivering digital mental health services. Journal of Clinical Medicine. 2019; 8(8):1239.)](https://www.mdpi.com/2077-0383/8/8/1239)

@@ -9,7 +9,7 @@
    * [Cost calculation in implementation](https://implementationscience.biomedcentral.com/articles/10.1186/s13012-021-01172-6) (Gold, H.T., McDermott, C., Hoomans, T. et al. Cost data in implementation science: categories and approaches to costing. Implementation Sci 17, 11 (2022). https://doi.org/10.1186/s13012-021-01172-6).
    * [Cost-benefit analysis primer for community health workers](https://azprc.arizona.edu/sites/default/files/CHWtoolkit/PDFs/FRAMEWOR/COSTBENE.PDF)
 
-3. Develop a strategic plan (business model) which delivers value (over time) in economic, social, and economic contexts.
+3. Develop a strategic plan (business model) which delivers value (over time) in social and economic contexts.
    * [Business Model Canvas template](https://www.strategyzer.com/library/the-business-model-canvas)
 
 4. Seek funding opportunities for innovation advancement, implementation, and sustainment.

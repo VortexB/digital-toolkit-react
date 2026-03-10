@@ -8,6 +8,6 @@
 3. Assist with onboarding (e.g., educational materials, point-person)
 4. Design and offer training.
    * [Digital health professional development courses](https://digitalhealthcanada.com/learning-pathways/) (Digital Health Canada)
-   * Digital research infrastructure training (Digital Research Alliance of Canada)
+   * [Digital research infrastructure training](https://explora.alliancecan.ca/) (Digital Research Alliance of Canada)
 5. Collaborate with local champions.
 6. Identify effective strategies through the [StrategEase Tool](https://thecenterforimplementation.com/strategease-tool). (The Center for Implementation. (2022). StrategEase Tool).

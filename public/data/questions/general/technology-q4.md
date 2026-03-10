@@ -13,4 +13,4 @@
    * For engagement assessment: [User Engagement Scale](https://staging.dissemination-implementation.org/wp-content/uploads/2024/09/User-Engagement-Scale_instrument-short.pdf)
 5. Hold a meeting to visualize key issues with clinicians who potentially use the innovation. E-mental health planning canvas (Appendix 4, [MHCC E-mental health implementation toolkit](https://www.mentalhealthcommission.ca/wp-content/uploads/drupal/2018-09/E_Mental_Health_Implementation_Toolkit_2018_eng.pdf)).
 6. During pre-implementation, offer training and supervision on using the innovation.
-7. During implementation, offer ongoing supervision and engage "champions" to inform other users about the innovation.
+7. During implementation, offer ongoing supervision and engage "champions" and/or "digital navigators" to inform other users about the innovation.

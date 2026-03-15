@@ -20,7 +20,7 @@ export const DOMAIN_CONFIG = {
     color: '#B1E681',         
     colorLight: '#e3ffc9ff',     
     icon: '/imgs/domain-icons/value.png',
-    description: "This domain concerns for whom a new technology generates values, including value to the patient, the developer, and the health system.",
+    description: "This domain concerns for whom a new technology generates values, including the service user, the developer, and the health system.",
   },
   adopters: {
     key: 'adopters',
@@ -30,7 +30,7 @@ export const DOMAIN_CONFIG = {
     color: '#49998F',        
     colorLight: '#befff7ff',  
     icon: '/imgs/domain-icons/adopters.png',
-    description: "This domain looks at the complexity of the adopter system, i.e., clinicians, staff, patients and carers who are expected to use the technology but who may refuse to use it or find that they are unable to use it.",
+    description: "This domain looks at the complexity of the adopter system, i.e., clinicians, staff, service users and carers who are expected to use the technology but who may refuse to use it or find that they are unable to use it.",
   },
   organizations: {
     key: 'organizations',

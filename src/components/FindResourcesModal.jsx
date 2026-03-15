@@ -4,22 +4,22 @@ const RESOURCES = [
   {
     title: "Guide de soutien à l'appréciation de la valeur",
     url: "https://extranetcemtl.cemtl.rtss.qc.ca/fileadmin/intranet/enseignement-recherche/innovation/INESSS_Guide_appreciation_valeur_VF.pdf",
-    note: "(in French) (2024) INESSS",
+    note: "(in French) (INESSS, 2024)",
   },
   {
     title: "6-Step Guide to mHealth Implementation",
     url: "https://ssaquebec.ca/en/news/guide-to-mhealth-implementation/",
-    note: "(Unite de soutien SSA Quebec) (2024)",
+    note: "(Unité de soutien SSA Québec, 2024)",
   },
   {
     title: "Toolkit for e-Mental Health Implementation",
     url: "https://mentalhealthcommission.ca/wp-content/uploads/2021/05/E_Mental_Health_Implementation_Toolkit_2018_eng.pdf",
-    note: "(Mental Health Commission of Canada 2018)",
+    note: "(Mental Health Commission of Canada, 2018)",
   },
   {
     title: "Implementation science research development (ImpRes) tool: A practical guide to using the ImpRes tool",
     url: "https://impsci.tracs.unc.edu/wp-content/uploads/ImpRes-Guide.pdf",
-    note: "(2018) King's College London",
+    note: "(King's College London, 2018)",
   },
 ];
 

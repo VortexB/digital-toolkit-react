@@ -6,7 +6,7 @@ import "./HomePage.css";
 
 const PROJECT_TYPE_OPTIONS = [
   "App", "Artificial intelligence", "Big data", "Cloud service",
-  "Instant messaging", "Operating system", "Portal (electronic) medical records",
+  "Instant messaging", "Operating system", "Portal or electronic medical records",
   "Smartphone", "Social media", "Software", "Telehealth",
   "Virtual reality", "Wearable", "Website",
 ];
@@ -141,7 +141,7 @@ export default function HomePage() {
           <li>
             Assess the readiness level of technology integration into health
             care settings according to the key domains (technology, value
-            proposition, intended adopters, healthcare organizations, and
+            proposition, intended adopters, organizations, and
             external context)
           </li>
           <li>
@@ -154,7 +154,7 @@ export default function HomePage() {
           </li>
         </ul>
         <p>
-          We recommend that users apply this tool in different phases of the
+          We recommend that users engage with this tool in different phases of the
           implementation process (e.g., conceptualization, planning,
           implementation, evaluation, sustainability, commercialization) as
           barriers and facilitators can change over time as well as the policy
@@ -177,7 +177,7 @@ export default function HomePage() {
         <h4>How do I use the D3SM toolkit?</h4>
         <p>
           By answering 23 questions in five domains, 1) technology, 2) value
-          proposition, 3) intended adopters, 4) healthcare organizations, and 5)
+          proposition, 3) intended adopters, 4) organizations, and 5)
           external context, you will be able to assess challenges and resources
           of each domain during your pathway for implementation and sustainment.
           Depending on your responses, you will receive a list of recommended

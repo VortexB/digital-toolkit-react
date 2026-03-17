@@ -1,1 +1,7 @@
-# Domain 3: Certains usagers percevront l’innovation ou la technologie de manière négative (p. Ex.: ravive des souvenirs qu’ils préféreraient oublier).
+# Certains usagers percevront l’innovation ou la technologie de manière négative (p. Ex.: ravive des souvenirs qu’ils préféreraient oublier).
+
+## Actions Recommandées
+1. Évaluer le niveau d’enthousiasme et/ou de préoccupations à l’égard de la technologie chez les différents groupes d’usagers et de membres du personnel, ainsi que leur motivation à adopter la nouvelle technologie.
+2. Créer et diffuser du matériel éducatif sur l’innovation notamment des blogs, des balados, des webinaires, ainsi que des séances en présentiel ou virtuelles. [(Balcombe, L., & De Leo, D. (2021). Digital mental health challenges and the horizon ahead for solutions. JMIR Mental Health, 8(3), e26811.)](https://mental.jmir.org/2021/3/e26811)
+3. Fournir aux clients une communication claire concernant l’utilisation de leurs informations. [(Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J., Mallard-Swanson, K., Palomares, K. J., ... & Sorkin, D. H. (2023). Facilitators of and barriers to integrating digital mental health into county mental health services: qualitative interview analyses. JMIR Formative Research, 7(1), e45718.)](https://formative.jmir.org/2023/1/e45718)
+4. Une fois la mise en oeuvre amorcée, créer des ‘’communautés de pratique’’ (groupes ou réseaux de personnes partageant un intérêt commun et cherchant à améliorer leurs pratiques) afin que les usagers, cliniciens et membres du personnel puissent apprendre à utiliser la nouvelle technologie et à en maximiser les bénéfices.

@@ -5,7 +5,7 @@
    * [eMental Health Adoption Readiness (eMHAR) Scale](https://www.jmir.org/2021/9/e28518)
    * [Organizational Readiness for Implementing Change](https://staging.dissemination-implementation.org/wp-content/uploads/2024/08/ORIC_English.pdf)
 2. Listen to concerns.
-3. Assist with onboarding (e.g., educational materials, point-person)
+3. Assist with onboarding (e.g., educational materials, point-person).
 4. Design and offer training.
    * [Digital health professional development courses](https://digitalhealthcanada.com/learning-pathways/) (Digital Health Canada)
    * [Digital research infrastructure training](https://explora.alliancecan.ca/) (Digital Research Alliance of Canada)

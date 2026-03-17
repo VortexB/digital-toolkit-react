@@ -1,1 +1,1 @@
-# Domain 1: There are significant privacy concerns over your digital health innovations. 6
+# Domain 1: There are significant privacy concerns over your digital health innovations.

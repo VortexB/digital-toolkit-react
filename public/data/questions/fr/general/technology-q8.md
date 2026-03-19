@@ -1,0 +1,4 @@
+# La technologie est susceptible de nécessiter des changements majeurs au niveau des tâches et des routines organisationnelles (ex. nouveaux procédés administratifs, les employés devant accomplir leur travail différemment).
+
+## Actions recommandées
+1. Organiser une réunion avec vos collègues et le personnel clinique des organisations qui mettent en œuvre des innovations afin d'identifier les changements susceptibles d'être apportés par l'innovation et d'évaluer leurs préoccupations. Vérification du flux de travail (Appendix 3, [MHCC E-mental health implementation toolkit](https://www.mentalhealthcommission.ca/wp-content/uploads/drupal/2018-09/E_Mental_Health_Implementation_Toolkit_2018_eng.pdf)) (en anglais seulement).

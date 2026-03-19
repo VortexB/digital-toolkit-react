@@ -1,0 +1,7 @@
+# L’organisation mettant en œuvre a des ressources limitées (personnes ou fonds) à consacrer aux projets innovants.
+
+## Actions Recommandées
+1. Prévoir un budget suffisant afin de permettre au personnel d’apprendre et de s’adapter pendant la période de transition.
+2. Tester la faisabilité commerciale et le développement technologique en finançant et en soutenant des projets en phase de démarrage. [(INSSS Bulletin v.10)](https://www.inesss.qc.ca/fileadmin/doc/INESSS/DocuMetho/Bulletins_veille/Bulletin_10_VF.pdf)
+3. Envisager une ligne budgétaire récurrente pour les coûts, tel que les licences et le support informatique.
+4. Mettre en place un navigateur numérique (professionnel de santé dédié dont la mission, dans les hôpitaux et les cliniques, est de sélectionner des applications fondées sur des preuves, de résoudre les problèmes techniques et d’interpréter les données numériques de manière cliniquement pertinente) pour introduire et accompagner l’utilisation d’une nouvelle technologie. [(Spadaro, B., Martin-Key, N. A., & Bahn, S. (2021). Building the digital mental health ecosystem: opportunities and challenges for mobile health innovators. Journal of Medical Internet Research, 23(10), e27507.)](https://www.jmir.org/2021/10/e27507/)

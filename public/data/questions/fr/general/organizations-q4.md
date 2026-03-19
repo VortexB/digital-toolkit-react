@@ -1,0 +1,14 @@
+# Les routines et les processus organisationnels devront considérablement changer pour s’adapter à la technologie.
+
+## Actions Recommandées
+1. Comprendre les principes et le parcours de gestion du changement :
+   * [Parcours de gestion du changement](https://ssa.illuxi.com/activites/parcours-gestion-changement-8516) (Gestion du changement en santé et services sociaux: les principes de bases)
+   * [Lean Six Sigma certification](https://www.theleansixsigmacompany.ca/) (site en anglais seulement)
+   * [The Art of Change Making](https://www.leadershipcentre.org.uk/wp-content/uploads/2016/02/The-Art-of-Change-Making.pdf) (site en anglais seulement)
+2. Fournir un soutien organisationnel continu (p. ex., support informatique, formation spécifique aux fonctionnalités, instructions étape par étape). [(Zhao, X., Stadnick, N. A., Ceballos-Corro, E., Castro Jr, J., Mallard-Swanson, K., Palomares, K. J., ... & Sorkin, D. H. (2023). Facilitators of and barriers to integrating digital mental health into county mental health services: qualitative interview analyses. JMIR Formative Research, 7(1), e45718.)](https://formative.jmir.org/2023/1/e45718)
+3. Encourager les équipes de développement de l’innovation à communiquer clairement les conditions d’utilisation aux équipes cliniques. [(INESSS Bulletin v.10)](https://www.inesss.qc.ca/fileadmin/doc/INESSS/DocuMetho/Bulletins_veille/Bulletin_10_VF.pdf)
+4. Les professionnels définissent de manière autonome des règles et procédures pour organiser leur pratique numérique. [(Mendes-Santos, C., Nunes, F., Weiderpass, E., Santana, R., & Andersson, G. (2022). Understanding mental health professionals' perspectives and practices regarding the implementation of digital mental health: qualitative study. JMIR formative research, 6(4), e32558)](https://formative.jmir.org/2022/4/e32558/)
+5. Prendre en compte la manière dont le succès de la mise en oeuvre peut être [évalué](https://www.health.org.uk/sites/default/files/EvaluationWhatToConsider.pdf) pour assurer la durabilité. (Health Foundation)(en anglais seulement).
+6. Accroître l’adaptabilité organisationnelle aux priorités locales, aux ressources, aux besoins et aux réglementations au fur et à mesure de leur évolution. [(ISSS Bulletin v.10)](https://www.inesss.qc.ca/fileadmin/doc/INESSS/DocuMetho/Bulletins_veille/Bulletin_10_VF.pdf)
+7. [Plan for sustainability](https://thecenterforimplementation.com/toolbox/solutions-for-sustainability-planning) (site en anglais seulement) : 
+   * [Utiliser l’outil Long term success tool](https://bmjopen.bmj.com/content/bmjopen/7/9/e014417/DC2/embed/inline-supplementary-material-2.pdf?download=true) (PDF en anglais seulement) pour identifier les risques et guider les actions afin de renforcer la pérennité au fil du temps. (Lennox L., Doyle C., Reed J., Bell D. (2017). What makes a sustainability tool valuable, practical, and useful in real world healthcare practice? BMJ Open, 7, e014417)

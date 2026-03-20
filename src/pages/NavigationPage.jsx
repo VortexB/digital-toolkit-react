@@ -145,9 +145,9 @@ export default function NavigationPage() {
               {hoveredDomain && DOMAIN_CONFIG[hoveredDomain] ? (
                 <>
                   <h3 style={{ color: DOMAIN_CONFIG[hoveredDomain].color }}>
-                    Domain {DOMAIN_CONFIG[hoveredDomain].number}: {DOMAIN_CONFIG[hoveredDomain].name}
+                    Domain {DOMAIN_CONFIG[hoveredDomain].number}: {t(`domain${hoveredDomain.charAt(0).toUpperCase() + hoveredDomain.slice(1)}Name`, DOMAIN_CONFIG[hoveredDomain].name)}
                   </h3>
-                  <p>{DOMAIN_CONFIG[hoveredDomain].description}</p>
+                  <p>{t(`domain${hoveredDomain.charAt(0).toUpperCase() + hoveredDomain.slice(1)}Desc`, DOMAIN_CONFIG[hoveredDomain].description)}</p>
                 </>
               ) : (
                 <>

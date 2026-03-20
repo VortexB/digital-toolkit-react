@@ -31,8 +31,8 @@ export default function QuestionPage() {
 
   const questionId = `${subject.toLowerCase()}-q${id}`;
   const domainCfg = getDomainConfig(subject.toLowerCase());
-  const domainName = domainCfg?.name || subject;
   const domainNumber = domainCfg?.number || '';
+  const domainName = t(`domain${subject.charAt(0).toUpperCase() + subject.slice(1)}Name`) || domainCfg?.name || subject;
   const domainColor = domainCfg?.colorLight || '#e8f0fe';
 
   const checkNextQuestionExists = useCallback(async () => {

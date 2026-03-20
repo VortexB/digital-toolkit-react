@@ -16,7 +16,7 @@ import "./NavigationPage.css";
 
 export default function NavigationPage() {
   const { user, answers } = useUser();
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [showGlossary, setShowGlossary] = useState(false);
   const [showResources, setShowResources] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -70,8 +70,8 @@ export default function NavigationPage() {
 
   // Lazy PDF generation — called by ExportModal when user commits to save/send
   const handleGeneratePDF = async () => {
-    const collectedActions = await collectRecommendedActions(answers, user.group);
-    return generatePDF(collectedActions, user);
+    const collectedActions = await collectRecommendedActions(answers, user.group, lang);
+    return generatePDF(collectedActions, user, lang, t);
   };
 
   if (loading) {

@@ -110,7 +110,7 @@ const getFont = (fontAvailability, preferredFonts) => {
 };
 
 // Collect all question data for answered questions
-export const collectRecommendedActions = async (answers, group) => {
+export const collectRecommendedActions = async (answers, group, lang) => {
   const collectedData = [];
 
   for (const questionId in answers) {
@@ -124,10 +124,11 @@ export const collectRecommendedActions = async (answers, group) => {
     const id = match[2];
 
     try {
-      // Load and combine content like QuestionPage does
+      // Load and combine content in the correct language, like QuestionPage does
       let combinedContent = "";
+      const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
 
-      const generalPath = `/data/questions/general/${subject}-q${id}.md`;
+      const generalPath = `${base}/general/${subject}-q${id}.md`;
       const generalContent = await loadMarkdownFile(generalPath);
 
       if (generalContent) {
@@ -135,7 +136,7 @@ export const collectRecommendedActions = async (answers, group) => {
       }
 
       if (group !== "general") {
-        const groupPath = `/data/questions/${group}/${subject}-q${id}.md`;
+        const groupPath = `${base}/${group}/${subject}-q${id}.md`;
         const groupContent = await loadMarkdownFile(groupPath);
 
         if (groupContent) {
@@ -363,10 +364,10 @@ const addPageHeader = (doc, pageWidth, fontAvailability = {}) => {
   doc.setFont(font("Montserrat"), "normal");
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);
-  doc.text("D3SM Digital Implementation Toolkit", 20, headerY);
+  doc.text(t("pdfTitle"), 20, headerY);
 
   // Right side - date
-  const dateStr = new Date().toLocaleDateString("en-CA");
+  const dateStr = new Date().toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA");
   const dateWidth = doc.getTextWidth(dateStr);
   doc.text(dateStr, pageWidth - 20 - dateWidth, headerY);
 
@@ -390,7 +391,7 @@ const addPageFooter = (doc, pageNum, totalPages, pageWidth, fontAvailability = {
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);
 
-  const pageText = `Page ${pageNum}`;
+  const pageText = `${t("pdfPage")} ${pageNum}`;
   doc.text(pageText, pageWidth / 2, footerY, { align: "center" });
 
   // Reset
@@ -448,7 +449,7 @@ const drawCoverPage = (
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(28);
   doc.setTextColor(33, 37, 41);
-  doc.text("D3SM Digital Implementation Toolkit", centerX, yPos, {
+  doc.text(t("pdfTitle"), centerX, yPos, {
     align: "center",
   });
   yPos += 15;
@@ -457,14 +458,14 @@ const drawCoverPage = (
   doc.setFont(font("Montserrat"), "normal");
   doc.setFontSize(18);
   doc.setTextColor(73, 80, 87);
-  doc.text("Assessment Report", centerX, yPos, { align: "center" });
+  doc.text(t("pdfSubtitle"), centerX, yPos, { align: "center" });
   yPos += 30;
 
   // Project Information Section
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(14);
   doc.setTextColor(33, 37, 41);
-  doc.text("Project Information", 30, yPos);
+  doc.text(t("pdfProjectInfo"), 30, yPos);
   yPos += 12;
 
   // Project details box
@@ -477,11 +478,11 @@ const drawCoverPage = (
   doc.setFont(font("Lato"), "bold");
   doc.setFontSize(10);
   doc.setTextColor(100, 100, 100);
-  doc.text("Project Title:", 35, yPos);
+  doc.text(t("pdfProjectTitle"), 35, yPos);
   doc.setFont(font("Lato"), "normal");
   doc.setTextColor(33, 37, 41);
   const titleLines = doc.splitTextToSize(
-    user.projectTitle || "Not specified",
+    user.projectTitle || t("pdfNotSpecified"),
     pageWidth - 70
   );
   doc.text(titleLines, 35, yPos + 5);
@@ -491,7 +492,7 @@ const drawCoverPage = (
   yPos += 8;
   doc.setFont(font("Lato"), "bold");
   doc.setTextColor(100, 100, 100);
-  doc.text("Location:", 35, yPos);
+  doc.text(t("pdfLocation"), 35, yPos);
   doc.setFont(font("Lato"), "normal");
   doc.setTextColor(33, 37, 41);
   const locationParts = [
@@ -499,7 +500,7 @@ const drawCoverPage = (
     user.projectProvince,
     user.projectCity,
   ].filter(Boolean);
-  const locationStr = locationParts.join(", ") || "Not specified";
+  const locationStr = locationParts.join(", ") || t("pdfNotSpecified");
   doc.text(locationStr, 70, yPos);
   yPos += 10;
 
@@ -507,7 +508,7 @@ const drawCoverPage = (
   if (user.cisssciusss) {
     doc.setFont(font("Lato"), "bold");
     doc.setTextColor(100, 100, 100);
-    doc.text("Organization:", 35, yPos);
+    doc.text(t("pdfOrganization"), 35, yPos);
     doc.setFont(font("Lato"), "normal");
     doc.setTextColor(33, 37, 41);
     doc.text(user.cisssciusss, 70, yPos);
@@ -519,7 +520,7 @@ const drawCoverPage = (
     yPos += 5;
     doc.setFont(font("Lato"), "bold");
     doc.setTextColor(100, 100, 100);
-    doc.text("Project Type(s):", 35, yPos);
+    doc.text(t("pdfProjectTypes"), 35, yPos);
     yPos += 6;
     doc.setFont(font("Lato"), "normal");
     doc.setTextColor(33, 37, 41);
@@ -539,8 +540,7 @@ const drawCoverPage = (
   doc.setFont(font("Lato"), "normal");
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  const description =
-    "This D3SM toolkit report aims to provide ideas, steps, and resources to support researchers, clinicians, health care managers, and project leads when planning, implementing, and evaluating digital mental health innovations. It also considers how to plan sustainability through implementation. We created this toolkit by adapting the non-adoption, abandonment and challenges to scale-up, spread, sustainability (NASSS) framework, combined with a Complexity Assessment Tool (CAT), developed by Greenhalgh and her colleagues.";
+  const description = t("pdfCoverDescription");
   const descLines = doc.splitTextToSize(description, pageWidth - 60);
   doc.text(descLines, centerX, yPos, { align: "center" });
 
@@ -551,7 +551,7 @@ const drawCoverPage = (
   doc.setFontSize(10);
   doc.setTextColor(100, 100, 100);
   doc.text(
-    `Report generated: ${new Date().toLocaleDateString("en-CA", {
+    `${t("pdfReportGenerated")} ${new Date().toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -591,7 +591,7 @@ const drawCoverPage = (
 };
 
 // Generate PDF document
-export const generatePDF = async (collectedData, user) => {
+export const generatePDF = async (collectedData, user, lang, t) => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -628,25 +628,21 @@ export const generatePDF = async (collectedData, user) => {
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(18);
   doc.setTextColor(33, 37, 41);
-  doc.text("Assessment Results", 20, yPosition);
+  doc.text(t("pdfAssessmentResults"), 20, yPosition);
   yPosition += 10;
 
   // Description
   doc.setFont(font("Lato"), "normal");
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  doc.text(
-    "The following results are organized by domain. Each section shows your responses and recommended actions.",
-    20,
-    yPosition
-  );
+  doc.text(t("pdfResultsDescription"), 20, yPosition);
   yPosition += 15;
 
   if (collectedData.length === 0) {
     doc.setFont(font("Lato"), "normal");
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text("No questions have been answered yet.", 20, yPosition);
+    doc.text(t("pdfNoQuestionsYet"), 20, yPosition);
   } else {
     collectedData.forEach((item, index) => {
       // Calculate required height for this question
@@ -693,7 +689,7 @@ export const generatePDF = async (collectedData, user) => {
           doc.setFont(font("Montserrat"), "bold");
           doc.setFontSize(12);
           doc.setTextColor(255, 255, 255);
-          doc.text(domainConfig.name.toUpperCase(), 20, yPosition + 2);
+          doc.text((t(`domain${item.subject.charAt(0).toUpperCase() + item.subject.slice(1)}Name`, domainConfig.name) || domainConfig.name).toUpperCase(), 20, yPosition + 2);
 
           // Reset colors
           doc.setTextColor(0, 0, 0);
@@ -716,7 +712,7 @@ export const generatePDF = async (collectedData, user) => {
       doc.setFont(font("Montserrat"), "normal");
       doc.setFontSize(10);
       doc.setTextColor(33, 37, 41);
-      doc.text(`Question ${item.questionNum}`, 25, yPosition + 2);
+      doc.text(`${t("pdfQuestion")} ${item.questionNum}`, 25, yPosition + 2);
       yPosition += 10;
 
       // Question text (with link support) - use font fallback
@@ -734,7 +730,13 @@ export const generatePDF = async (collectedData, user) => {
       yPosition += 6;
 
       // Answer badge
-      const answerLabel = item.answer.replaceAll("_", " ").toUpperCase();
+      const answerLabelMap = {
+        yes: t("pdfAnswerYes"),
+        no: t("pdfAnswerNo"),
+        not_applicable: t("pdfAnswerNotApplicable"),
+        do_not_know: t("pdfAnswerDoNotKnow"),
+      };
+      const answerLabel = answerLabelMap[item.answer] || item.answer.replaceAll("_", " ").toUpperCase();
       let badgeColor = [150, 150, 150];
       let textColor = [255, 255, 255];
 
@@ -762,11 +764,7 @@ export const generatePDF = async (collectedData, user) => {
         doc.setFont(font("Lato"), "normal");
         doc.setFontSize(10);
         doc.setTextColor(34, 197, 94);
-        doc.text(
-          "No additional actions needed for this item. Good Job!",
-          25,
-          yPosition
-        );
+        doc.text(t("pdfGoodJob"), 25, yPosition);
         yPosition += 6;
         doc.setTextColor(0, 0, 0);
       } else if (item.needsActions && item.actions.trim()) {
@@ -774,7 +772,7 @@ export const generatePDF = async (collectedData, user) => {
         doc.setFont(font("Montserrat"), "normal");
         doc.setFontSize(9);
         doc.setTextColor(239, 68, 68);
-        doc.text("Recommended Actions:", 25, yPosition);
+        doc.text(t("pdfRecommendedActions"), 25, yPosition);
         yPosition += 8;
         doc.setTextColor(0, 0, 0);
 

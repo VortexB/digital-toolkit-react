@@ -8,9 +8,9 @@ export default function LanguageToggle() {
     <button
       className="lang-toggle"
       onClick={() => switchLang(lang === "en" ? "fr" : "en")}
-      aria-label={lang === "en" ? "Switch to French" : "Passer à l'anglais"}
+      aria-label={lang === "en" ? "Passer à l'anglais" : "Switch to French"}
     >
-      {lang === "en" ? "FR" : "EN"}
+      {lang === "en" ? "EN" : "FR"}
     </button>
   );
 }

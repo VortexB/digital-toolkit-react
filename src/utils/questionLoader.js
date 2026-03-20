@@ -85,12 +85,23 @@ export const parseMarkdownContent = (content) => {
 
 /**
  * Load the question manifest (domain/question counts).
+ * Results are cached at the module level so subsequent calls are synchronous.
  */
+let cachedManifest = null;
+
+export const getCachedManifest = async () => {
+  if (cachedManifest) return cachedManifest;
+  cachedManifest = await loadManifest();
+  return cachedManifest;
+};
+
 export const loadManifest = async () => {
   try {
     const response = await fetch('/data/questions/manifest.json');
     if (!response.ok) throw new Error('Failed to load manifest');
-    return await response.json();
+    const data = await response.json();
+    cachedManifest = data;
+    return data;
   } catch (error) {
     console.error('Error loading question manifest:', error);
     return null;

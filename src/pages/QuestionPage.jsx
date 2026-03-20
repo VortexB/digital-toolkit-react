@@ -9,6 +9,7 @@ import {
   parseMarkdownContent,
   combineMarkdownContent,
   questionFileExists,
+  getCachedManifest,
   formatAnswerDisplay,
 } from "../utils/questionLoader";
 import { getDomainConfig } from "../utils/domainConfig";
@@ -62,9 +63,11 @@ export default function QuestionPage() {
       setNextQuestionExists(false);
 
       try {
-        // Guard: redirect if this question doesn't exist at all
-        const exists = await questionFileExists(lang, user.group, questionId);
-        if (!exists) {
+        // Guard: redirect if this question number exceeds the manifest's question count
+        const manifest = await getCachedManifest();
+        const domain = manifest?.domains?.find(d => d.key === subject.toLowerCase());
+        const questionCount = domain?.questionCount || 0;
+        if (parseInt(id) > questionCount) {
           navigate("/navigation");
           return;
         }

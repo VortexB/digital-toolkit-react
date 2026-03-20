@@ -5,13 +5,6 @@ import { useState } from "react";
 import TermsModal from "../components/TermsModal";
 import "./HomePage.css";
 
-const PROJECT_TYPE_OPTIONS = [
-  "App", "Artificial intelligence", "Big data", "Cloud service",
-  "Instant messaging", "Operating system", "Portal or electronic medical records",
-  "Smartphone", "Social media", "Software", "Telehealth",
-  "Virtual reality", "Wearable", "Website",
-];
-
 const getLocationOptions = (t) => [
   { value: "general", label: t("locationCanadaExceptQuebec") },
   { value: "quebec", label: t("locationQuebec") },
@@ -19,8 +12,8 @@ const getLocationOptions = (t) => [
   { value: "international", label: t("locationInternational") },
 ];
 
-  const CISSS_CIUSSS_LIST = [
-    "CISSS de l'Abitibi-Témiscamingue",
+const CISSS_CIUSSS_LIST = [
+  "CISSS de l'Abitibi-Témiscamingue",
   "CISSS de la Côte-Nord",
   "CISSS de la Gaspésie",
   "CISSS de la Montérégie-Centre",
@@ -45,12 +38,47 @@ const getLocationOptions = (t) => [
 
 export default function HomePage() {
   const { user, setUser } = useUser();
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [selectedGroup, setSelectedGroup] = useState("");
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
 
   const LOCATION_OPTIONS = getLocationOptions(t);
+
+  const PROJECT_TYPE_OPTIONS =
+  lang === "fr"
+    ? [
+        "Application",
+        "Intelligence artificielle",
+        "Big data",
+        "Service cloud",
+        "Messagerie instantanée",
+        "Système d'exploitation",
+        "Portail ou dossiers médicaux électroniques",
+        "Smartphone",
+        "Médias sociaux",
+        "Logiciel",
+        "Télésanté",
+        "Réalité virtuelle",
+        "Dispositif portable",
+        "Site web",
+      ]:[
+        "App",
+        "Artificial intelligence",
+        "Big data",
+        "Cloud service",
+        "Instant messaging",
+        "Operating system",
+        "Portal or electronic medical records",
+        "Smartphone",
+        "Social media",
+        "Software",
+        "Telehealth",
+        "Virtual reality",
+        "Wearable",
+        "Website",
+      ]
+    ;
 
   const handleBegin = () => {
     if (
@@ -61,7 +89,8 @@ export default function HomePage() {
       user.projectTypes.length > 0
     ) {
       // Map international to general for question loading logic
-      const groupToSet = selectedGroup === "international" ? "general" : selectedGroup;
+      const groupToSet =
+        selectedGroup === "international" ? "general" : selectedGroup;
       setUser((prev) => ({ ...prev, group: groupToSet }));
       navigate("/navigation");
     }
@@ -103,7 +132,11 @@ export default function HomePage() {
       const types = hasOther
         ? prev.projectTypes.filter((t) => t !== "Other")
         : [...prev.projectTypes, "Other"];
-      return { ...prev, projectTypes: types, projectTypeOther: hasOther ? "" : prev.projectTypeOther };
+      return {
+        ...prev,
+        projectTypes: types,
+        projectTypeOther: hasOther ? "" : prev.projectTypeOther,
+      };
     });
   };
 
@@ -149,9 +182,7 @@ export default function HomePage() {
 
         <h4>{t("howWasItDeveloped")}</h4>
         <p>{t("infoHowDevelopedBody")}</p>
-        <p className="reference">
-          {t("infoReference")}
-        </p>
+        <p className="reference">{t("infoReference")}</p>
       </div>
 
       {/* --- Form Section --- */}
@@ -171,10 +202,16 @@ export default function HomePage() {
             {t("selectYourLocation")}
             <span className="helper-text">{t("locationHelper")}</span>
           </label>
-          <select id="location-select" value={selectedGroup} onChange={handleGroupChange}>
+          <select
+            id="location-select"
+            value={selectedGroup}
+            onChange={handleGroupChange}
+          >
             <option value="">{t("locationPleaseSelect")}</option>
             {LOCATION_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
@@ -189,7 +226,9 @@ export default function HomePage() {
             >
               <option value="">{t("selectCisss")}</option>
               {CISSS_CIUSSS_LIST.map((item) => (
-                <option key={item} value={item}>{item}</option>
+                <option key={item} value={item}>
+                  {item}
+                </option>
               ))}
             </select>
           </div>
@@ -220,7 +259,10 @@ export default function HomePage() {
         </div>
 
         <div className="form-group">
-          <label>{t("typeOfProject")} <span className="helper-text">{t("selectAllThatApply")}</span></label>
+          <label>
+            {t("typeOfProject")}{" "}
+            <span className="helper-text">{t("selectAllThatApply")}</span>
+          </label>
           <div className="project-type-grid">
             {PROJECT_TYPE_OPTIONS.map((type) => (
               <label key={type} className="checkbox-label">
@@ -260,7 +302,13 @@ export default function HomePage() {
               onChange={handleTermsChange}
             />
             {t("agreeToTerms")}{" "}
-            <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsModal(true); }}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowTermsModal(true);
+              }}
+            >
               {t("termsAndConditions")}
             </a>
           </label>
@@ -275,7 +323,12 @@ export default function HomePage() {
         </button>
       </div>
 
-      {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} title={t("termsTitle")} />}
+      {showTermsModal && (
+        <TermsModal
+          onClose={() => setShowTermsModal(false)}
+          title={t("termsTitle")}
+        />
+      )}
     </div>
   );
 }

@@ -193,10 +193,10 @@ export default function QuestionPage() {
           </div>
 
           <div className="answer-buttons">
-            <button className="answer-btn" onClick={() => handleAnswerSelect('yes')}>Yes</button>
-            <button className="answer-btn" onClick={() => handleAnswerSelect('not_applicable')}>Not applicable</button>
-            <button className="answer-btn" onClick={() => handleAnswerSelect('do_not_know')}>Do not know</button>
-            <button className="answer-btn" onClick={() => handleAnswerSelect('no')}>No</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('yes')}>{t("yes")}</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('not_applicable')}>{t("notApplicable")}</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('do_not_know')}>{t("doNotKnow")}</button>
+            <button className="answer-btn" onClick={() => handleAnswerSelect('no')}>{t("no")}</button>
           </div>
         </div>
       )}

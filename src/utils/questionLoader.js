@@ -50,6 +50,7 @@ export const questionFileExists = async (lang, group, questionId) => {
 
 /**
  * Parse markdown content to extract question text and recommended actions.
+ * Handles both English ("## Recommended Actions") and French ("## Actions Recommandées") headers.
  */
 export const parseMarkdownContent = (content) => {
   const lines = content.split('\n');
@@ -60,7 +61,10 @@ export const parseMarkdownContent = (content) => {
   for (const line of lines) {
     if (line.startsWith('# ') && !questionText) {
       questionText = line.substring(2).trim();
-    } else if (line.startsWith('## Recommended Actions')) {
+    } else if (
+      line.startsWith('## Recommended Actions') ||
+      line.startsWith('## Actions Recommandées')
+    ) {
       inRecommendedActions = true;
       continue;
     } else if (inRecommendedActions) {
@@ -94,7 +98,14 @@ export const loadManifest = async () => {
 /**
  * Combine general and group-specific markdown content,
  * merging their recommended actions sections.
+ * Handles both English ("## Recommended Actions") and French ("## Actions Recommandées") headers.
  */
+const REC_ACTIONS_EN = '## Recommended Actions';
+const REC_ACTIONS_FR = '## Actions Recommandées';
+
+const isRecommendedActions = (line) =>
+  line.startsWith(REC_ACTIONS_EN) || line.startsWith(REC_ACTIONS_FR);
+
 export const combineMarkdownContent = (generalContent, groupContent) => {
   const generalLines = generalContent.split('\n');
   const groupLines = groupContent.split('\n');
@@ -107,7 +118,7 @@ export const combineMarkdownContent = (generalContent, groupContent) => {
   for (let i = 0; i < generalLines.length; i++) {
     combinedLines.push(generalLines[i]);
 
-    if (generalLines[i].startsWith('## Recommended Actions')) {
+    if (isRecommendedActions(generalLines[i])) {
       inRecommendedActions = true;
     } else if (inRecommendedActions && generalLines[i].startsWith('## ')) {
       generalActionsEndIndex = i - 1;
@@ -115,17 +126,14 @@ export const combineMarkdownContent = (generalContent, groupContent) => {
     }
   }
 
-  // If recommended actions was the last section (no subsequent ## section found),
-  // set the end index to the last line of the file
   if (inRecommendedActions && generalActionsEndIndex === -1) {
     generalActionsEndIndex = generalLines.length - 1;
   }
 
-  // If we found recommended actions in general content, append group-specific actions
   if (generalActionsEndIndex >= 0) {
     let groupActionsStart = -1;
     for (let i = 0; i < groupLines.length; i++) {
-      if (groupLines[i].startsWith('## Recommended Actions')) {
+      if (isRecommendedActions(groupLines[i])) {
         groupActionsStart = i + 1;
         break;
       }
@@ -137,7 +145,7 @@ export const combineMarkdownContent = (generalContent, groupContent) => {
 
       let groupActionsEnd = groupActionsStart;
       for (let i = groupActionsStart; i < groupLines.length; i++) {
-        if (groupLines[i].startsWith('## ') && groupLines[i] !== '## Recommended Actions') {
+        if (groupLines[i].startsWith('## ') && !isRecommendedActions(groupLines[i])) {
           break;
         }
         groupActionsEnd = i;

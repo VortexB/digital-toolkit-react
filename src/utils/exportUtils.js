@@ -351,7 +351,7 @@ const renderTextWithLinks = (
 };
 
 // Helper to add header to each page
-const addPageHeader = (doc, pageWidth, fontAvailability = {}) => {
+const addPageHeader = (doc, pageWidth, fontAvailability = {}, str = {}, dateLocale = "en-CA") => {
   const font = (preferred) => getFont(fontAvailability, [preferred]);
   const headerY = 15;
 
@@ -364,10 +364,10 @@ const addPageHeader = (doc, pageWidth, fontAvailability = {}) => {
   doc.setFont(font("Montserrat"), "normal");
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);
-  doc.text(t("pdfTitle"), 20, headerY);
+  doc.text(str.pdfTitle || "D3SM Digital Implementation Toolkit", 20, headerY);
 
   // Right side - date
-  const dateStr = new Date().toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA");
+  const dateStr = new Date().toLocaleDateString(dateLocale);
   const dateWidth = doc.getTextWidth(dateStr);
   doc.text(dateStr, pageWidth - 20 - dateWidth, headerY);
 
@@ -377,7 +377,7 @@ const addPageHeader = (doc, pageWidth, fontAvailability = {}) => {
 };
 
 // Helper to add footer to each page
-const addPageFooter = (doc, pageNum, totalPages, pageWidth, fontAvailability = {}) => {
+const addPageFooter = (doc, pageNum, totalPages, pageWidth, fontAvailability = {}, str = {}) => {
   const font = (preferred) => getFont(fontAvailability, [preferred]);
   const footerY = 285;
 
@@ -391,7 +391,7 @@ const addPageFooter = (doc, pageNum, totalPages, pageWidth, fontAvailability = {
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);
 
-  const pageText = `${t("pdfPage")} ${pageNum}`;
+  const pageText = `${str.pdfPage || "Page"} ${pageNum}`;
   doc.text(pageText, pageWidth / 2, footerY, { align: "center" });
 
   // Reset
@@ -435,7 +435,9 @@ const drawCoverPage = (
   pageWidth,
   pageHeight,
   logoImages = {},
-  fontAvailability = {}
+  fontAvailability = {},
+  str = {},
+  dateLocale = "en-CA"
 ) => {
   const font = (preferred) => getFont(fontAvailability, [preferred]);
   const centerX = pageWidth / 2;
@@ -449,7 +451,7 @@ const drawCoverPage = (
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(28);
   doc.setTextColor(33, 37, 41);
-  doc.text(t("pdfTitle"), centerX, yPos, {
+  doc.text(str.pdfTitle || "D3SM Digital Implementation Toolkit", centerX, yPos, {
     align: "center",
   });
   yPos += 15;
@@ -458,14 +460,14 @@ const drawCoverPage = (
   doc.setFont(font("Montserrat"), "normal");
   doc.setFontSize(18);
   doc.setTextColor(73, 80, 87);
-  doc.text(t("pdfSubtitle"), centerX, yPos, { align: "center" });
+  doc.text(str.pdfSubtitle || "Assessment Report", centerX, yPos, { align: "center" });
   yPos += 30;
 
   // Project Information Section
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(14);
   doc.setTextColor(33, 37, 41);
-  doc.text(t("pdfProjectInfo"), 30, yPos);
+  doc.text(str.pdfProjectInfo || "Project Information", 30, yPos);
   yPos += 12;
 
   // Project details box
@@ -478,11 +480,11 @@ const drawCoverPage = (
   doc.setFont(font("Lato"), "bold");
   doc.setFontSize(10);
   doc.setTextColor(100, 100, 100);
-  doc.text(t("pdfProjectTitle"), 35, yPos);
+  doc.text(str.pdfProjectTitle || "Project Title:", 35, yPos);
   doc.setFont(font("Lato"), "normal");
   doc.setTextColor(33, 37, 41);
   const titleLines = doc.splitTextToSize(
-    user.projectTitle || t("pdfNotSpecified"),
+    user.projectTitle || str.pdfNotSpecified || "Not specified",
     pageWidth - 70
   );
   doc.text(titleLines, 35, yPos + 5);
@@ -492,7 +494,7 @@ const drawCoverPage = (
   yPos += 8;
   doc.setFont(font("Lato"), "bold");
   doc.setTextColor(100, 100, 100);
-  doc.text(t("pdfLocation"), 35, yPos);
+  doc.text(str.pdfLocation || "Location:", 35, yPos);
   doc.setFont(font("Lato"), "normal");
   doc.setTextColor(33, 37, 41);
   const locationParts = [
@@ -500,7 +502,7 @@ const drawCoverPage = (
     user.projectProvince,
     user.projectCity,
   ].filter(Boolean);
-  const locationStr = locationParts.join(", ") || t("pdfNotSpecified");
+  const locationStr = locationParts.join(", ") || str.pdfNotSpecified || "Not specified";
   doc.text(locationStr, 70, yPos);
   yPos += 10;
 
@@ -508,7 +510,7 @@ const drawCoverPage = (
   if (user.cisssciusss) {
     doc.setFont(font("Lato"), "bold");
     doc.setTextColor(100, 100, 100);
-    doc.text(t("pdfOrganization"), 35, yPos);
+    doc.text(str.pdfOrganization || "Organization:", 35, yPos);
     doc.setFont(font("Lato"), "normal");
     doc.setTextColor(33, 37, 41);
     doc.text(user.cisssciusss, 70, yPos);
@@ -520,7 +522,7 @@ const drawCoverPage = (
     yPos += 5;
     doc.setFont(font("Lato"), "bold");
     doc.setTextColor(100, 100, 100);
-    doc.text(t("pdfProjectTypes"), 35, yPos);
+    doc.text(str.pdfProjectTypes || "Project Type(s):", 35, yPos);
     yPos += 6;
     doc.setFont(font("Lato"), "normal");
     doc.setTextColor(33, 37, 41);
@@ -540,7 +542,7 @@ const drawCoverPage = (
   doc.setFont(font("Lato"), "normal");
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  const description = t("pdfCoverDescription");
+  const description = str.pdfCoverDescription || "";
   const descLines = doc.splitTextToSize(description, pageWidth - 60);
   doc.text(descLines, centerX, yPos, { align: "center" });
 
@@ -551,7 +553,7 @@ const drawCoverPage = (
   doc.setFontSize(10);
   doc.setTextColor(100, 100, 100);
   doc.text(
-    `${t("pdfReportGenerated")} ${new Date().toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA", {
+    `${str.pdfReportGenerated || "Report generated:"} ${new Date().toLocaleDateString(dateLocale, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -596,6 +598,32 @@ export const generatePDF = async (collectedData, user, lang, t) => {
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
 
+  // Extract all translated strings upfront so helper functions receive plain values
+  const str = {
+    pdfTitle: t("pdfTitle"),
+    pdfSubtitle: t("pdfSubtitle"),
+    pdfProjectInfo: t("pdfProjectInfo"),
+    pdfProjectTitle: t("pdfProjectTitle"),
+    pdfLocation: t("pdfLocation"),
+    pdfOrganization: t("pdfOrganization"),
+    pdfProjectTypes: t("pdfProjectTypes"),
+    pdfNotSpecified: t("pdfNotSpecified"),
+    pdfCoverDescription: t("pdfCoverDescription"),
+    pdfAssessmentResults: t("pdfAssessmentResults"),
+    pdfResultsDescription: t("pdfResultsDescription"),
+    pdfNoQuestionsYet: t("pdfNoQuestionsYet"),
+    pdfQuestion: t("pdfQuestion"),
+    pdfRecommendedActions: t("pdfRecommendedActions"),
+    pdfGoodJob: t("pdfGoodJob"),
+    pdfReportGenerated: t("pdfReportGenerated"),
+    pdfPage: t("pdfPage"),
+    pdfAnswerYes: t("pdfAnswerYes"),
+    pdfAnswerNo: t("pdfAnswerNo"),
+    pdfAnswerNotApplicable: t("pdfAnswerNotApplicable"),
+    pdfAnswerDoNotKnow: t("pdfAnswerDoNotKnow"),
+  };
+  const dateLocale = lang === "fr" ? "fr-CA" : "en-CA";
+
   // Initialize custom fonts and get availability
   const fontAvailability = await initializeFonts(doc);
 
@@ -612,13 +640,13 @@ export const generatePDF = async (collectedData, user, lang, t) => {
   }
 
   // Draw cover page
-  drawCoverPage(doc, user, pageWidth, pageHeight, logoImages, fontAvailability);
+  drawCoverPage(doc, user, pageWidth, pageHeight, logoImages, fontAvailability, str);
 
   // Add new page for content
   doc.addPage();
 
   // Add header
-  addPageHeader(doc, pageWidth, fontAvailability);
+  addPageHeader(doc, pageWidth, fontAvailability, str, dateLocale);
 
   let yPosition = 35;
   let currentSubject = null;
@@ -628,21 +656,21 @@ export const generatePDF = async (collectedData, user, lang, t) => {
   doc.setFont(font("Montserrat"), "bold");
   doc.setFontSize(18);
   doc.setTextColor(33, 37, 41);
-  doc.text(t("pdfAssessmentResults"), 20, yPosition);
+  doc.text(str.pdfAssessmentResults || "Assessment Results", 20, yPosition);
   yPosition += 10;
 
   // Description
   doc.setFont(font("Lato"), "normal");
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  doc.text(t("pdfResultsDescription"), 20, yPosition);
+  doc.text(str.pdfResultsDescription || "", 20, yPosition);
   yPosition += 15;
 
   if (collectedData.length === 0) {
     doc.setFont(font("Lato"), "normal");
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text(t("pdfNoQuestionsYet"), 20, yPosition);
+    doc.text(str.pdfNoQuestionsYet || "No questions have been answered yet.", 20, yPosition);
   } else {
     collectedData.forEach((item, index) => {
       // Calculate required height for this question
@@ -652,7 +680,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
       if (yPosition + requiredHeight > 270) {
         doc.addPage();
         pageCount++;
-        addPageHeader(doc, pageWidth, fontAvailability);
+        addPageHeader(doc, pageWidth, fontAvailability, str, dateLocale);
         yPosition = 35;
       }
 
@@ -665,7 +693,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
         if (yPosition + 20 > 270) {
           doc.addPage();
           pageCount++;
-          addPageHeader(doc, pageWidth, fontAvailability);
+          addPageHeader(doc, pageWidth, fontAvailability, str, dateLocale);
           yPosition = 35;
         }
 
@@ -712,7 +740,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
       doc.setFont(font("Montserrat"), "normal");
       doc.setFontSize(10);
       doc.setTextColor(33, 37, 41);
-      doc.text(`${t("pdfQuestion")} ${item.questionNum}`, 25, yPosition + 2);
+      doc.text(`${str.pdfQuestion || "Question"} ${item.questionNum}`, 25, yPosition + 2);
       yPosition += 10;
 
       // Question text (with link support) - use font fallback
@@ -731,10 +759,10 @@ export const generatePDF = async (collectedData, user, lang, t) => {
 
       // Answer badge
       const answerLabelMap = {
-        yes: t("pdfAnswerYes"),
-        no: t("pdfAnswerNo"),
-        not_applicable: t("pdfAnswerNotApplicable"),
-        do_not_know: t("pdfAnswerDoNotKnow"),
+        yes: str.pdfAnswerYes || "YES",
+        no: str.pdfAnswerNo || "NO",
+        not_applicable: str.pdfAnswerNotApplicable || "NOT APPLICABLE",
+        do_not_know: str.pdfAnswerDoNotKnow || "DO NOT KNOW",
       };
       const answerLabel = answerLabelMap[item.answer] || item.answer.replaceAll("_", " ").toUpperCase();
       let badgeColor = [150, 150, 150];
@@ -764,7 +792,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
         doc.setFont(font("Lato"), "normal");
         doc.setFontSize(10);
         doc.setTextColor(34, 197, 94);
-        doc.text(t("pdfGoodJob"), 25, yPosition);
+        doc.text(str.pdfGoodJob || "No additional actions needed for this item. Good Job!", 25, yPosition);
         yPosition += 6;
         doc.setTextColor(0, 0, 0);
       } else if (item.needsActions && item.actions.trim()) {
@@ -772,7 +800,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
         doc.setFont(font("Montserrat"), "normal");
         doc.setFontSize(9);
         doc.setTextColor(239, 68, 68);
-        doc.text(t("pdfRecommendedActions"), 25, yPosition);
+        doc.text(str.pdfRecommendedActions || "Recommended Actions:", 25, yPosition);
         yPosition += 8;
         doc.setTextColor(0, 0, 0);
 
@@ -831,7 +859,7 @@ export const generatePDF = async (collectedData, user, lang, t) => {
   // Add footers to all content pages
   for (let i = 2; i <= totalPages; i++) {
     doc.setPage(i);
-    addPageFooter(doc, i - 1, contentPages, pageWidth, fontAvailability);
+    addPageFooter(doc, i - 1, contentPages, pageWidth, fontAvailability, str);
   }
 
   return doc;

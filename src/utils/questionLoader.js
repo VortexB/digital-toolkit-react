@@ -51,6 +51,7 @@ export const questionFileExists = async (lang, group, questionId) => {
 /**
  * Parse markdown content to extract question text and recommended actions.
  * Handles both English ("## Recommended Actions") and French ("## Actions Recommandées") headers.
+ * Comparison is case-insensitive to account for inconsistent casing in source files.
  */
 export const parseMarkdownContent = (content) => {
   const lines = content.split('\n');
@@ -59,11 +60,12 @@ export const parseMarkdownContent = (content) => {
   let inRecommendedActions = false;
 
   for (const line of lines) {
-    if (line.startsWith('# ') && !questionText) {
+    const lower = line.toLowerCase();
+    if (lower.startsWith('# ') && !questionText) {
       questionText = line.substring(2).trim();
     } else if (
-      line.startsWith('## Recommended Actions') ||
-      line.startsWith('## Actions Recommandées')
+      lower.startsWith('## recommended actions') ||
+      lower.startsWith('## actions recommandées')
     ) {
       inRecommendedActions = true;
       continue;
@@ -100,11 +102,13 @@ export const loadManifest = async () => {
  * merging their recommended actions sections.
  * Handles both English ("## Recommended Actions") and French ("## Actions Recommandées") headers.
  */
-const REC_ACTIONS_EN = '## Recommended Actions';
-const REC_ACTIONS_FR = '## Actions Recommandées';
-
-const isRecommendedActions = (line) =>
-  line.startsWith(REC_ACTIONS_EN) || line.startsWith(REC_ACTIONS_FR);
+const isRecommendedActions = (line) => {
+  const lower = line.toLowerCase();
+  return (
+    lower.startsWith('## recommended actions') ||
+    lower.startsWith('## actions recommandées')
+  );
+};
 
 export const combineMarkdownContent = (generalContent, groupContent) => {
   const generalLines = generalContent.split('\n');

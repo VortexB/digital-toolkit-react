@@ -62,6 +62,13 @@ export default function QuestionPage() {
       setNextQuestionExists(false);
 
       try {
+        // Guard: redirect if this question doesn't exist at all
+        const exists = await questionFileExists(lang, user.group, questionId);
+        if (!exists) {
+          navigate("/navigation");
+          return;
+        }
+
         let combinedContent = '';
         const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
 
@@ -83,7 +90,6 @@ export default function QuestionPage() {
           }
         }
 
-        if (!combinedContent) throw new Error('Question not found');
         if (cancelled) return;
 
         const parsed = parseMarkdownContent(combinedContent);

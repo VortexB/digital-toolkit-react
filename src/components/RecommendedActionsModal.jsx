@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
+import { useLanguage } from '../context/LanguageContext';
 import './RecommendedActionsModal.css';
 
-// Custom link component that opens external links in new tab
 const LinkRenderer = ({ href, children }) => {
   const isExternal = href && (href.startsWith('http://') || href.startsWith('https://'));
   if (isExternal) {
@@ -15,6 +15,8 @@ const LinkRenderer = ({ href, children }) => {
 };
 
 export default function RecommendedActionsModal({ isOpen, onClose, content, title }) {
+  const { t } = useLanguage();
+
   if (!isOpen) return null;
 
   return (
@@ -29,7 +31,7 @@ export default function RecommendedActionsModal({ isOpen, onClose, content, titl
         </div>
         <div className="modal-footer">
           <button className="btn-primary" onClick={onClose}>
-            Continue
+            {t("continue")}
           </button>
         </div>
       </div>

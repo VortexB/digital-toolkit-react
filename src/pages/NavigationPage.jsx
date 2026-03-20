@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useLanguage } from "../context/LanguageContext";
 import { useState, useEffect, useCallback } from "react";
 import GlossaryModal from "../components/GlossaryModal";
 import FindResourcesModal from "../components/FindResourcesModal";
@@ -15,6 +16,7 @@ import "./NavigationPage.css";
 
 export default function NavigationPage() {
   const { user, answers } = useUser();
+  const { t } = useLanguage();
   const [showGlossary, setShowGlossary] = useState(false);
   const [showResources, setShowResources] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -75,7 +77,7 @@ export default function NavigationPage() {
   if (loading) {
     return (
       <div className="loading">
-        <h2>Loading questions...</h2>
+        <h2>{t("loadingQuestions")}</h2>
       </div>
     );
   }
@@ -86,29 +88,21 @@ export default function NavigationPage() {
 
   return (
     <div className="nav-page">
-      <h1>D3SM Digital Implementation Toolkit</h1>
+      <h1>{t("d3smTitle")}</h1>
       {showInstructions && (
         <div className="modal-overlay" onClick={() => setShowInstructions(false)}>
           <div className="modal-panel instructions-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Instructions</h2>
+              <h2>{t("instructions")}</h2>
               <button className="modal-close" onClick={() => setShowInstructions(false)}>&times;</button>
             </div>
             <div className="modal-body">
-              <p>
-                Please select a domain and answer according to your project. Press <strong>'Export results'</strong> to download
-                the result after you completed answering the questions.
-              </p>
-              <p>
-                By responding to all questions, you will be able to identify the area(s) with
-                specific complexities that your project may be facing. More red and orange circles indicate
-                that your team would like to consider ways to reduce barriers and manage
-                identified uncertainties and challenges.
-              </p>
+              <p>{t("instructionsBody1")}</p>
+              <p>{t("instructionsBody2")}</p>
             </div>
             <div className="modal-footer">
               <button className="btn-primary" onClick={() => setShowInstructions(false)}>
-                Get Started
+                {t("getStarted")}
               </button>
             </div>
           </div>
@@ -124,25 +118,25 @@ export default function NavigationPage() {
               className="info-btn glossary-btn"
               onClick={() => setShowGlossary(true)}
             >
-              Glossary
+              {t("glossary")}
             </button>
             <button
               className="info-btn resources-btn"
               onClick={() => setShowResources(true)}
             >
-              Find resources
+              {t("findResources")}
             </button>
             <button
               className="info-btn back-btn"
               onClick={handleBackToHome}
             >
-              Back to landing page
+              {t("backToLanding")}
             </button>
             <button
               className="info-btn export-btn"
               onClick={() => setShowExportModal(true)}
             >
-              Export results
+              {t("exportResults")}
             </button>
           </div>
 
@@ -157,16 +151,8 @@ export default function NavigationPage() {
                 </>
               ) : (
                 <>
-                  <p>
-                    Please select a domain and answer according to your project. Press <strong>'Export results'</strong> to download
-                    the result after you completed answering the questions.
-                  </p>
-                  <p>
-                    By responding to all questions, you will be able to identify the area(s) with
-                    specific complexities that your project may be facing. More red and orange circles indicate
-                    that your team would like to consider ways to reduce barriers and manage
-                    identified uncertainties and challenges.
-                  </p>
+                  <p>{t("pleaseSelectDomain")}</p>
+                  <p>{t("identifyAreas")}</p>
                 </>
               )}
             </div>

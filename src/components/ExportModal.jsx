@@ -1,9 +1,11 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "../context/LanguageContext";
 import { EMAILJS_CONFIG, INTERNAL_EMAILS } from "../utils/emailConfig";
 import "./ExportModal.css";
 
 export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
+  const { t } = useLanguage();
   const [mode, setMode] = useState(null); // null = choose, 'pdf', 'email'
   const [email, setEmail] = useState('');
   const [consentShare, setConsentShare] = useState(false);
@@ -31,10 +33,8 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
     try {
       const doc = await onGeneratePDF();
 
-      // Download to user
       doc.save('toolkit-recommendations.pdf');
 
-      // If consent, also send to internal email(s)
       if (consentShare) {
         await sendToInternal(doc);
       }
@@ -58,13 +58,11 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
       const doc = await onGeneratePDF();
       const pdfBase64 = doc.output('datauristring').split(',')[1];
 
-      // Build recipients list
       const recipients = [email.trim()];
       if (consentShare) {
         recipients.push(...INTERNAL_EMAILS);
       }
 
-      // Send via EmailJS
       await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
@@ -113,7 +111,7 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-panel export-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Export Results</h2>
+          <h2>{t("exportTitle")}</h2>
           <button className="modal-close" onClick={handleClose}>&times;</button>
         </div>
 
@@ -123,23 +121,23 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
             {status === 'success' ? (
               <>
                 <div className="status-icon success">✓</div>
-                <h3>{mode === 'pdf' ? 'PDF Downloaded' : 'Email Sent'}</h3>
+                <h3>{mode === 'pdf' ? t("pdfDownloaded") : t("emailSent")}</h3>
                 <p>
                   {mode === 'pdf'
-                    ? 'Your PDF has been saved to your downloads folder.'
-                    : `Results have been sent to ${email}.`}
-                  {consentShare && ' A copy was also shared with the research team.'}
+                    ? t("pdfSaved")
+                    : `${t("resultsSent", "", { email })}`}
+                  {consentShare && t("sharedWithTeam")}
                 </p>
               </>
             ) : (
               <>
                 <div className="status-icon error">✗</div>
-                <h3>Something went wrong</h3>
-                <p>Please try again. If the problem persists, try a different export method.</p>
+                <h3>{t("somethingWentWrong")}</h3>
+                <p>{t("tryAgain")}</p>
               </>
             )}
             <div className="modal-footer">
-              <button className="btn-primary" onClick={handleClose}>Done</button>
+              <button className="btn-primary" onClick={handleClose}>{t("done")}</button>
             </div>
           </div>
         )}
@@ -147,18 +145,12 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
         {/* ── Step 1: Choose mode ── */}
         {!status && !mode && (
           <div className="modal-body">
-            {/* <p>How would you like to receive your assessment results?</p> */}
             <div className="export-choices">
               <button className="export-choice-btn" onClick={() => setMode('pdf')}>
                 <span className="choice-icon">📄</span>
-                <span className="choice-label">Download PDF</span>
-                <span className="choice-desc">Save to your device</span>
+                <span className="choice-label">{t("downloadPdf")}</span>
+                <span className="choice-desc">{t("saveToDevice")}</span>
               </button>
-              {/* <button className="export-choice-btn" onClick={() => setMode('email')}>
-                <span className="choice-icon">📧</span>
-                <span className="choice-label">Send via Email</span>
-                <span className="choice-desc">Receive results by email</span>
-              </button> */}
             </div>
           </div>
         )}
@@ -166,27 +158,16 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
         {/* ── Step 2: PDF options ── */}
         {!status && mode === 'pdf' && (
           <div className="modal-body">
-            <p>Your assessment results will be downloaded as a PDF file.</p>
-
-            {/* <label className="consent-checkbox">
-              <input
-                type="checkbox"
-                checked={consentShare}
-                onChange={(e) => setConsentShare(e.target.checked)}
-              />
-              <span>
-                I consent to share my anonymized assessment data with the D3SM research team to help improve this toolkit.
-              </span>
-            </label> */}
+            <p>{t("willBeDownloaded")}</p>
 
             <div className="modal-footer">
-              <button className="btn-secondary" onClick={handleReset}>Back</button>
+              <button className="btn-secondary" onClick={handleReset}>{t("back")}</button>
               <button
                 className="btn-primary"
                 onClick={handlePDFSave}
                 disabled={sending}
               >
-                {sending ? 'Saving...' : 'Save PDF'}
+                {sending ? t("saving") : t("savePdf")}
               </button>
             </div>
           </div>
@@ -196,7 +177,7 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
         {!status && mode === 'email' && (
           <div className="modal-body">
             <label className="email-label">
-              Email address:
+              {t("emailAddress")}
               <input
                 type="email"
                 value={email}
@@ -212,19 +193,17 @@ export default function ExportModal({ isOpen, onClose, onGeneratePDF }) {
                 checked={consentShare}
                 onChange={(e) => setConsentShare(e.target.checked)}
               />
-              <span>
-                I consent to share my anonymized assessment data with the D3SM research team to help improve this toolkit.
-              </span>
+              <span>{t("consentShare")}</span>
             </label>
 
             <div className="modal-footer">
-              <button className="btn-secondary" onClick={handleReset}>Back</button>
+              <button className="btn-secondary" onClick={handleReset}>{t("back")}</button>
               <button
                 className="btn-primary"
                 onClick={handleEmailSend}
                 disabled={sending || !email.trim()}
               >
-                {sending ? 'Sending...' : 'Send Email'}
+                {sending ? t("sending") : t("sendEmail")}
               </button>
             </div>
           </div>

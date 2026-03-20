@@ -23,28 +23,28 @@ export const loadMarkdownFile = async (path) => {
 };
 
 /**
- * Load a question file, trying the group-specific version first,
- * then falling back to general.
+ * Load a question file, trying the language/group-specific version first,
+ * then falling back to general within the same language.
  */
-export const loadQuestionFile = async (group, questionId) => {
-  // Try group-specific first
-  const groupContent = await loadMarkdownFile(`/data/questions/${group}/${questionId}.md`);
+export const loadQuestionFile = async (lang, group, questionId) => {
+  const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
+
+  const groupContent = await loadMarkdownFile(`${base}/${group}/${questionId}.md`);
   if (groupContent) return groupContent;
 
-  // Fall back to general if not in general group
   if (group !== 'general') {
-    return await loadMarkdownFile(`/data/questions/general/${questionId}.md`);
+    const generalContent = await loadMarkdownFile(`${base}/general/${questionId}.md`);
+    if (generalContent) return generalContent;
   }
+
   return null;
 };
 
 /**
- * Check if a question file exists for a given group.
+ * Check if a question file exists for a given language and group.
  */
-export const questionFileExists = async (group, questionId) => {
-  const content = await loadQuestionFile(group, questionId);
-  console.log(content)
-  if(content.includes("doctype html"))return false;
+export const questionFileExists = async (lang, group, questionId) => {
+  const content = await loadQuestionFile(lang, group, questionId);
   return content !== null;
 };
 

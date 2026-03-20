@@ -1,3 +1,4 @@
+import { useLanguage } from "../context/LanguageContext";
 import "./FindResourcesModal.css";
 
 const RESOURCES = [
@@ -24,11 +25,13 @@ const RESOURCES = [
 ];
 
 export default function FindResourcesModal({ onClose }) {
+  const { t } = useLanguage();
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-panel resources-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Find Resources</h2>
+          <h2>{t("findResources")}</h2>
           <button className="modal-close" onClick={onClose}>&times;</button>
         </div>
         <div className="modal-body">

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useLanguage } from "../context/LanguageContext";
 import { useEffect, useState, useCallback, useRef } from "react";
 import GlossaryModal from "../components/GlossaryModal";
 import RecommendedActionsModal from "../components/RecommendedActionsModal";
@@ -15,6 +16,7 @@ import './QuestionPage.css';
 
 export default function QuestionPage() {
   const { user, saveAnswer, getAnswer } = useUser();
+  const { lang, t } = useLanguage();
   const { subject, id } = useParams();
   const navigate = useNavigate();
 
@@ -25,7 +27,6 @@ export default function QuestionPage() {
   const [nextQuestionExists, setNextQuestionExists] = useState(false);
   const [existingAnswer, setExistingAnswer] = useState(null);
 
-  // Track which question was just answered to prevent re-load race condition
   const justAnsweredId = useRef(null);
 
   const questionId = `${subject.toLowerCase()}-q${id}`;
@@ -37,19 +38,16 @@ export default function QuestionPage() {
   const checkNextQuestionExists = useCallback(async () => {
     const nextNum = parseInt(id) + 1;
     const nextQuestionId = `${subject.toLowerCase()}-q${nextNum}`;
-    const exists = await questionFileExists(user.group, nextQuestionId);
-    console.log(exists)
+    const exists = await questionFileExists(lang, user.group, nextQuestionId);
     setNextQuestionExists(exists);
-  }, [id, subject, user.group]);
+  }, [id, subject, user.group, lang]);
 
-  // Load question content — runs on route change
   useEffect(() => {
     if (!user.group) {
       navigate("/");
       return;
     }
 
-    // Only skip reload if THIS specific question was just answered
     if (justAnsweredId.current === questionId) {
       justAnsweredId.current = null;
       return;
@@ -65,8 +63,9 @@ export default function QuestionPage() {
 
       try {
         let combinedContent = '';
+        const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
 
-        const generalPath = `/data/questions/general/${subject.toLowerCase()}-q${id}.md`;
+        const generalPath = `${base}/general/${subject.toLowerCase()}-q${id}.md`;
         const generalContent = await loadMarkdownFile(generalPath);
 
         if (generalContent) {
@@ -74,7 +73,7 @@ export default function QuestionPage() {
         }
 
         if (user.group !== 'general') {
-          const groupPath = `/data/questions/${user.group}/${subject.toLowerCase()}-q${id}.md`;
+          const groupPath = `${base}/${user.group}/${subject.toLowerCase()}-q${id}.md`;
           const groupContent = await loadMarkdownFile(groupPath);
 
           if (groupContent) {
@@ -90,14 +89,12 @@ export default function QuestionPage() {
         const parsed = parseMarkdownContent(combinedContent);
         setParsedQuestion(parsed);
 
-        // Check for existing answer
         const existing = getAnswer(questionId);
         setExistingAnswer(existing);
 
-        // Pre-check next question
         const nextNum = parseInt(id) + 1;
         const nextQId = `${subject.toLowerCase()}-q${nextNum}`;
-        const nextExists = await questionFileExists(user.group, nextQId);
+        const nextExists = await questionFileExists(lang, user.group, nextQId);
         if (!cancelled) setNextQuestionExists(nextExists);
 
         if (existing) {
@@ -116,16 +113,13 @@ export default function QuestionPage() {
     loadContent();
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subject, id, user.group]);
+  }, [subject, id, user.group, lang]);
 
-  // Yes / Do not know → show recommended actions
-  // No / Not applicable → go to navigation screen
   const handleAnswerSelect = async (answer) => {
     justAnsweredId.current = questionId;
     saveAnswer(questionId, answer);
     setExistingAnswer({ answer });
 
-    // Pre-check next question
     await checkNextQuestionExists();
 
     if (answer === 'yes' || answer === 'do_not_know') {
@@ -162,7 +156,7 @@ export default function QuestionPage() {
   if (uiState === 'loading') {
     return (
       <div className="question-page">
-        <div className="loading">Loading question...</div>
+        <div className="loading">{t("loadingQuestion")}</div>
       </div>
     );
   }
@@ -171,9 +165,9 @@ export default function QuestionPage() {
     return (
       <div className="question-page">
         <div className="error">
-          <h2>Question Not Found</h2>
-          <p>The requested question could not be loaded.</p>
-          <button className="btn-primary" onClick={handleBackToNavigation}>Back to Navigation page</button>
+          <h2>{t("questionNotFound")}</h2>
+          <p>{t("questionNotFoundBody")}</p>
+          <button className="btn-primary" onClick={handleBackToNavigation}>{t("backToNav")}</button>
         </div>
       </div>
     );
@@ -183,13 +177,13 @@ export default function QuestionPage() {
     <div className="question-page" style={{ backgroundColor: domainColor }}>
       <div className="question-top-bar">
         <button className="glossary-btn" onClick={() => setShowGlossary(true)}>
-          Glossary
+          {t("glossary")}
         </button>
       </div>
 
       <div className="question-header">
         <div className="domain-accent" style={{ backgroundColor: domainCfg?.color || '#007bff' }} />
-        <h1>Domain {domainNumber}: {domainName}</h1>
+        <h1>{t("domainPrefix", `Domain ${domainNumber}: ${domainName}`, { num: domainNumber, name: domainName })}</h1>
       </div>
 
       {uiState === 'question' && parsedQuestion && (
@@ -211,14 +205,14 @@ export default function QuestionPage() {
         <div className="question-content">
           <div className="question-text">
             <h2><span className="question-num">Q{id}.</span> {parsedQuestion.questionText}</h2>
-            <p>You answered: <strong>{formatAnswerDisplay(existingAnswer?.answer || '')}</strong></p>
+            <p>{t("youAnswered")} <strong>{formatAnswerDisplay(existingAnswer?.answer || '')}</strong></p>
           </div>
 
           <div className="nav-buttons">
-            <button className="nav-btn secondary" onClick={handleAnswerAgain}>Answer Again</button>
+            <button className="nav-btn secondary" onClick={handleAnswerAgain}>{t("answerAgain")}</button>
             {nextQuestionExists && (
               <button className="nav-btn primary" onClick={handleNextQuestion}>
-                Next Question
+                {t("nextQuestion")}
               </button>
             )}
           </div>
@@ -227,15 +221,15 @@ export default function QuestionPage() {
 
       {uiState === 'navigation' && (
         <div className="navigation-options">
-          <h3>Question Answered</h3>
-          <p>Your answer has been saved.</p>
+          <h3>{t("questionAnswered")}</h3>
+          <p>{t("yourAnswerSaved")}</p>
           <div className="nav-buttons">
             <button className="nav-btn secondary" onClick={handleBackToNavigation}>
-              Back to Navigation page
+              {t("backToNav")}
             </button>
             {nextQuestionExists && (
               <button className="nav-btn primary" onClick={handleNextQuestion}>
-                Next Question
+                {t("nextQuestion")}
               </button>
             )}
           </div>
@@ -245,7 +239,7 @@ export default function QuestionPage() {
       <RecommendedActionsModal
         isOpen={showModal}
         onClose={handleModalClose}
-        title="Recommended Actions"
+        title={t("recommendedActions")}
         content={parsedQuestion?.recommendedActions || ''}
       />
       {showGlossary && <GlossaryModal onClose={() => setShowGlossary(false)} />}

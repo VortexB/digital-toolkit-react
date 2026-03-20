@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
 import TermsModal from "../components/TermsModal";
 import "./HomePage.css";
@@ -11,12 +12,12 @@ const PROJECT_TYPE_OPTIONS = [
   "Virtual reality", "Wearable", "Website",
 ];
 
-  const LOCATION_OPTIONS = [
-    { value: "general", label: "Canada except Quebec" },
-    { value: "quebec", label: "Quebec" },
-    { value: "douglasciuss", label: "Douglas Research Centre/CIUSSS-Ouest" },
-    { value: "international", label: "Outside of Canada" },
-  ];
+const getLocationOptions = (t) => [
+  { value: "general", label: t("locationCanadaExceptQuebec") },
+  { value: "quebec", label: t("locationQuebec") },
+  { value: "douglasciuss", label: t("locationDouglasciuss") },
+  { value: "international", label: t("locationInternational") },
+];
 
   const CISSS_CIUSSS_LIST = [
     "CISSS de l'Abitibi-Témiscamingue",
@@ -44,9 +45,12 @@ const PROJECT_TYPE_OPTIONS = [
 
 export default function HomePage() {
   const { user, setUser } = useUser();
+  const { t } = useLanguage();
   const [selectedGroup, setSelectedGroup] = useState("");
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
+
+  const LOCATION_OPTIONS = getLocationOptions(t);
 
   const handleBegin = () => {
     if (
@@ -122,108 +126,38 @@ export default function HomePage() {
         <img src="imgs/ludicmind.png" alt="LudicMind logo" />
       </div>
 
-      <h1 className="header">D3SM Digital Implementation Toolkit</h1>
+      <h1 className="header">{t("d3smTitle")}</h1>
 
       <div className="info-section">
-        <h4>What is this about?</h4>
-        <p>
-          This D3SM toolkit aims to provide ideas, steps, and resources to support
-          researchers, clinicians, health care managers, and project leads when
-          planning, implementing, and evaluating digital mental health
-          innovations. It also considers how to plan sustainability through
-          implementation. We created this toolkit by adapting the{" "}
-          <a href="https://www.phc.ox.ac.uk/research/groups-and-centres/interdisciplinary-research-in-health-sciences/enasss-cat" target="_blank" rel="noopener noreferrer">
-            non-adoption, abandonment and challenges to scale-up, spread, sustainability (NASSS) framework, combined with a Complexity Assessment Tool (CAT)
-          </a>
-          , developed by Greenhalgh and her colleagues. The assessment will help users:
-        </p>
+        <h4>{t("whatIsThis")}</h4>
+        <p>{t("infoWhatAboutBody")}</p>
         <ul>
-          <li>
-            Assess the readiness level of technology integration into health
-            care settings according to the key domains (technology, value
-            proposition, intended adopters, organizations, and
-            external context)
-          </li>
-          <li>
-            Identify barriers and facilitators related to technology integration
-            in health care settings
-          </li>
-          <li>
-            Access to resources and tools that can help overcome existing
-            barriers and support integration of technology
-          </li>
+          <li>{t("infoWhatAboutLi1")}</li>
+          <li>{t("infoWhatAboutLi2")}</li>
+          <li>{t("infoWhatAboutLi3")}</li>
         </ul>
-        <p>
-          We recommend that users engage with this tool in different phases of the
-          implementation process (e.g., conceptualization, planning,
-          implementation, evaluation, sustainability, commercialization) as
-          barriers and facilitators can change over time as well as the policy
-          context.
-        </p>
+        <p>{t("infoWhatAboutRec")}</p>
 
-        <h4>Who is this toolkit for?</h4>
+        <h4>{t("whoIsThisFor")}</h4>
         <ul>
-          <li>
-            Researchers and clinicians who develop and plan to implement
-            digital mental health innovations
-          </li>
-          <li>
-            Health care managers, program leads, and clinicians, who plan to
-            adopt digital mental health innovations for implementation in their
-            clinical settings
-          </li>
+          <li>{t("infoWhoLi1")}</li>
+          <li>{t("infoWhoLi2")}</li>
         </ul>
 
-        <h4>How do I use the D3SM toolkit?</h4>
-        <p>
-          By answering 23 questions in five domains, 1) technology, 2) value
-          proposition, 3) intended adopters, 4) organizations, and 5)
-          external context, you will be able to assess challenges and resources
-          of each domain during your pathway for implementation and sustainment.
-          Depending on your responses, you will receive a list of recommended
-          actions and resources to address the identified challenges at the end
-          of the assessment. By completing questions of all domains, you will
-          also be able to identify which domains need more input and measures to
-          respond to specific complexity. In addition, conducting assessment
-          regularly (three to six months) can also help the project team monitor
-          and evaluate the process of digital technology integration over time.
-        </p>
+        <h4>{t("howDoIUse")}</h4>
+        <p>{t("infoHowDoIBody")}</p>
 
-        <h4>How was this D3SM Toolkit developed?</h4>
-        <p>
-          The Douglas Data and Digital Science for Mental Health (D3SM)
-          Implementation team identified and adapted the NASSS (non-adoption,
-          abandonment and challenges to scale-up, spread, sustainability)
-          framework, combined with a Complexity Assessment Toolkit (CAT). The
-          NASSS-CAT was originally developed by the Interdisciplinary Research
-          in Health Sciences group led by Dr. Trisha Greenhalgh at the
-          University of Oxford in 2021. Considering its specific focus on
-          complexities and interdependent characteristics of health technology
-          projects, we adapted the tool to the Canadian/Quebec health care
-          context after selecting relevant questions and administering the
-          modified questionnaire with selected D3SM research teams. We
-          identified resource information through literature review, meetings
-          and consultations with people working on development and
-          implementation of digital mental health interventions in clinical
-          settings.
-        </p>
+        <h4>{t("howWasItDeveloped")}</h4>
+        <p>{t("infoHowDevelopedBody")}</p>
         <p className="reference">
-          Reference:{" "}
-          <a href="https://pubmed.ncbi.nlm.nih.gov/32401224/" target="_blank" rel="noopener noreferrer">
-            Greenhalgh T, Maylor H, Shaw S, Wherton J, Papoutsi C,
-            Betton V, Nelissen N, Gremyr A, Rushforth A, Koshkouei M, Taylor J.
-            The NASSS-CAT Tools for Understanding, Guiding, Monitoring, and
-            Researching Technology Implementation Projects in Health and Social
-            Care: Protocol for an Evaluation Study in Real-World Settings. JMIR
-            Res Protoc 2020;9(5):e16861
-          </a>
+          {t("infoReference")}
         </p>
       </div>
 
       {/* --- Form Section --- */}
       <div className="form-section">
         <div className="form-group">
-          <label htmlFor="project-title">Project Title</label>
+          <label htmlFor="project-title">{t("projectTitle")}</label>
           <input
             id="project-title"
             type="text"
@@ -234,13 +168,11 @@ export default function HomePage() {
 
         <div className="form-group">
           <label htmlFor="location-select">
-            Select your location
-            <span className="helper-text">
-              If multiple settings, please select one setting where you are planning to integrate the technology
-            </span>
+            {t("selectYourLocation")}
+            <span className="helper-text">{t("locationHelper")}</span>
           </label>
           <select id="location-select" value={selectedGroup} onChange={handleGroupChange}>
-            <option value="">Please select your location</option>
+            <option value="">{t("locationPleaseSelect")}</option>
             {LOCATION_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
@@ -249,13 +181,13 @@ export default function HomePage() {
 
         {(selectedGroup === "quebec" || selectedGroup === "douglasciuss") && (
           <div className="form-group">
-            <label htmlFor="cisss-select">CISSS/CIUSSS</label>
+            <label htmlFor="cisss-select">{t("cisssciusss")}</label>
             <select
               id="cisss-select"
               value={user.cisssciusss}
               onChange={handleFieldChange("cisssciusss")}
             >
-              <option value="">— Select CISSS/CIUSSS —</option>
+              <option value="">{t("selectCisss")}</option>
               {CISSS_CIUSSS_LIST.map((item) => (
                 <option key={item} value={item}>{item}</option>
               ))}
@@ -264,23 +196,23 @@ export default function HomePage() {
         )}
 
         <div className="form-group">
-          <label>Project Location</label>
+          <label>{t("projectLocation")}</label>
           <div className="location-fields">
             <input
               type="text"
-              placeholder="Country"
+              placeholder={t("country")}
               value={user.projectCountry}
               onChange={handleFieldChange("projectCountry")}
             />
             <input
               type="text"
-              placeholder="Province/State"
+              placeholder={t("province")}
               value={user.projectProvince}
               onChange={handleFieldChange("projectProvince")}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder={t("city")}
               value={user.projectCity}
               onChange={handleFieldChange("projectCity")}
             />
@@ -288,7 +220,7 @@ export default function HomePage() {
         </div>
 
         <div className="form-group">
-          <label>Type of project <span className="helper-text">(Select all that apply)</span></label>
+          <label>{t("typeOfProject")} <span className="helper-text">{t("selectAllThatApply")}</span></label>
           <div className="project-type-grid">
             {PROJECT_TYPE_OPTIONS.map((type) => (
               <label key={type} className="checkbox-label">
@@ -306,13 +238,13 @@ export default function HomePage() {
                 checked={user.projectTypes.includes("Other")}
                 onChange={handleOtherToggle}
               />
-              Other
+              {t("other")}
             </label>
           </div>
           {user.projectTypes.includes("Other") && (
             <input
               type="text"
-              placeholder="Please describe"
+              placeholder={t("pleaseDescribe")}
               value={user.projectTypeOther}
               onChange={handleFieldChange("projectTypeOther")}
               className="other-input"
@@ -327,9 +259,9 @@ export default function HomePage() {
               checked={user.agreedToTerms}
               onChange={handleTermsChange}
             />
-            Agree to{" "}
+            {t("agreeToTerms")}{" "}
             <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsModal(true); }}>
-              terms and conditions
+              {t("termsAndConditions")}
             </a>
           </label>
         </div>
@@ -339,11 +271,11 @@ export default function HomePage() {
           onClick={handleBegin}
           disabled={!isFormValid}
         >
-          Begin
+          {t("begin")}
         </button>
       </div>
 
-      {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} />}
+      {showTermsModal && <TermsModal onClose={() => setShowTermsModal(false)} title={t("termsTitle")} />}
     </div>
   );
 }

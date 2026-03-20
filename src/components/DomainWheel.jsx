@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { useLanguage } from '../context/LanguageContext';
 import { DOMAIN_ORDER, DOMAIN_CONFIG, ANSWER_COLORS } from '../utils/domainConfig';
 import './DomainWheel.css';
 
@@ -59,6 +60,7 @@ function starPath(outerR, innerR, points = 5) {
 export default function DomainWheel({ domains, onHoveredDomainChange }) {
   const navigate = useNavigate();
   const { user, getAnswer } = useUser();
+  const { t } = useLanguage();
   const [hoveredDomain, setHoveredDomain] = useState(null);
   const [hoveredSegment, setHoveredSegment] = useState(null);
 
@@ -294,7 +296,7 @@ export default function DomainWheel({ domains, onHoveredDomainChange }) {
       {/* Center Circle */}
       <div className="wheel-center">
         <span className="project-title">
-          {user.projectTitle || 'Your Project'}
+          {user.projectTitle || t("yourProject")}
         </span>
       </div>
     </div>

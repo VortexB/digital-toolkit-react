@@ -270,12 +270,12 @@ export default function DomainWheel({ domains, onHoveredDomainChange }) {
             >
               <img
                 src={domain.icon}
-                alt={domain.shortName}
+                alt={t(`domain${domain.key.charAt(0).toUpperCase() + domain.key.slice(1)}ShortName`, domain.shortName)}
                 className="domain-icon"
                 width={ICON_SIZE}
                 height={ICON_SIZE}
               />
-              <span className="domain-name">{domain.shortName}</span>
+              <span className="domain-name">{t(`domain${domain.key.charAt(0).toUpperCase() + domain.key.slice(1)}ShortName`, domain.shortName)}</span>
             </div>
           );
         })}

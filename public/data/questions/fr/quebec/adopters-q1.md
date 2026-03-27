@@ -1,1 +1,1 @@
-# Domain 3: Certains usagers percevront l’innovation ou la technologie de manière négative (p. Ex.: ravive des souvenirs qu’ils préféreraient oublier).
+# Domaine 3: Certains usagers percevront l’innovation ou la technologie de manière négative (p. Ex.: ravive des souvenirs qu’ils préféreraient oublier).

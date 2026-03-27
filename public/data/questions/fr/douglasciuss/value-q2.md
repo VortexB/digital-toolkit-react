@@ -1,0 +1,1 @@
+# Domaine 2: L’adoption et la mise en œuvre de l’innovation pourrait entraîner du travail supplémentaire pour les cliniciens.

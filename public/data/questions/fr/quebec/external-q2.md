@@ -1,0 +1,1 @@
+# Domaine 5: Les exigences réglementaires pour l’utilisation de la technologie en soins de santé ont besoin d'être clairement  définies.

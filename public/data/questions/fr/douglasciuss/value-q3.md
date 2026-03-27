@@ -1,0 +1,1 @@
+# Domaine 2: La rentabilité de la technologie doit être démontrée en termes de bénéfices qu’elle apporte par rapport à un investissement financier donné.	

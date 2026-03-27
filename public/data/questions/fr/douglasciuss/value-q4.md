@@ -1,0 +1,1 @@
+# Domaine 2: Il y a des préoccupations relatives à la sécurité des usagers concernant la technologie ou le modèle de soins associé à la technologie.

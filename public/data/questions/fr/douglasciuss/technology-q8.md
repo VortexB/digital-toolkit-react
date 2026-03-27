@@ -1,0 +1,1 @@
+# Domaine 1: La technologie est susceptible de nécessiter des changements majeurs au niveau des tâches et des routines organisationnelles (ex. nouveaux procédés administratifs, les employés devant accomplir leur travail différemment).

@@ -1,0 +1,1 @@
+# Domaine 4: Les routines et les processus organisationnels devront considérablement changer pour s’adapter à la technologie.

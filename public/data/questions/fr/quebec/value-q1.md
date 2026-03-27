@@ -1,0 +1,1 @@
+# Domaine 2: L’efficacité de l’innovation auprès du groupe de patients reste à être démontrée.

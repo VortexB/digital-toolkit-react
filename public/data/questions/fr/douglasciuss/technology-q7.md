@@ -1,0 +1,1 @@
+# Domaine 1: Une mise à niveau des appareils personnels d’usagers individuels (Usagers, cliniciens, ou chercheurs) est nécessaire.

@@ -1,0 +1,1 @@
+# Domaine 1: Il y a des incertitudes significatives concernant l’acceptabilité et  l’utilisabilité de la technologie par les usagers cibles.

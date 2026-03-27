@@ -1,0 +1,1 @@
+# Domaine 3: Certaines ou tous les personnes ou membres de l’équipe ont des ressources, du temps, de l’espace, ou du support limités pour apprendre à utiliser l’innovation.

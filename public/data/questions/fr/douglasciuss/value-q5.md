@@ -1,0 +1,1 @@
+# Domaine 2: On craint que la technologie puisse aggraver les inégalités tout en améliorant les soins et l’accès pour certains patients.	

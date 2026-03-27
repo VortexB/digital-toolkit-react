@@ -1,0 +1,1 @@
+# Domaine 3: Certains membres du personnel, des cliniciens, des chercheurs peuvent penser qu’adopter l’innovation prendra plus de temps que les pratiques existantes.

@@ -1,0 +1,1 @@
+# Domaine 4: Tous les aspects du processus d’approvisionnement (p.ex.: Qui financera le projet? Qui sera responsable des coûts? Y a-t-il un budget défini? Le financement est-il récurrent? Y a-t-il des problèmes liés à l’échéancier ou l’acquisition des fonds?) sont encore flous.

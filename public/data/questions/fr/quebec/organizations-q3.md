@@ -1,0 +1,1 @@
+# Domaine 4: Les implications (p.ex: travail requis) liées à l’introduction, à la mise en œuvre et à l’évaluation de la technologie nécessite d'être adéquatement évaluées par l’organisation qui met en œuvre.

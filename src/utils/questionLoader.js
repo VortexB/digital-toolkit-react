@@ -26,14 +26,16 @@ export const loadMarkdownFile = async (path) => {
  * Load a question file, trying the language/group-specific version first,
  * then falling back to general within the same language.
  */
-export const loadQuestionFile = async (lang, group, questionId) => {
-  const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
+const BASE_URL = import.meta.env.BASE_URL;
 
-  const groupContent = await loadMarkdownFile(`${base}/${group}/${questionId}.md`);
+export const loadQuestionFile = async (lang, group, questionId) => {
+  const base = lang === 'fr' ? 'data/questions/fr' : 'data/questions';
+
+  const groupContent = await loadMarkdownFile(`${BASE_URL}${base}/${group}/${questionId}.md`);
   if (groupContent) return groupContent;
 
   if (group !== 'general') {
-    const generalContent = await loadMarkdownFile(`${base}/general/${questionId}.md`);
+    const generalContent = await loadMarkdownFile(`${BASE_URL}${base}/general/${questionId}.md`);
     if (generalContent) return generalContent;
   }
 
@@ -97,7 +99,7 @@ export const getCachedManifest = async () => {
 
 export const loadManifest = async () => {
   try {
-    const response = await fetch('/data/questions/manifest.json');
+    const response = await fetch(`${BASE_URL}data/questions/manifest.json`);
     if (!response.ok) throw new Error('Failed to load manifest');
     const data = await response.json();
     cachedManifest = data;

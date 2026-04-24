@@ -19,7 +19,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/locales/${lang}.json`)
+    fetch(`${import.meta.env.BASE_URL}locales/${lang}.json`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load translations");
         return res.json();

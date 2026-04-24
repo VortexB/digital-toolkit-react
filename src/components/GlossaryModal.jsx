@@ -7,7 +7,7 @@ export default function GlossaryModal({ onClose }) {
   const [glossary, setGlossary] = useState([]);
 
   useEffect(() => {
-    fetch(`/locales/glossary-${lang}.json`)
+    fetch(`${import.meta.env.BASE_URL}locales/glossary-${lang}.json`)
       .then((res) => res.json())
       .then((data) => setGlossary(data))
       .catch(() => setGlossary([]));

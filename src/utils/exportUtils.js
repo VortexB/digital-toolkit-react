@@ -7,13 +7,15 @@ import {
 } from "./questionLoader";
 import { DOMAIN_ORDER, DOMAIN_CONFIG } from "./domainConfig";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 // Font URLs for embedding in PDF
 const FONT_URLS = {
-  montserratRegular: "/fonts/Montserrat/static/Montserrat-Regular.ttf",
-  montserratBold: "/fonts/Montserrat/static/Montserrat-Bold.ttf",
-  montserratSemiBold: "/fonts/Montserrat/static/Montserrat-SemiBold.ttf",
-  latoRegular: "/fonts/Lato/Lato-Regular.ttf",
-  latoBold: "/fonts/Lato/Lato-Bold.ttf",
+  montserratRegular: `${BASE_URL}fonts/Montserrat/static/Montserrat-Regular.ttf`,
+  montserratBold: `${BASE_URL}fonts/Montserrat/static/Montserrat-Bold.ttf`,
+  montserratSemiBold: `${BASE_URL}fonts/Montserrat/static/Montserrat-SemiBold.ttf`,
+  latoRegular: `${BASE_URL}fonts/Lato/Lato-Regular.ttf`,
+  latoBold: `${BASE_URL}fonts/Lato/Lato-Bold.ttf`,
 };
 
 // Load font as base64
@@ -31,10 +33,10 @@ const loadFont = async (url) => {
 
 // Image URLs for embedding in PDF
 const IMAGE_URLS = {
-  d3sm: "/imgs/d3sm.png",
-  douglas: "/imgs/douglas-logo.png",
-  hbhl: "/imgs/hbhl.png",
-  ludicmind: "/imgs/ludicmind.png",
+  d3sm: `${BASE_URL}imgs/d3sm.png`,
+  douglas: `${BASE_URL}imgs/douglas-logo.png`,
+  hbhl: `${BASE_URL}imgs/hbhl.png`,
+  ludicmind: `${BASE_URL}imgs/ludicmind.png`,
 };
 
 // Load image as base64
@@ -126,9 +128,9 @@ export const collectRecommendedActions = async (answers, group, lang) => {
     try {
       // Load and combine content in the correct language, like QuestionPage does
       let combinedContent = "";
-      const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
+      const base = lang === 'fr' ? 'data/questions/fr' : 'data/questions';
 
-      const generalPath = `${base}/general/${subject}-q${id}.md`;
+      const generalPath = `${BASE_URL}${base}/general/${subject}-q${id}.md`;
       const generalContent = await loadMarkdownFile(generalPath);
 
       if (generalContent) {
@@ -136,7 +138,7 @@ export const collectRecommendedActions = async (answers, group, lang) => {
       }
 
       if (group !== "general") {
-        const groupPath = `${base}/${group}/${subject}-q${id}.md`;
+        const groupPath = `${BASE_URL}${base}/${group}/${subject}-q${id}.md`;
         const groupContent = await loadMarkdownFile(groupPath);
 
         if (groupContent) {

@@ -73,9 +73,10 @@ export default function QuestionPage() {
         }
 
         let combinedContent = '';
-        const base = lang === 'fr' ? '/data/questions/fr' : '/data/questions';
+        const base = lang === 'fr' ? 'data/questions/fr' : 'data/questions';
+        const baseUrl = import.meta.env.BASE_URL;
 
-        const generalPath = `${base}/general/${subject.toLowerCase()}-q${id}.md`;
+        const generalPath = `${baseUrl}${base}/general/${subject.toLowerCase()}-q${id}.md`;
         const generalContent = await loadMarkdownFile(generalPath);
 
         if (generalContent) {
@@ -83,7 +84,7 @@ export default function QuestionPage() {
         }
 
         if (user.group !== 'general') {
-          const groupPath = `${base}/${user.group}/${subject.toLowerCase()}-q${id}.md`;
+          const groupPath = `${baseUrl}${base}/${user.group}/${subject.toLowerCase()}-q${id}.md`;
           const groupContent = await loadMarkdownFile(groupPath);
 
           if (groupContent) {

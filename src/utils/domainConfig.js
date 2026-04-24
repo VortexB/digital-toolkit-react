@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.BASE_URL;
+
 // Domain configuration — colors, icons, display names
 // Update colors here to change the entire app's domain theming
 
@@ -7,9 +9,9 @@ export const DOMAIN_CONFIG = {
     name: 'Technology',
     shortName: 'Technology',
     number: 1,
-    color: '#8194E6',          
-    colorLight: '#ced7ffff',    
-    icon: '/imgs/domain-icons/tech.png',
+    color: '#8194E6',
+    colorLight: '#ced7ffff',
+    icon: `${BASE_URL}imgs/domain-icons/tech.png`,
     description: "This domain looks at the multiple complexities around technology, such as functionality of the technology itself, and the required knowledge and infrastructure to use it.",
   },
   value: {
@@ -17,9 +19,9 @@ export const DOMAIN_CONFIG = {
     name: 'Value Proposition',
     shortName: 'Value',
     number: 2,
-    color: '#B1E681',         
-    colorLight: '#e3ffc9ff',     
-    icon: '/imgs/domain-icons/value.png',
+    color: '#B1E681',
+    colorLight: '#e3ffc9ff',
+    icon: `${BASE_URL}imgs/domain-icons/value.png`,
     description: "This domain concerns for whom a new technology generates values, including the service user, the developer, and the health system.",
   },
   adopters: {
@@ -27,9 +29,9 @@ export const DOMAIN_CONFIG = {
     name: 'Intended Adopters',
     shortName: 'Adopters',
     number: 3,
-    color: '#49998F',        
-    colorLight: '#befff7ff',  
-    icon: '/imgs/domain-icons/adopters.png',
+    color: '#49998F',
+    colorLight: '#befff7ff',
+    icon: `${BASE_URL}imgs/domain-icons/adopters.png`,
     description: "This domain looks at the complexity of the adopter system, i.e., clinicians, staff, service users and carers who are expected to use the technology but who may refuse to use it or find that they are unable to use it.",
   },
   organizations: {
@@ -37,19 +39,19 @@ export const DOMAIN_CONFIG = {
     name: 'Organizations',
     shortName: 'Organizations',
     number: 4,
-    color: '#A481E6',         
-    colorLight: '#e6d9ffff',    
-    icon: '/imgs/domain-icons/organization.png',
-    description: "This domain focuses on the organization’s capacity to innovate, readiness for a new innovation, funding decisions, potential disruption to existing routines, and the extent of additional work to implement changes.",
+    color: '#A481E6',
+    colorLight: '#e6d9ffff',
+    icon: `${BASE_URL}imgs/domain-icons/organization.png`,
+    description: "This domain focuses on the organization's capacity to innovate, readiness for a new innovation, funding decisions, potential disruption to existing routines, and the extent of additional work to implement changes.",
   },
   external: {
     key: 'external',
     name: 'External Context',
     shortName: 'External',
     number: 5,
-    color: '#E6E081',        
-    colorLight: '#fffcd6ff',   
-    icon: '/imgs/domain-icons/external.png',
+    color: '#E6E081',
+    colorLight: '#fffcd6ff',
+    icon: `${BASE_URL}imgs/domain-icons/external.png`,
     description: "This domain concerns the wider system, how external social, political, technological, and economic context may affect the uptake of innovations.",
   },
 };
